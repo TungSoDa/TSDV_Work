@@ -1,0 +1,178 @@
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.function {
+  width: 70px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid;
+}
+
+.function p {
+  font-size: 14px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.statusImg {
+  width: 20px;
+  height: 20px;
+}
+
+[id*="no"] {
+  width: 5%;
+}
+
+[id*="name"] {
+  width: 25%;
+}
+
+[id*="joinDate"] {
+  width: 15%;
+}
+
+[id*="role"] {
+  width: 20%;
+}
+
+[id*="status"] {
+  width: 15%;
+}
+
+#action {
+  width: 20%;
+}
+
+#action1 {
+  width: 10%;
+}
+
+#action2 {
+  width: 10%;
+}
+
+header {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 3px gray inset;
+}
+
+header .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+header .logo img {
+  width: 100px;
+  height: 50px;
+}
+
+header .logo .title {
+  padding-top: 3px;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+header .date {
+  padding-top: 12px;
+  background-color: navajowhite;
+}
+
+header .date p {
+  font-size: 15px;
+}
+
+.main {
+  max-width: 1200px;
+  background-color: cadetblue;
+}
+
+.main .title {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.main .add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.main table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.main table th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #c6e0b4;
+}
+
+.main table td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #ddebf7;
+}
+
+.main nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 20px;
+}
+
+.main .modal-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main .modal-body .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main .modal-body .form-group input {
+  width: 100%;
+}
+
+.main .modal-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+/*# sourceMappingURL=MiniProject.css.map */
