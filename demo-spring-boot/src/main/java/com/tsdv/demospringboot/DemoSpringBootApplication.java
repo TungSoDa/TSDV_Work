@@ -4,6 +4,7 @@ import com.tsdv.demospringboot.childpackage1.Bikini;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 //@ComponentScan("com.tsdv.demospringboot.childpackage1")
@@ -17,16 +18,20 @@ public class DemoSpringBootApplication {
 //        System.out.println(outfit);
 //        outfit.wear();
 
-
 //        Dress dress =  context.getBean(Dress.class);
 //        System.out.println(dress);
-//
 //        Bikini bikini =  context.getBean(Bikini.class);
 //        System.out.println(bikini);
 
+        Girl girl = context.getBean(Girl.class);
+        System.out.println(girl);
+        System.out.println(girl.getOutfit());
+        girl.outfit.wear();
 
-//        Girl girl = context.getBean(Girl.class);
-//        System.out.println(girl);
-//        System.out.println(girl.getOutfit());
+        GirlService girlService = context.getBean(GirlService.class);
+        Girl girlName = girlService.getRandomGirl();
+        System.out.println("Tên của girl là:" + girlName);
+
+        ((ConfigurableApplicationContext) context).getBeanFactory().destroyBean(girl);
     }
 }
