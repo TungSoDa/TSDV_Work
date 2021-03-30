@@ -1,6 +1,8 @@
 package com.tsdv.demospringboot;
 
+import com.tsdv.demospringboot.SpringConfiguration.DatabaseConnector;
 import com.tsdv.demospringboot.childpackage1.Bikini;
+import com.tsdv.demospringboot.controller.RequestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -23,15 +25,24 @@ public class DemoSpringBootApplication {
 //        Bikini bikini =  context.getBean(Bikini.class);
 //        System.out.println(bikini);
 
-        Girl girl = context.getBean(Girl.class);
-        System.out.println(girl);
-        System.out.println(girl.getOutfit());
-        girl.outfit.wear();
+//        Girl girl = context.getBean(Girl.class);
+//        System.out.println(girl);
+//        System.out.println(girl.getOutfit());
+//        girl.outfit.wear();
 
-        GirlService girlService = context.getBean(GirlService.class);
-        Girl girlName = girlService.getRandomGirl();
-        System.out.println("Tên của girl là:" + girlName);
+//        GirlService girlService = context.getBean(GirlService.class);
+//        Girl girlName = girlService.getRandomGirl();
+//        System.out.println("Tên của girl là:" + girlName);
 
-        ((ConfigurableApplicationContext) context).getBeanFactory().destroyBean(girl);
+        // destroy Bean
+//        ((ConfigurableApplicationContext) context).getBeanFactory().destroyBean(girl);
+
+        // tạo ra DatabaseConnector phục vụ cho nhiều ngữ cảnh
+//        DatabaseConnector mysql = (DatabaseConnector) context.getBean("mysqlConnector");
+//        mysql.connect();
+//        DatabaseConnector mongodb = (DatabaseConnector) context.getBean("mongodbConnector");
+//        mongodb.connect();
+//        DatabaseConnector postgresql = (DatabaseConnector) context.getBean("postgresqlConnector");
+//        postgresql.connect();
     }
 }
