@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:fragment="header-css">
+	<!-- this is header-css -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+</div>
+</head>
+<body>
+	<div th:fragment="header">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a th:href="@{/}" sec:authorize="isAuthenticated()">Home<span
+								class="sr-only">(current)</span></a></li>
+						<li><a th:href="@{/admin}" sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">Admin</a></li>
+						<li><a th:href="@{/user}" sec:authorize="isAuthenticated() && hasRole('ROLE_USER')">User</a></li>
+						<li><a th:href="@{/about}" sec:authorize="isAuthenticated()">About</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+
+						<span class="navbar-text navbar-right" sec:authorize="isAuthenticated()"> Logged user: <span
+							sec:authentication="name"></span> | <a th:href="@{/logout}">Sign
+								Out</a>
+						</span>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+
+	</div>
+</body>
+</html>

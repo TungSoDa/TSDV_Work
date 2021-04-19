@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="fragments/header :: header-css" />
+<script th:src="@{/js/admin.js}"></script>
+<script th:inline="javascript">
+	serverContextPath =  /*[[@{/}]]*/;
+</script>
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header" />
+
+	<div class="container">
+
+		<div class="starter-template">
+			<h1>Admin page (Spring Security protected)</h1>
+			<h2>Search by user name</h2>
+			<input name="search" type="text" id="search-box" /> <input
+				type="submit" value="Search" onclick="submitSearch()" />
+			
+			<h1>User Table</h1>
+			<div class="row col-md-7 table-responsive">
+			<table id="userTable" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>
