@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: tungds
-Build-Jdk: 14
-Implementation-Title: demo-spring-boot
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.tsdv
-Main-Class: ${start-class}
-
