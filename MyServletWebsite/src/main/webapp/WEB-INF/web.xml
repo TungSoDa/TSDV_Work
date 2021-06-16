@@ -9,20 +9,29 @@
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>com.ifi.servletwebsite.Authentication.Login</servlet-class>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.ifi.servletwebsite.Servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
+        <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Home</servlet-name>
-        <servlet-class>com.ifi.servletwebsite.Authentication.Home</servlet-class>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.ifi.servletwebsite.Servlet.HomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Home</servlet-name>
+        <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.ifi.servletwebsite.Servlet.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/User</url-pattern>
     </servlet-mapping>
 </web-app>

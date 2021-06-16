@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Information</title>
+
+    <!-- Vendor CSS Files -->
+    <link href="../vendor/bootstrap-5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../css/userInfo/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">User Information</h3>
+                    <div class="pull-right">
+                            <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter user" />
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Birthday</th>
+                            <th>Email</th>
+                            <th>Company</th>
+                            <th>Home Town</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="userList" items="${requestScope.userList}">
+                            <tr>
+                                <td>${userList.id}</td>
+                                <td>${userList.username}</td>
+                                <td>${userList.birthday}</td>
+                                <td>${userList.email}</td>
+                                <td>${userList.company}</td>
+                                <td>${userList.homeTown}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor JS Files -->
+    <script src="../vendor/bootstrap-5/js/bootstrap.min.js"></script>
+    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../js/userInfo/main.js"></script>
+</body>
+</html>

@@ -43,6 +43,9 @@
           <element id="library" level="project" name="Maven: org.glassfish:jakarta.el:3.0.3" />
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.46" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:10.0.6" />
+          <element id="library" level="project" name="Maven: com.oracle.database.jdbc:ojdbc8:21.1.0.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.25" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">
