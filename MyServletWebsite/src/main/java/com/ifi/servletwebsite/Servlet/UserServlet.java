@@ -19,9 +19,9 @@ public class UserServlet extends HttpServlet {
         try {
             Connection connection = DatabaseConnector.initializeDatabase();
             ResultSet result = connection.createStatement().executeQuery("SELECT * FROM servlet.user");
-            ArrayList user = new ArrayList<User>();
+            ArrayList<User> user = new ArrayList();
             while(result.next()) {
-                Integer id = result.getInt("user_id");
+                int id = result.getInt("user_id");
                 String username = result.getString("username");
                 Date birthday =  result.getDate("birthday");
                 String email = result.getString("email");
@@ -30,12 +30,12 @@ public class UserServlet extends HttpServlet {
                 user.add(new User(id, username, birthday, email, company, homeTown));
             }
             request.setAttribute("userList", user);
-            request.getRequestDispatcher("userInfo.html").include(request, response);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         } catch (ClassNotFoundException classNotFoundException) {
             classNotFoundException.printStackTrace();
         }
+        request.getRequestDispatcher("/resources/pages/User/userInfo.jsp").include(request, response);
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.html").include(request, response);
+        request.getRequestDispatcher("/resources/pages/Login/login.jsp").include(request, response);
     }
 
     @Override
