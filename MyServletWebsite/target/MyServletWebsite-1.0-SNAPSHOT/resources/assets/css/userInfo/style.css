@@ -12,13 +12,18 @@ body {
 
 .container {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	z-index: 2000;
 }
 
 .panel-heading {
     display: flex;
+}
+.panel-heading #function-button {
+	display: flex;
+	justify-content: center;
 }
 
 table {

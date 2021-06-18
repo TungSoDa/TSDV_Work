@@ -77,8 +77,8 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Welcome to Regna</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <h1>Welcome to MyServletWebsite</h1>
+      <h2>This is template design of Home Page making with Bootstrap</h2>
       <a href="./User" class="btn-get-started">Get Started</a>
     </div>
   </section><!-- End Hero Section -->

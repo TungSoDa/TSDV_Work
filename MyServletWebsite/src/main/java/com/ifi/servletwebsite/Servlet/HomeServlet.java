@@ -12,8 +12,8 @@ public class HomeServlet extends HttpServlet {
         request.getRequestDispatcher("/resources/pages/Home/home.jsp").include(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//    }
 }
