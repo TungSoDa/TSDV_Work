@@ -10,23 +10,23 @@
                 <div class="modal-body">					
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" required="">
+                        <input type="text" class="form-control" required="" name="addUsername">
                     </div>
                     <div class="form-group">
                         <label>Birthday</label>
-                        <input type="date" class="form-control" required="">
+                        <input type="date" class="form-control" required="" name="addBirthday">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" required="">
+                        <input type="email" class="form-control" required="" name="addEmail">
                     </div>
                     <div class="form-group">
                         <label>Company</label>
-                        <input type="text" class="form-control" required="">
+                        <input type="text" class="form-control" required="" name="addCompany">
                     </div>
                     <div class="form-group">
                         <label>Home Town</label>
-                        <input type="text" class="form-control" required="">
+                        <input type="text" class="form-control" required="" name="addHomeTown">
                     </div>					
                 </div>
                 <div class="modal-footer">

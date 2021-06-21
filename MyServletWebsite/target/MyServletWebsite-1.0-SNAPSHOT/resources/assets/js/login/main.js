@@ -1,8 +1,6 @@
 
 (function ($) {
     "use strict";
-
-    
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
@@ -16,10 +14,8 @@
                 check=false;
             }
         }
-
         return check;
     });
-
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
@@ -52,6 +48,10 @@
         $(thisAlert).removeClass('alert-validate');
     }
     
-    
-
 })(jQuery);
+
+$(document).on('click', '#registrationSubmit', function() { 
+    if ($('#createPassword').val() != $('#confirmPassword').val()) {
+        alert('Confirm Password not match Password')
+    }
+});

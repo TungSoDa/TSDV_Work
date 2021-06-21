@@ -2,7 +2,7 @@
 <div id="editUserModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="" method="post">
                 <div class="modal-header">						
                     <h4 class="modal-title">Edit Employee</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>

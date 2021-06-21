@@ -6,24 +6,23 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 //@WebServlet(name = "User", value = "/User")
 public class UserServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void showDataTable(HttpServletRequest request) {
         try {
             Connection connection = DatabaseConnector.initializeDatabase();
             ResultSet result = connection.createStatement().executeQuery("SELECT * FROM servlet.user");
+
             ArrayList<User> user = new ArrayList();
-            while(result.next()) {
+
+            while (result.next()) {
                 int id = result.getInt("user_id");
                 String username = result.getString("username");
-                Date birthday =  result.getDate("birthday");
+                Date birthday = result.getDate("birthday");
                 String email = result.getString("email");
                 String company = result.getString("company");
                 String homeTown = result.getString("home_town");
@@ -35,16 +34,55 @@ public class UserServlet extends HttpServlet {
         } catch (ClassNotFoundException classNotFoundException) {
             classNotFoundException.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        showDataTable(request);
         request.getRequestDispatcher("/resources/pages/User/userInfo.jsp").include(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("userFunction"));
-    }
+        try {
+            String userFunction = request.getParameter("userFunction");
+            Connection connection = DatabaseConnector.initializeDatabase();
+            PreparedStatement preparedStatement;
+            switch (userFunction) {
+                case "Add":
+                    preparedStatement = connection.prepareStatement("INSERT INTO servlet.user VALUES (default, ?, ?, ?, ?, ?)");
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+                    preparedStatement.setString(1, request.getParameter("addUsername"));
+                    preparedStatement.setDate(2, Date.valueOf(request.getParameter("addBirthday")));
+                    preparedStatement.setString(3, request.getParameter("addEmail"));
+                    preparedStatement.setString(4, request.getParameter("addHomeTown"));
+                    preparedStatement.setString(5, request.getParameter("addCompany"));
+                    preparedStatement.executeUpdate();
 
+                    preparedStatement.close();
+                    connection.close();
+                    doGet(request, response);
+                    break;
+                case "Save":
+                    System.out.println("Edit success");
+                    break;
+                case "Delete":
+                    preparedStatement = connection.prepareStatement("DELETE from servlet.user where user_id=?");
+                    preparedStatement.setString(1, request.getParameter("deleteUserID"));
+                    preparedStatement.executeUpdate();
+                    
+                    preparedStatement.close();
+                    connection.close();
+                    doGet(request, response);
+                    break;
+                case "DeleteAll":
+                    System.out.println("Delete all success");
+                    break;
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        }
     }
 }

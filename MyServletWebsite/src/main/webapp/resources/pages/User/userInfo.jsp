@@ -57,12 +57,12 @@
                     <tbody>
                         <c:forEach var="users" items="${userList}">
                             <tr>
-                                <td>${users.id}</td>
-                                <td>${users.username}</td>
-                                <td>${users.birthday}</td>
-                                <td>${users.email}</td>
-                                <td>${users.company}</td>
-                                <td>${users.homeTown}</td>
+                                <td class="userID">${users.id}</td>
+                                <td class="userName">${users.username}</td>
+                                <td class="userBirthday">${users.birthday}</td>
+                                <td class="userEmail">${users.email}</td>
+                                <td class="userCompany">${users.company}</td>
+                                <td class="userHomeTown">${users.homeTown}</td>
                                 <td>
                                     <a data-bs-target="#editUserModal" class="edit" id="function-button" data-bs-toggle="modal">
                                         <svg aria-hidden="true" width="18" height="18" data-bs-toggle="tooltip" title="Edit" data-original-title="Edit" focusable="false" data-prefix="far" data-icon="user-edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-user-edit fa-w-20 fa-2x text-info">
@@ -98,6 +98,12 @@
     <script src="./resources/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 
     <!-- Template Main JS File -->
+    <script>
+        // change container z-index from 2000 to 1 when click button
+        $(document).on('click', '#function-button', function() { 
+            $(".container").css("z-index", 1);
+        });
+    </script>
     <script src="./resources/assets/js/userInfo/main.js"></script>
 </body>
 </html>

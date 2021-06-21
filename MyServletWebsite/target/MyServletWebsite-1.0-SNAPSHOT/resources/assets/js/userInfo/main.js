@@ -48,7 +48,8 @@ $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 })
 
-// change container z-index from 2000 to 1 when click button
-$(document).on('click', '#function-button', function() { 
-	$(".container").css("z-index", 1);
+$(".delete").click(function() {
+    let deleteRow = $(this).closest("tr");
+	$("#deleteUserModal #deleteUserID").val(deleteRow.find(".userID").text());
+    $("#deleteUserModal #deleteUsername").html(deleteRow.find(".userName").text());
 });
