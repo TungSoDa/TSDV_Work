@@ -48,8 +48,18 @@ $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 })
 
-$(".delete").click(function() {
-    let deleteRow = $(this).closest("tr");
-	$("#deleteUserModal #deleteUserID").val(deleteRow.find(".userID").text());
-    $("#deleteUserModal #deleteUsername").html(deleteRow.find(".userName").text());
+$(".delete, .edit").click(function() {
+    let selectedRow = $(this).closest("tr");
+
+	// get userID when click in delete icon in same row
+	$("#deleteUserModal #deleteUserID").val(selectedRow.find(".userID").text());
+    $("#deleteUserModal #deleteUsername").html(selectedRow.find(".userName").text());
+
+	// get userID when click in edit icon in same row and pass value to input
+	$("#editUserModal #editUserID").val(selectedRow.find(".userID").text());
+	$("#editUserModal #editUsername").val(selectedRow.find(".userName").text());
+	$("#editUserModal #editBirthday").val(selectedRow.find(".userBirthday").text());
+	$("#editUserModal #editEmail").val(selectedRow.find(".userEmail").text());
+	$("#editUserModal #editCompany").val(selectedRow.find(".userCompany").text());
+	$("#editUserModal #editHomeTown").val(selectedRow.find(".userHomeTown").text());
 });

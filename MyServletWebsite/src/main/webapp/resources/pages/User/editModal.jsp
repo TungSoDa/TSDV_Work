@@ -7,26 +7,30 @@
                     <h4 class="modal-title">Edit Employee</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                <div class="modal-body">					
+                <div class="modal-body">	
+                    <div class="form-group" style="display: none;">
+                        <label>ID</label>
+                        <input type="text" class="form-control" required="" name="editID" id="editUserID">
+                    </div>				
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" required="">
+                        <input type="text" class="form-control" required="" name="editUsername" id="editUsername">
                     </div>
                     <div class="form-group">
                         <label>Birthday</label>
-                        <input type="date" class="form-control" required="">
+                        <input type="date" class="form-control" required="" name="editBirthday" id="editBirthday">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" required="">
+                        <input type="email" class="form-control" required="" name="editEmail" id="editEmail">
                     </div>
                     <div class="form-group">
                         <label>Company</label>
-                        <input type="text" class="form-control" required="">
+                        <input type="text" class="form-control" required="" name="editCompany" id="editCompany">
                     </div>
                     <div class="form-group">
                         <label>Home Town</label>
-                        <input type="text" class="form-control" required="">
+                        <input type="text" class="form-control" required="" name="editHomeTown" id="editHomeTown">
                     </div>					
                 </div>
                 <div class="modal-footer">

@@ -49,9 +49,3 @@
     }
     
 })(jQuery);
-
-$(document).on('click', '#registrationSubmit', function() { 
-    if ($('#createPassword').val() != $('#confirmPassword').val()) {
-        alert('Confirm Password not match Password')
-    }
-});

@@ -64,13 +64,20 @@ public class UserServlet extends HttpServlet {
                     doGet(request, response);
                     break;
                 case "Save":
-                    System.out.println("Edit success");
+                    preparedStatement = connection.prepareStatement("UPDATE servlet.user SET username = ?, birthday = ?, email = ?, home_town = ?, company = ? WHERE (user_id = ?);");
+
+                    preparedStatement.setString(1, request.getParameter("editUsername"));
+                    preparedStatement.setDate(2, Date.valueOf(request.getParameter("editBirthday")));
+                    preparedStatement.setString(3, request.getParameter("editEmail"));
+                    preparedStatement.setString(4, request.getParameter("editHomeTown"));
+                    preparedStatement.setString(5, request.getParameter("editCompany"));
+                    preparedStatement.setInt(6, Integer.valueOf(request.getParameter("editID")));
                     break;
                 case "Delete":
                     preparedStatement = connection.prepareStatement("DELETE from servlet.user where user_id=?");
                     preparedStatement.setString(1, request.getParameter("deleteUserID"));
                     preparedStatement.executeUpdate();
-                    
+
                     preparedStatement.close();
                     connection.close();
                     doGet(request, response);

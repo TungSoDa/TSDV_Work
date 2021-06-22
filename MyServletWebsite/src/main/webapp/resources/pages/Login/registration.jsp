@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <head>
 	<title>Registration</title>
 	<meta charset="UTF-8">
@@ -89,6 +91,15 @@
 			scale: 1.1
 		})
 	</script>
+	<c:if test="${not empty registrationError}">
+		<script>
+			$(document).on('click', '#registrationSubmit', function() { 
+				if ($('#createPassword').val() != $('#confirmPassword').val()) {
+					alert("${registrationError}");
+				}
+			});
+		</script>
+	</c:if>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="./resources/assets/js/login/main.js"></script>
 

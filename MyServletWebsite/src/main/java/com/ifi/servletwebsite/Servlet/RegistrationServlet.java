@@ -34,11 +34,15 @@ public class RegistrationServlet extends HttpServlet {
                 preparedStatement.close();
                 connection.close();
 
+                request.setAttribute("registrationSuccess","Successful Account registration");
+
                 new LoginServlet().doGet(request, response);
             }
             else {
                 preparedStatement.close();
                 connection.close();
+
+                request.setAttribute("registrationError","Confirm Password not match Password");
 
                 doGet(request, response);
             }
