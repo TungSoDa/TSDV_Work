@@ -5,17 +5,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MessageResource {
     /**
-     * For action
+     * For add api
      */
-    public static final String GET_SUCCESS = "GET_SUCCESS";
-    public static final String GET_NO_DATA = "GET_NO_DATA";
-    public static final String GET_FAIL = "GET_FAIL";
-    public static final String INSERT_SUCCESS = "INSERT_SUCCESS";
-    public static final String INSERT_FAIL = "INSERT_FAIL";
-    public static final String UPDATE_SUCCESS = "UPDATE_SUCCESS";
-    public static final String UPDATE_FAIL = "UPDATE_FAIL";
-    public static final String DELETE_SUCCESS = "DELETE_SUCCESS";
-    public static final String DELETE_FAIL = "DELETE_FAIL";
+    public static final String ACCOUNT_ALREADY_EXISTS = "ACCOUNT_ALREADY_EXISTS";
+    public static final String CONTESTANT_ALREADY_EXISTS = "CONTESTANT_ALREADY_EXISTS";
+    public static final String CONTRIBUTOR_ALREADY_EXISTS = "CONTRIBUTOR_ALREADY_EXISTS";
+    public static final String EXAM_ALREADY_EXISTS = "EXAM_ALREADY_EXISTS";
+    public static final String QUESTION_ALREADY_EXISTS = "QUESTION_ALREADY_EXISTS";
+    public static final String ANSWER_ALREADY_EXISTS = "ANSWER_ALREADY_EXISTS";
+
+    public static final String ACCOUNT_NOT_CREATED_YET = "ACCOUNT_NOT_CREATED_YET";
 
     /**
      * For exception

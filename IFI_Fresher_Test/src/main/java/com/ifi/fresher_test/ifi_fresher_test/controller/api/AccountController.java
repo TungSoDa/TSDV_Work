@@ -31,13 +31,13 @@ public class AccountController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Account> addAccount(@RequestBody Account account) {
+    public ResponseEntity<?> addAccount(@RequestBody Account account) {
         return accountService.addAccount(account);
     }
 
     @PutMapping("/update/{username}")
-    public ResponseEntity<Account> updateAccount(@PathVariable String username, @RequestBody AccountDTO userDTO) {
-        return accountService.updateAccount(username, userDTO);
+    public ResponseEntity<Account> updateAccount(@PathVariable String username, @RequestBody AccountDTO accountDTO) {
+        return accountService.updateAccount(username, accountDTO);
     }
 
     @DeleteMapping("/delete/{username}")

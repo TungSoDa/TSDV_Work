@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `contestant`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contestant` (
-  `username` varchar(10) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `fullname` varchar(50) NOT NULL,
   PRIMARY KEY (`username`),
   CONSTRAINT `contestant` FOREIGN KEY (`username`) REFERENCES `account` (`username`)

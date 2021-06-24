@@ -37,18 +37,17 @@ public class AccountService {
         ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public ResponseEntity<Account> addAccount(Account account) {
+    public ResponseEntity<?> addAccount(Account account) {
         if (!accountRepository.existsById(account.getUsername())) {
-            return new ResponseEntity<>(accountRepository.save(account), HttpStatus.CREATED);
+            return new ResponseEntity<Account>(accountRepository.save(account), HttpStatus.CREATED);
         } else {
-            return ResponseEntity.status(400).build();
+            return new ResponseEntity<String>(MessageResource.ACCOUNT_ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         }
     }
 
     public ResponseEntity<Account> updateAccount(String username, AccountDTO accountDTO) {
         Optional<Account> userOptional = accountRepository.findById(username);
         return userOptional.map(account -> {
-            account.setUsername(accountDTO.getUsername());
             account.setRole(accountDTO.getRole());
             return new ResponseEntity<>(accountRepository.save(account), HttpStatus.OK);
         }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
