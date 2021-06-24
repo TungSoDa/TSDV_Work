@@ -22,11 +22,15 @@ public class Contestant {
     @Column(name = "fullname")
     private String fullName;
 
-    @OneToOne
-    @JoinColumn
-    private Account account;
+//    @OneToOne
+//    @JoinColumn
+//    private Account account;
+//
+//    @OneToMany
+//    @JoinColumn
+//    private List<Exam> examList = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn
-    private List<Exam> examList = new ArrayList<>();
+    public Contestant(String username) {
+        this.username = username;
+    }
 }

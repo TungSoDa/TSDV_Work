@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `answer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `answer` (
-  `awnser_id` int NOT NULL,
+  `answer_id` int NOT NULL,
   `content` varchar(500) NOT NULL,
-  `isCorrect` bit(1) NOT NULL,
-  `isDeleted` bit(1) NOT NULL,
+  `is_correct` bit(1) NOT NULL,
+  `is_deleted` bit(1) NOT NULL,
   `question_id` int NOT NULL,
-  PRIMARY KEY (`awnser_id`),
+  PRIMARY KEY (`answer_id`),
   KEY `answer_fk_idx` (`question_id`),
   CONSTRAINT `answer_fk` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-23 14:31:55
+-- Dump completed on 2021-06-24 15:19:04

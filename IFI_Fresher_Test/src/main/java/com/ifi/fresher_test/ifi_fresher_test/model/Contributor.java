@@ -22,11 +22,15 @@ public class Contributor {
     @Column(name = "fullname")
     private String fullName;
 
-    @OneToOne
-    @JoinColumn
-    private Account account;
+//    @OneToOne
+//    @JoinColumn
+//    private Account account;
+//
+//    @OneToMany
+//    @JoinColumn
+//    private List<Question> questionList = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn
-    private List<Question> questionList = new ArrayList<>();
+    public Contributor(String username) {
+        this.username = username;
+    }
 }

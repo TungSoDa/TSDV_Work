@@ -21,4 +21,10 @@ public class MessageResource {
      * For exception
      */
     public static final String IO_EXCEPTION = "IO_EXCEPTION";
+
+    /**
+     * For role
+     */
+    public static final String CONTESTANT = "CONTESTANT";
+    public static final String CONTRIBUTOR = "CONTRIBUTOR";
 }

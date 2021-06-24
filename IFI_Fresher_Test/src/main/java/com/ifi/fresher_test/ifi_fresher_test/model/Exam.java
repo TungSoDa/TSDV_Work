@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Exam {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "exam_id")
     private String examID;
 
@@ -25,7 +25,7 @@ public class Exam {
     @Column(name = "test_mark")
     private Double testMark;
 
-    @ManyToOne
-    @JoinColumn
-    private Contestant contestant;
+//    @ManyToOne
+//    @JoinColumn
+//    private Contestant contestant;
 }

@@ -36,7 +36,7 @@ CREATE TABLE `contributor` (
 
 LOCK TABLES `contributor` WRITE;
 /*!40000 ALTER TABLE `contributor` DISABLE KEYS */;
-INSERT INTO `contributor` VALUES ('tungpv','Phạm Văn Tùng');
+INSERT INTO `contributor` VALUES ('hoandv','Đinh Văn Hoàn'),('tungpv','Phạm Văn Tùng');
 /*!40000 ALTER TABLE `contributor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-23 14:31:55
+-- Dump completed on 2021-06-24 15:19:04

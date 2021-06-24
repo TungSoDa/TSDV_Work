@@ -36,7 +36,7 @@ CREATE TABLE `contestant` (
 
 LOCK TABLES `contestant` WRITE;
 /*!40000 ALTER TABLE `contestant` DISABLE KEYS */;
-INSERT INTO `contestant` VALUES ('tungds','Đặng Sơn Tùng');
+INSERT INTO `contestant` VALUES ('haind','Nguyễn Đình Hải'),('hungnt','Nguyễn Trung Hưng'),('nghiavt','Vũ Trường Nghĩa'),('tungds','Đặng Sơn Tùng');
 /*!40000 ALTER TABLE `contestant` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-23 14:31:55
+-- Dump completed on 2021-06-24 15:19:04

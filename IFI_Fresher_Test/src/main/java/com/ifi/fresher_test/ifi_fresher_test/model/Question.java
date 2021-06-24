@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Question {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "question_id")
     private Integer questionID;
 
@@ -30,13 +30,13 @@ public class Question {
     @Column(name = "contributor_id")
     private Integer contributorID;
 
-    @ManyToOne
-    @JoinColumn
-    private Contributor contributor;
-
-    @OneToMany
-    @JoinColumn
-    private List<Answer> answerList = new ArrayList<>();
+//    @ManyToOne
+//    @JoinColumn
+//    private Contributor contributor;
+//
+//    @OneToMany
+//    @JoinColumn
+//    private List<Answer> answerList = new ArrayList<>();
 
     public Question(Integer questionID, String content, String topic, Integer contributorID) {
         this.questionID = questionID;

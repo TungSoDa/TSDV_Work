@@ -13,4 +13,8 @@ public class ContributorDTO {
     private String username;
 
     private String fullName;
+
+    public ContributorDTO(String username) {
+        this.username = username;
+    }
 }

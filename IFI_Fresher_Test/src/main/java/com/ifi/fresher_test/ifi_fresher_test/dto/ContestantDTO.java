@@ -13,4 +13,8 @@ public class ContestantDTO {
     private String username;
 
     private String fullName;
+
+    public ContestantDTO(String username) {
+        this.username = username;
+    }
 }
