@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Answer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private Integer answerID;
 
@@ -33,4 +33,12 @@ public class Answer {
 //    @ManyToOne
 //    @JoinColumn
 //    private Question question;
+
+
+    public Answer(String content, Boolean isCorrect, Boolean isDeleted, Integer questionID) {
+        this.content = content;
+        this.isCorrect = isCorrect;
+        this.isDeleted = isDeleted;
+        this.questionID = questionID;
+    }
 }

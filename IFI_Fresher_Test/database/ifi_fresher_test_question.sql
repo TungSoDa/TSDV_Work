@@ -27,6 +27,7 @@ CREATE TABLE `question` (
   `content` varchar(1000) NOT NULL,
   `image` varchar(15) DEFAULT NULL,
   `topic` varchar(50) NOT NULL,
+  `is_deleted` bit(1) NOT NULL,
   `contributor_id` varchar(10) NOT NULL,
   PRIMARY KEY (`question_id`),
   KEY `question_fk_idx` (`contributor_id`),
@@ -40,7 +41,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,'Trong câu lệnh sau: public static void main(String[] agrs) thì phần tử agrs[0] chứa giá trị gì?','null','Java Basic','tungpv'),(2,'Phương thức next() của lớp Scanner dùng để làm gì?','null','Java Basic','tungpv'),(3,'Muốn chạy được chương trình java, chỉ cần cài phần mền nào sau đây?','null','Java Basic','tungpv'),(4,'Đọc đoạn mã lệnh sau. Sau khi thực thi chương trình sẽ in ra kết quả gì ?','question4.png','Java Basic','tungpv'),(5,'Đọc đoạn mã sau. Kết quả in ra của đoạn mã trên là gì?','question5.png','Java Basic','tungpv');
+INSERT INTO `question` VALUES (1,'Trong câu lệnh sau: public static void main(String[] agrs) thì phần tử agrs[0] chứa giá trị gì?','null','Java Basic',_binary '\0','tungpv'),(2,'Phương thức next() của lớp Scanner dùng để làm gì?','null','Java Basic',_binary '\0','tungpv'),(3,'Muốn chạy được chương trình java, chỉ cần cài phần mền nào sau đây?','null','Java Basic',_binary '\0','tungpv'),(4,'Đọc đoạn mã lệnh sau. Sau khi thực thi chương trình sẽ in ra kết quả gì ?','question4.png','Java Basic',_binary '\0','tungpv'),(5,'Đọc đoạn mã sau. Kết quả in ra của đoạn mã trên là gì?','question5.png','Java Basic',_binary '\0','tungpv');
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-24 15:19:03
+-- Dump completed on 2021-06-25 16:36:12

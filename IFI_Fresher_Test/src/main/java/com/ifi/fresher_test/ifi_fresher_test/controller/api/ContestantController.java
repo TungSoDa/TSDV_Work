@@ -1,8 +1,6 @@
 package com.ifi.fresher_test.ifi_fresher_test.controller.api;
 
-import com.ifi.fresher_test.ifi_fresher_test.dto.AccountDTO;
 import com.ifi.fresher_test.ifi_fresher_test.dto.ContestantDTO;
-import com.ifi.fresher_test.ifi_fresher_test.model.Account;
 import com.ifi.fresher_test.ifi_fresher_test.service.ContestantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +34,12 @@ public class ContestantController {
     }
 
     @PutMapping("/update/{username}")
-    public ResponseEntity<ContestantDTO> updateAccount(@PathVariable String username, @RequestBody ContestantDTO contestantDTO) {
+    public ResponseEntity<?> updateContestant(@PathVariable String username, @RequestBody ContestantDTO contestantDTO) {
         return contestantService.updateContestant(username, contestantDTO);
     }
 
     @DeleteMapping("/delete/{username}")
-    public ResponseEntity<ContestantDTO> deleteAccount(@PathVariable String username) {
+    public ResponseEntity<?> deleteContestant(@PathVariable String username) {
         return contestantService.deleteContestant(username);
     }
 }

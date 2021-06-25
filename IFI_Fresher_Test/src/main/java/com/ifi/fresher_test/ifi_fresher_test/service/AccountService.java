@@ -3,11 +3,7 @@ package com.ifi.fresher_test.ifi_fresher_test.service;
 import com.ifi.fresher_test.ifi_fresher_test.dto.AccountDTO;
 import com.ifi.fresher_test.ifi_fresher_test.mapper.AccountMapper;
 import com.ifi.fresher_test.ifi_fresher_test.model.Account;
-import com.ifi.fresher_test.ifi_fresher_test.model.Contestant;
-import com.ifi.fresher_test.ifi_fresher_test.model.Contributor;
 import com.ifi.fresher_test.ifi_fresher_test.repository.AccountRepository;
-import com.ifi.fresher_test.ifi_fresher_test.repository.ContestantRepository;
-import com.ifi.fresher_test.ifi_fresher_test.repository.ContributorRepository;
 import com.ifi.fresher_test.ifi_fresher_test.util.MessageResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,19 +41,32 @@ public class AccountService {
         }
     }
 
-    public ResponseEntity<Account> updateAccount(String username, AccountDTO accountDTO) {
-        Optional<Account> userOptional = accountRepository.findById(username);
-        return userOptional.map(account -> {
-            account.setRole(accountDTO.getRole());
-            return new ResponseEntity<>(accountRepository.save(account), HttpStatus.OK);
-        }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<?> updateAccount(String username, AccountDTO accountDTO) {
+        Optional<Account> optionalAccount = accountRepository.findById(username);
+        if (optionalAccount.isPresent()) {
+            System.out.println("Run here" + accountDTO.getRole());
+            return optionalAccount.map(account -> {
+                account.setRole(accountDTO.getRole());
+                accountRepository.save(account);
+                return new ResponseEntity<AccountDTO>(new AccountDTO(
+                        account.getUsername(),
+                        account.getRole()
+                ), HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
     }
 
-    public ResponseEntity<Account> deleteAccount(String username) {
-        Optional<Account> accountOptional = accountRepository.findById(username);
-        return accountOptional.map(account -> {
-            accountRepository.delete(account);
-            return new ResponseEntity<>(account, HttpStatus.OK);
-        }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<?> deleteAccount(String username) {
+        Optional<Account> optionalAccount = accountRepository.findById(username);
+        if (optionalAccount.isPresent()) {
+            return optionalAccount.map(account -> {
+                accountRepository.delete(account);
+                return new ResponseEntity<Account>(account, HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -27,6 +27,9 @@ public class Question {
 
     private String topic;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @Column(name = "contributor_id")
     private Integer contributorID;
 
@@ -38,11 +41,13 @@ public class Question {
 //    @JoinColumn
 //    private List<Answer> answerList = new ArrayList<>();
 
-    public Question(Integer questionID, String content, String topic, Integer contributorID) {
+
+    public Question(Integer questionID, String content, String topic, Boolean isDeleted, Integer contributorID) {
         this.questionID = questionID;
         this.content = content;
         this.image = null;
         this.topic = topic;
+        this.isDeleted = isDeleted;
         this.contributorID = contributorID;
     }
 }

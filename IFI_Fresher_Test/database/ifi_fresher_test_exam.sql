@@ -26,6 +26,7 @@ CREATE TABLE `exam` (
   `exam_id` int NOT NULL AUTO_INCREMENT,
   `contestant_id` varchar(10) NOT NULL,
   `test_mark` double DEFAULT '0',
+  `is_deleted` bit(1) NOT NULL,
   PRIMARY KEY (`exam_id`),
   KEY `exam_fk_idx` (`contestant_id`),
   CONSTRAINT `exam_fk` FOREIGN KEY (`contestant_id`) REFERENCES `contestant` (`username`)
@@ -38,7 +39,7 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (1,'tungds',0);
+INSERT INTO `exam` VALUES (1,'tungds',0,_binary '\0');
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-24 15:19:03
+-- Dump completed on 2021-06-25 16:36:12

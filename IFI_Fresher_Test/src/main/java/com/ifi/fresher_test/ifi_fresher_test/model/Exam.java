@@ -25,7 +25,18 @@ public class Exam {
     @Column(name = "test_mark")
     private Double testMark;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
 //    @ManyToOne
 //    @JoinColumn
 //    private Contestant contestant;
+
+
+    public Exam(String examID, String contestantID, Boolean isDeleted) {
+        this.examID = examID;
+        this.contestantID = contestantID;
+        this.testMark = 0.0;
+        this.isDeleted = isDeleted;
+    }
 }

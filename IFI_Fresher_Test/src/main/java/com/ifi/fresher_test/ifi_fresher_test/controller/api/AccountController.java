@@ -4,7 +4,6 @@ import com.ifi.fresher_test.ifi_fresher_test.dto.AccountDTO;
 import com.ifi.fresher_test.ifi_fresher_test.model.Account;
 import com.ifi.fresher_test.ifi_fresher_test.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,12 +35,12 @@ public class AccountController {
     }
 
     @PutMapping("/update/{username}")
-    public ResponseEntity<Account> updateAccount(@PathVariable String username, @RequestBody AccountDTO accountDTO) {
+    public ResponseEntity<?> updateAccount(@PathVariable String username, @RequestBody AccountDTO accountDTO) {
         return accountService.updateAccount(username, accountDTO);
     }
 
     @DeleteMapping("/delete/{username}")
-    public ResponseEntity<Account> deleteAccount(@PathVariable String username) {
+    public ResponseEntity<?> deleteAccount(@PathVariable String username) {
         return accountService.deleteAccount(username);
     }
 }

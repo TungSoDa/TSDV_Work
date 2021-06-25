@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerDTO {
-    private Integer answerID;
+//    private Integer answerID;
 
     private String content;
 
