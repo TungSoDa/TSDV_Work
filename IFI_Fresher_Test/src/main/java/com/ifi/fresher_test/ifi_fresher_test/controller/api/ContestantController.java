@@ -24,7 +24,7 @@ public class ContestantController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<ContestantDTO> findContestantByUsername(@PathVariable String username) {
+    public ResponseEntity<?> findContestantByUsername(@PathVariable String username) {
         return contestantService.findContestantByUsername(username);
     }
 

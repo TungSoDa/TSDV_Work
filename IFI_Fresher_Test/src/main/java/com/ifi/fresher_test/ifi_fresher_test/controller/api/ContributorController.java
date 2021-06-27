@@ -24,7 +24,7 @@ public class ContributorController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<ContributorDTO> findContributorByUsername(@PathVariable String username) {
+    public ResponseEntity<?> findContributorByUsername(@PathVariable String username) {
         return contributorService.findContributorByUsername(username);
     }
 

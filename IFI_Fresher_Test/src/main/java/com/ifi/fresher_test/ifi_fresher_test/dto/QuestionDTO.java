@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,13 +20,37 @@ public class QuestionDTO {
 
     private String topic;
 
-    private Integer contributorID;
+    private Boolean isDeleted;
 
-    public QuestionDTO(Integer questionID, String content, String topic, Integer contributorID) {
+    private String contributorID;
+
+    private List<AnswerDTO> answerList;
+
+    public QuestionDTO(Integer questionID, String content, String image, String topic, Boolean isDeleted, String contributorID) {
+        this.questionID = questionID;
+        this.content = content;
+        this.image = image;
+        this.topic = topic;
+        this.isDeleted = isDeleted;
+        this.contributorID = contributorID;
+    }
+
+    public QuestionDTO(Integer questionID, String content, String topic, Boolean isDeleted, String contributorID) {
         this.questionID = questionID;
         this.content = content;
         this.image = null;
         this.topic = topic;
+        this.isDeleted = isDeleted;
         this.contributorID = contributorID;
+    }
+
+    public QuestionDTO(Integer questionID, String content, String topic, Boolean isDeleted, String contributorID, List<AnswerDTO> answerList) {
+        this.questionID = questionID;
+        this.content = content;
+        this.image = null;
+        this.topic = topic;
+        this.isDeleted = isDeleted;
+        this.contributorID = contributorID;
+        this.answerList = answerList;
     }
 }

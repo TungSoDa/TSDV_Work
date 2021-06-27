@@ -27,31 +27,47 @@ public class AnswerService {
         return AnswerMapper.arrayEntityToDTO(answerRepository.findAll());
     }
 
-    public ResponseEntity<AnswerDTO> findAnswerByID(Integer id) {
+    public ResponseEntity<?> findAnswerByID(Integer id) {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
-        return optionalAnswer.map(answer -> new ResponseEntity<>(
-                AnswerMapper.entityToDTO(answer), HttpStatus.OK)
-        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        if (optionalAnswer.isPresent()) {
+            return optionalAnswer.map(answer -> new ResponseEntity<>(
+                    AnswerMapper.entityToDTO(answer), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
     }
 
-    public ResponseEntity<List<AnswerDTO>> findAnswerByQuestionID(Integer questionID) {
+    public ResponseEntity<?> findAnswerByQuestionID(Integer questionID) {
         Optional<List<Answer>> optionalAnswerList = answerRepository.findAnswersByQuestionID(questionID);
-        return optionalAnswerList.map(answers -> new ResponseEntity<>(
-                AnswerMapper.arrayEntityToDTO(answers), HttpStatus.OK)
-        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        if (optionalAnswerList.isPresent()) {
+            return optionalAnswerList.map(answers -> new ResponseEntity<List<AnswerDTO>>(
+                    AnswerMapper.arrayEntityToDTO(answers), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + questionID + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
     }
 
-//    public ResponseEntity<AnswerDTO> getCorrectAnswerOfQuestion(Integer questionID) {
-//        Optional<Answer> optionalAnswerList = answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(questionID);
-//        return optionalAnswerList.map(answer -> new ResponseEntity<>(
-//                AnswerMapper.entityToDTO(answer), HttpStatus.OK)
-//        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
+    public List<AnswerDTO> findListAnswerByQuestionID(Integer questionID) {
+        return  AnswerMapper.arrayEntityToDTO(answerRepository.findAnswersByQuestionID(questionID).get());
+    }
+
+    public ResponseEntity<?> getCorrectAnswerOfQuestion(Integer questionID) {
+        Optional<Answer> optionalAnswer = answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(questionID);
+        if (optionalAnswer.isPresent()) {
+            return optionalAnswer.map(answer -> new ResponseEntity<AnswerDTO>(
+                    AnswerMapper.entityToDTO(answer), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.QUESTION_HAS_NO_CORRECT_ANSWER_YET, HttpStatus.NOT_FOUND);
+        }
+    }
 
     public ResponseEntity<?> addAnswer(AnswerDTO answerDTO) {
         try {
             if (!answerRepository.findAnswersByContentAndQuestionID(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
-                if (answerRepository.findAnswersByQuestionID(answerDTO.getQuestionID()).get().contains(answerDTO.getContent())) {
+                if (answerRepository.findAnswersByContentAndQuestionID(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
                     return new ResponseEntity<String>(MessageResource.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
                 }
                 else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
@@ -71,17 +87,17 @@ public class AnswerService {
                     );
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.ANSWER_ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.ANSWER + " " + answerDTO.getContent() + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION " + answerDTO.getQuestionID(), HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<String>(MessageResource.ANSWER_ID_ALREADY_EXISTS, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " ID " + MessageResource.ALREADY_EXISTS, HttpStatus.NOT_FOUND);
         }
     }
 
     public ResponseEntity<?> updateAnswer(Integer id, AnswerDTO answerDTO) {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
         if (optionalAnswer.isPresent()) {
-            if (answerRepository.findAnswersByQuestionID(answerDTO.getQuestionID()).get().contains(answerDTO.getContent())) {
+            if (answerRepository.findAnswersByContentAndQuestionID(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
                 return new ResponseEntity<String>(MessageResource.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
             }
             else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
@@ -104,7 +120,24 @@ public class AnswerService {
                 }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
             }
         } else {
-            return new ResponseEntity<String>(MessageResource.QUESTION_NOT_CREATED_YET + " or " + MessageResource.ANSWER_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> deleteAnswer(Integer id) {
+        Optional<Answer> optionalAnswer = answerRepository.findById(id);
+        if (optionalAnswer.isPresent()) {
+            return optionalAnswer.map(answer -> {
+                answerRepository.delete(answer);
+                return new ResponseEntity<AnswerDTO>(new AnswerDTO(
+                        answer.getContent(),
+                        answer.getIsCorrect(),
+                        answer.getIsDeleted(),
+                        answer.getQuestionID()
+                ), HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -26,18 +26,22 @@ public class AccountService {
         return AccountMapper.arrayEntityToDTO(accountRepository.findAll());
     }
 
-    public ResponseEntity<AccountDTO> findAccountByUsername(String username) {
+    public ResponseEntity<?> findAccountByUsername(String username) {
         Optional<Account> optionalAccount = accountRepository.findById(username);
-        return optionalAccount.map(account -> new ResponseEntity<>(
-                AccountMapper.entityToDTO(account), HttpStatus.OK)
-        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        if (optionalAccount.isPresent()) {
+            return optionalAccount.map(account -> new ResponseEntity<AccountDTO>(
+                    AccountMapper.entityToDTO(account), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity<?> addAccount(Account account) {
         if (!accountRepository.existsById(account.getUsername())) {
             return new ResponseEntity<Account>(accountRepository.save(account), HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT_ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + account.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         }
     }
 
@@ -54,7 +58,7 @@ public class AccountService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -66,7 +70,7 @@ public class AccountService {
                 return new ResponseEntity<Account>(account, HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }

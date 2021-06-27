@@ -25,22 +25,32 @@ public class AnswerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AnswerDTO> findAnswerByID(@PathVariable Integer id) {
+    public ResponseEntity<?> findAnswerByID(@PathVariable Integer id) {
         return answerService.findAnswerByID(id);
     }
 
     @GetMapping("/question/{questionID}")
-    public ResponseEntity<List<AnswerDTO>> findAnswerByQuestionID(@PathVariable Integer questionID) {
+    public ResponseEntity<?> findAnswerByQuestionID(@PathVariable Integer questionID) {
         return answerService.findAnswerByQuestionID(questionID);
     }
 
-//    @GetMapping("/correct/{questionID}")
-//    public ResponseEntity<AnswerDTO> getCorrectAnswerOfQuestion(@PathVariable Integer questionID) {
-//        return answerService.getCorrectAnswerOfQuestion(questionID);
-//    }
+    @GetMapping("/correct/{questionID}")
+    public ResponseEntity<?> getCorrectAnswerOfQuestion(@PathVariable Integer questionID) {
+        return answerService.getCorrectAnswerOfQuestion(questionID);
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> addAnswer(@RequestBody AnswerDTO answerDTO) {
         return answerService.addAnswer(answerDTO);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateAnswer(@PathVariable Integer id, @RequestBody AnswerDTO answerDTO) {
+        return answerService.updateAnswer(id, answerDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteAnswer(@PathVariable Integer id) {
+        return answerService.deleteAnswer(id);
     }
 }

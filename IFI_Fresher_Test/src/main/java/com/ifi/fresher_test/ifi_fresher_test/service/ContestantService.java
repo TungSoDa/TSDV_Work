@@ -34,11 +34,15 @@ public class ContestantService {
         return ContestantMapper.arrayEntityToDTO(contestantRepository.findAll());
     }
 
-    public ResponseEntity<ContestantDTO> findContestantByUsername(String username) {
-        Optional<Contestant> contestantOptional = contestantRepository.findById(username);
-        return contestantOptional.map(contestant -> new ResponseEntity<>(
-                ContestantMapper.entityToDTO(contestant), HttpStatus.OK)
-        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<?> findContestantByUsername(String username) {
+        Optional<Contestant> optionalContestant = contestantRepository.findById(username);
+        if (optionalContestant.isPresent()) {
+            return optionalContestant.map(contestant -> new ResponseEntity<ContestantDTO>(
+                    ContestantMapper.entityToDTO(contestant), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTESTANT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity<?> addContestant(ContestantDTO contestantDTO) {
@@ -54,13 +58,13 @@ public class ContestantService {
                             ), HttpStatus.CREATED
                     );
                 } else {
-                    return new ResponseEntity<String>(MessageResource.CONTRIBUTOR_ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                    return new ResponseEntity<String>(MessageResource.CONTRIBUTOR + " " + contestantDTO.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.CONTESTANT_ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.CONTESTANT + " " + contestantDTO.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + contestantDTO.getUsername() + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -76,7 +80,7 @@ public class ContestantService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET + " or " + MessageResource.CONTESTANT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTESTANT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -92,7 +96,7 @@ public class ContestantService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT_NOT_CREATED_YET + " or " + MessageResource.CONTESTANT_NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTESTANT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }

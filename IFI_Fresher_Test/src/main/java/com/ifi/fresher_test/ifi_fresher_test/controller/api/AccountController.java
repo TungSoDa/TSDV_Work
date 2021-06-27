@@ -25,7 +25,7 @@ public class AccountController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<AccountDTO> findAccountByUsername(@PathVariable String username) {
+    public ResponseEntity<?> findAccountByUsername(@PathVariable String username) {
         return accountService.findAccountByUsername(username);
     }
 

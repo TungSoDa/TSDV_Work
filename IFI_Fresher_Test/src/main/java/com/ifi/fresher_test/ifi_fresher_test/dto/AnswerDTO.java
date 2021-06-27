@@ -19,4 +19,10 @@ public class AnswerDTO {
     private Boolean isDeleted;
 
     private Integer questionID;
+
+    public AnswerDTO(String content, Boolean isCorrect, Boolean isDeleted) {
+        this.content = content;
+        this.isCorrect = isCorrect;
+        this.isDeleted = isDeleted;
+    }
 }
