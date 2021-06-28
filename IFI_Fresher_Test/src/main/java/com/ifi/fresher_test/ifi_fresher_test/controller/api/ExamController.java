@@ -5,10 +5,9 @@ import com.ifi.fresher_test.ifi_fresher_test.dto.QuestionDTO;
 import com.ifi.fresher_test.ifi_fresher_test.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/exam")
@@ -19,6 +18,11 @@ public class ExamController {
     public void setExamService(ExamService examService) {
         this.examService = examService;
     }
+
+//    @GetMapping("/all")
+//    public List<ExamDTO> findAll() {
+//        return examService.findAll();
+//    }
 
     @PostMapping("/add")
     public ResponseEntity<?> addExam(@RequestBody ExamDTO examDTO) {

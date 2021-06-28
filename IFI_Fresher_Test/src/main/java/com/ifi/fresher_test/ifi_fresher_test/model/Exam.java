@@ -21,6 +21,9 @@ public class Exam {
 
     private String topic;
 
+    @Column(name = "list_question_id")
+    private String listQuestionID;
+
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 

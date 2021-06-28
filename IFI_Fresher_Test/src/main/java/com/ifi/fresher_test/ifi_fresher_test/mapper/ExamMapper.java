@@ -12,6 +12,7 @@ public class ExamMapper {
         ExamDTO examDTO = new ExamDTO();
         examDTO.setExamID(exam.getExamID());
         examDTO.setTopic(exam.getTopic());
+        examDTO.setListQuestionID(exam.getListQuestionID());
         examDTO.setIsDeleted(exam.getIsDeleted());
         examDTO.setQuestionList(questionList);
         return examDTO;
@@ -20,6 +21,7 @@ public class ExamMapper {
     public static Exam dtoToEntity(ExamDTO examDTO) {
         Exam exam = new Exam();
         exam.setTopic(examDTO.getTopic());
+        exam.setListQuestionID(examDTO.getListQuestionID());
         exam.setIsDeleted(examDTO.getIsDeleted());
         return exam;
     }

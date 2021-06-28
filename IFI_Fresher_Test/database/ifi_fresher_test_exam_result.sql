@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ifi_fresher_test
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,14 +25,15 @@ DROP TABLE IF EXISTS `exam_result`;
 CREATE TABLE `exam_result` (
   `exam_result_id` int NOT NULL AUTO_INCREMENT,
   `exam_id` int NOT NULL,
-  `contestant_id` varchar(10) NOT NULL,
-  `test_mark` double NOT NULL,
-  `topic` varchar(50) NOT NULL,
+  `contestant_username` varchar(100) NOT NULL,
+  `topic` varchar(255) NOT NULL,
+  `test_mark` varchar(255) NOT NULL,
   `is_deleted` bit(1) NOT NULL,
+  `contestant_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`exam_result_id`),
-  KEY `exam_fk_idx` (`contestant_id`),
-  KEY `exam_result_exam_fk` (`exam_id`),
-  CONSTRAINT `exam_result_contestant_fk` FOREIGN KEY (`contestant_id`) REFERENCES `contestant` (`username`),
+  KEY `exam_fk_idx` (`contestant_username`),
+  KEY `exam_result_exam_fk_idx` (`exam_id`),
+  CONSTRAINT `exam_result_contestant_fk` FOREIGN KEY (`contestant_username`) REFERENCES `contestant` (`username`),
   CONSTRAINT `exam_result_exam_fk` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`exam_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-28 15:57:15
+-- Dump completed on 2021-06-29  0:28:12

@@ -16,6 +16,8 @@ public class ExamDTO {
 
     private String topic;
 
+    private String listQuestionID;
+
     private Boolean isDeleted;
 
     private List<QuestionDTO> questionList;

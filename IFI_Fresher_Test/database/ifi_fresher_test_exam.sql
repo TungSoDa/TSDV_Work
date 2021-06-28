@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ifi_fresher_test
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `exam`;
 CREATE TABLE `exam` (
   `exam_id` int NOT NULL AUTO_INCREMENT,
   `topic` varchar(50) NOT NULL,
+  `list_question_id` varchar(50) NOT NULL,
   `is_deleted` bit(1) NOT NULL,
   PRIMARY KEY (`exam_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-28 15:57:14
+-- Dump completed on 2021-06-29  0:28:12
