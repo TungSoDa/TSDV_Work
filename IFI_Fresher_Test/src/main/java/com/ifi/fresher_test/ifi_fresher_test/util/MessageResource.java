@@ -5,6 +5,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MessageResource {
     /**
+     * For Const
+     */
+    public static final Integer ONE_TOPIC_EXAM_QUESTION_NUMBER = 3;
+    public static final Integer ALL_TOPIC_EXAM_QUESTION_NUMBER = 18;
+
+    /**
      * For Entity
      */
     public static final String ACCOUNT = "ACCOUNT";
@@ -24,7 +30,18 @@ public class MessageResource {
     /**
      * For Question
      */
-    public static final String QUESTION_CONTENT_WITH_TOPIC = "QUESTION CONTENT WITH TOPIC";
+    public static final String THIS_QUESTION_CONTENT_WITH_TOPIC = "THIS QUESTION CONTENT WITH TOPIC";
+    public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "MAY BE THE SAME CONTENT AS EXISTING QUESTION";
+
+    /**
+     * For Exam
+     */
+    public static final String HTML = "HTML";
+    public static final String JAVA_SCRIPT = "JavaScript";
+    public static final String ANGULAR = "Angular";
+    public static final String JAVA_BASIC = "Java Basic";
+    public static final String JAVA_OOP = "Java OOP";
+    public static final String JAVA_SPRING = "Java Spring";
 
     /**
      * For Notice

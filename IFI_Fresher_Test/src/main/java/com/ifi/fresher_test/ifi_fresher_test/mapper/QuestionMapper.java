@@ -20,20 +20,21 @@ public class QuestionMapper {
         return questionDTO;
     }
 
-//    public static List<QuestionDTO> arrayEntityToDTO(List<Question> questions) {
-//        List<QuestionDTO> questionDTOS = new ArrayList<>();
-//        for (int i = 0; i < questions.size(); i++) {
-//            questionDTOS.add(new QuestionDTO(
-//                    questions.get(i).getContent(),
-//                    questions.get(i).getImage(),
-//                    questions.get(i).getTopic(),
-//                    questions.get(i).getIsDeleted(),
-//                    questions.get(i).getContributorID()
-//                    )
-//            );
-//        }
-//        return questionDTOS;
-//    }
+    public static List<QuestionDTO> arrayEntityToDTO(List<Question> questions) {
+        List<QuestionDTO> questionDTOS = new ArrayList<>();
+        for (int i = 0; i < questions.size(); i++) {
+            questionDTOS.add(new QuestionDTO(
+                    questions.get(i).getQuestionID(),
+                    questions.get(i).getContent(),
+                    questions.get(i).getImage(),
+                    questions.get(i).getTopic(),
+                    questions.get(i).getIsDeleted(),
+                    questions.get(i).getContributorID()
+                    )
+            );
+        }
+        return questionDTOS;
+    }
 
     public static Question dtoToEntity(QuestionDTO questionDTO) {
         Question question = new Question();

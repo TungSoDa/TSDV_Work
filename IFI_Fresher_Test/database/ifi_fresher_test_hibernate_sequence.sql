@@ -16,28 +16,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contestant`
+-- Table structure for table `hibernate_sequence`
 --
 
-DROP TABLE IF EXISTS `contestant`;
+DROP TABLE IF EXISTS `hibernate_sequence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contestant` (
-  `username` varchar(100) NOT NULL,
-  `fullname` varchar(50) NOT NULL,
-  PRIMARY KEY (`username`),
-  CONSTRAINT `contestant` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contestant`
+-- Dumping data for table `hibernate_sequence`
 --
 
-LOCK TABLES `contestant` WRITE;
-/*!40000 ALTER TABLE `contestant` DISABLE KEYS */;
-INSERT INTO `contestant` VALUES ('haind','Nguyễn Đình Hải'),('hungnt','Nguyễn Trung Hưng'),('nghiavt','Vũ Trường Nghĩa'),('tungds','Đặng Sơn Tùng');
-/*!40000 ALTER TABLE `contestant` ENABLE KEYS */;
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (10);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +46,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-28 15:57:15
+-- Dump completed on 2021-06-28 15:57:13

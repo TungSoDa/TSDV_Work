@@ -24,13 +24,10 @@ DROP TABLE IF EXISTS `exam`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `exam` (
   `exam_id` int NOT NULL AUTO_INCREMENT,
-  `contestant_id` varchar(10) NOT NULL,
-  `test_mark` double DEFAULT '0',
+  `topic` varchar(50) NOT NULL,
   `is_deleted` bit(1) NOT NULL,
-  PRIMARY KEY (`exam_id`),
-  KEY `exam_fk_idx` (`contestant_id`),
-  CONSTRAINT `exam_fk` FOREIGN KEY (`contestant_id`) REFERENCES `contestant` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`exam_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +36,6 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (1,'tungds',0,_binary '\0');
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-25 16:36:12
+-- Dump completed on 2021-06-28 15:57:14

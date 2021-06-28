@@ -16,28 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contestant`
+-- Table structure for table `exam_result`
 --
 
-DROP TABLE IF EXISTS `contestant`;
+DROP TABLE IF EXISTS `exam_result`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contestant` (
-  `username` varchar(100) NOT NULL,
-  `fullname` varchar(50) NOT NULL,
-  PRIMARY KEY (`username`),
-  CONSTRAINT `contestant` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `exam_result` (
+  `exam_result_id` int NOT NULL AUTO_INCREMENT,
+  `exam_id` int NOT NULL,
+  `contestant_id` varchar(10) NOT NULL,
+  `test_mark` double NOT NULL,
+  `topic` varchar(50) NOT NULL,
+  `is_deleted` bit(1) NOT NULL,
+  PRIMARY KEY (`exam_result_id`),
+  KEY `exam_fk_idx` (`contestant_id`),
+  KEY `exam_result_exam_fk` (`exam_id`),
+  CONSTRAINT `exam_result_contestant_fk` FOREIGN KEY (`contestant_id`) REFERENCES `contestant` (`username`),
+  CONSTRAINT `exam_result_exam_fk` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`exam_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contestant`
+-- Dumping data for table `exam_result`
 --
 
-LOCK TABLES `contestant` WRITE;
-/*!40000 ALTER TABLE `contestant` DISABLE KEYS */;
-INSERT INTO `contestant` VALUES ('haind','Nguyễn Đình Hải'),('hungnt','Nguyễn Trung Hưng'),('nghiavt','Vũ Trường Nghĩa'),('tungds','Đặng Sơn Tùng');
-/*!40000 ALTER TABLE `contestant` ENABLE KEYS */;
+LOCK TABLES `exam_result` WRITE;
+/*!40000 ALTER TABLE `exam_result` DISABLE KEYS */;
+/*!40000 ALTER TABLE `exam_result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

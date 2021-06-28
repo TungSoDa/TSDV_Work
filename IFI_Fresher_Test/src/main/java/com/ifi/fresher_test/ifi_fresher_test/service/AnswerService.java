@@ -107,7 +107,6 @@ public class AnswerService {
                 return optionalAnswer.map(answer -> {
                     answer.setContent(answerDTO.getContent());
                     answer.setIsCorrect(answerDTO.getIsCorrect());
-                    answer.setIsDeleted(answerDTO.getIsDeleted());
                     answer.setQuestionID(answerDTO.getQuestionID());
                     answerRepository.save(answer);
                     return new ResponseEntity<AnswerDTO>(new AnswerDTO(
@@ -128,8 +127,10 @@ public class AnswerService {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
         if (optionalAnswer.isPresent()) {
             return optionalAnswer.map(answer -> {
-                answerRepository.delete(answer);
+                answer.setIsDeleted(true);
+                answerRepository.save(answer);
                 return new ResponseEntity<AnswerDTO>(new AnswerDTO(
+//                            answer.getAnswerID(),
                         answer.getContent(),
                         answer.getIsCorrect(),
                         answer.getIsDeleted(),

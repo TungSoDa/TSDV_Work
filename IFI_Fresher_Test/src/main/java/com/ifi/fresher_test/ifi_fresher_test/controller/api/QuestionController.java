@@ -32,4 +32,14 @@ public class QuestionController {
     public ResponseEntity<?> addQuestion(@RequestBody QuestionDTO questionDTO) {
         return questionService.addQuestion(questionDTO);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateAnswer(@PathVariable Integer id, @RequestBody QuestionDTO questionDTO) {
+        return questionService.updateQuestion(id, questionDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteQuestion(@PathVariable Integer id) {
+        return questionService.deleteQuestion(id);
+    }
 }

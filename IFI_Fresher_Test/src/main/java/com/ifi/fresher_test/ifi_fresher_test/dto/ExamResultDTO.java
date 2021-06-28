@@ -11,8 +11,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExamDTO {
+public class ExamResultDTO {
+    private String examResultID;
+
     private String examID;
+
+    private String contestantID;
+
+    private String testMark;
 
     private String topic;
 

@@ -13,18 +13,23 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Exam {
+public class ExamResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "exam_result_id")
+    private String examResultID;
+
     @Column(name = "exam_id")
     private String examID;
+
+    @Column(name = "contestant_id")
+    private String contestantID;
+
+    @Column(name = "test_mark")
+    private String testMark;
 
     private String topic;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
-
-//    @ManyToOne
-//    @JoinColumn
-//    private Contestant contestant;
 }

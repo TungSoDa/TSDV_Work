@@ -62,11 +62,19 @@ public class QuestionService {
         }
     }
 
+    public List<QuestionDTO> findQuestionByTopic(String topic) {
+        Optional<List<Question>> optionalQuestion = questionRepository.findQuestionByTopic(topic);
+        return QuestionMapper.arrayEntityToDTO(optionalQuestion.get());
+    }
+
     public ResponseEntity<?> addQuestion(QuestionDTO questionDTO) {
         if (questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
-            return new ResponseEntity<String>(MessageResource.QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
-        }
-        else {
+            return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+        } else if (questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
+                questionDTO.getContent().toLowerCase().contains(questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).get().getContent().toLowerCase())
+        ) {
+            return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + "  " + MessageResource.MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION, HttpStatus.ALREADY_REPORTED);
+        } else {
             Question question = QuestionMapper.dtoToEntity(questionDTO);
             questionRepository.save(question);
             return new ResponseEntity<QuestionDTO>(
@@ -79,6 +87,54 @@ public class QuestionService {
                             question.getContributorID()
                     ), HttpStatus.CREATED
             );
+        }
+    }
+
+    public ResponseEntity<?> updateQuestion(Integer id, QuestionDTO questionDTO) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        if (!optionalQuestion.isPresent()) {
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.ALREADY_REPORTED);
+        } else if (questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
+            return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+        } else if (questionRepository.findById(id).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
+                questionDTO.getContent().toLowerCase().contains(questionRepository.findById(id).get().getContent().toLowerCase())
+        ) {
+            return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + "  " + MessageResource.MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION, HttpStatus.ALREADY_REPORTED);
+        } else {
+            return optionalQuestion.map(question -> {
+                question.setContent(questionDTO.getContent());
+                question.setImage(questionDTO.getImage());
+                question.setTopic(questionDTO.getTopic());
+                questionRepository.save(question);
+                return new ResponseEntity<QuestionDTO>(new QuestionDTO(
+                        question.getQuestionID(),
+                        question.getContent(),
+                        question.getImage(),
+                        question.getTopic(),
+                        question.getIsDeleted(),
+                        question.getContributorID()
+                ), HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        }
+    }
+
+    public ResponseEntity<?> deleteQuestion(Integer id) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        if (optionalQuestion.isPresent()) {
+            return optionalQuestion.map(question -> {
+                question.setIsDeleted(true);
+                questionRepository.save(question);
+                return new ResponseEntity<QuestionDTO>(new QuestionDTO(
+                        question.getQuestionID(),
+                        question.getContent(),
+                        question.getImage(),
+                        question.getTopic(),
+                        question.getIsDeleted(),
+                        question.getContributorID()
+                ), HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }

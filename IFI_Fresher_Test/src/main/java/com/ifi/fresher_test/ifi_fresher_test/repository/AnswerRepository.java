@@ -14,4 +14,6 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     public Optional<List<Answer>> findAnswersByQuestionID(Integer questionID);
 
     public Optional<Answer> findAnswersByQuestionIDAndIsCorrectTrue(Integer questionID);
+
+    public Optional<Answer> findAnswersByQuestionIDAndIsDeletedIsFalse(Integer questionID);
 }
