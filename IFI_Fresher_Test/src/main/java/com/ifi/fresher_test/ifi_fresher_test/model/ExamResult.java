@@ -22,8 +22,11 @@ public class ExamResult {
     @Column(name = "exam_id")
     private String examID;
 
-    @Column(name = "contestant_id")
-    private String contestantID;
+    @Column(name = "exam_name")
+    private String examName;
+
+    @Column(name = "contestant_username")
+    private String contestantUsername;
 
     @Column(name = "test_mark")
     private String testMark;

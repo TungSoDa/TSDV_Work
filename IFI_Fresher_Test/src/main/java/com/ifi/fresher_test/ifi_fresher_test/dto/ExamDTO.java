@@ -12,7 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamDTO {
-    private String examID;
+    private Integer examID;
+
+    private String name;
 
     private String topic;
 

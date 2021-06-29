@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "question")
@@ -17,7 +19,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
-    private Integer questionID;
+    private Integer questionId;
 
     private String content;
 
@@ -34,14 +36,14 @@ public class Question {
 //    @ManyToOne
 //    @JoinColumn
 //    private Contributor contributor;
-//
+
 //    @OneToMany
 //    @JoinColumn
 //    private List<Answer> answerList = new ArrayList<>();
 
 
-    public Question(Integer questionID, String content, String topic, Boolean isDeleted, String contributorID) {
-        this.questionID = questionID;
+    public Question(Integer questionId, String content, String topic, Boolean isDeleted, String contributorID) {
+        this.questionId = questionId;
         this.content = content;
         this.image = null;
         this.topic = topic;

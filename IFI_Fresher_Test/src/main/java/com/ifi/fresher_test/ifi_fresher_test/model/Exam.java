@@ -17,7 +17,9 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exam_id")
-    private String examID;
+    private Integer examID;
+
+    private String name;
 
     private String topic;
 

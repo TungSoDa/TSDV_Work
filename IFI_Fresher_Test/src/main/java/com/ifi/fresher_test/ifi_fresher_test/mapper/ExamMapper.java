@@ -3,7 +3,6 @@ package com.ifi.fresher_test.ifi_fresher_test.mapper;
 import com.ifi.fresher_test.ifi_fresher_test.dto.ExamDTO;
 import com.ifi.fresher_test.ifi_fresher_test.dto.QuestionDTO;
 import com.ifi.fresher_test.ifi_fresher_test.model.Exam;
-import com.ifi.fresher_test.ifi_fresher_test.model.Question;
 
 import java.util.List;
 
@@ -11,6 +10,7 @@ public class ExamMapper {
     public static ExamDTO entityToDTO(Exam exam, List<QuestionDTO> questionList) {
         ExamDTO examDTO = new ExamDTO();
         examDTO.setExamID(exam.getExamID());
+        examDTO.setName(exam.getName());
         examDTO.setTopic(exam.getTopic());
         examDTO.setListQuestionID(exam.getListQuestionID());
         examDTO.setIsDeleted(exam.getIsDeleted());
@@ -20,6 +20,7 @@ public class ExamMapper {
 
     public static Exam dtoToEntity(ExamDTO examDTO) {
         Exam exam = new Exam();
+        exam.setName(examDTO.getName());
         exam.setTopic(examDTO.getTopic());
         exam.setListQuestionID(examDTO.getListQuestionID());
         exam.setIsDeleted(examDTO.getIsDeleted());

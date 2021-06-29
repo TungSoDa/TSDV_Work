@@ -16,6 +16,8 @@ public class ExamResultDTO {
 
     private String examID;
 
+    private String examName;
+
     private String contestantID;
 
     private String testMark;

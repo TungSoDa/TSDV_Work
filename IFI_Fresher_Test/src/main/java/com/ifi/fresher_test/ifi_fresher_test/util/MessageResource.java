@@ -42,6 +42,7 @@ public class MessageResource {
     public static final String JAVA_BASIC = "Java Basic";
     public static final String JAVA_OOP = "Java OOP";
     public static final String JAVA_SPRING = "Java Spring";
+    public static final String SYNTHESIS_TOPIC = "Synthesis";
 
     /**
      * For Notice

@@ -19,13 +19,28 @@ public class ExamController {
         this.examService = examService;
     }
 
-//    @GetMapping("/all")
-//    public List<ExamDTO> findAll() {
-//        return examService.findAll();
-//    }
+    @GetMapping("/all")
+    public List<ExamDTO> findAll() {
+        return examService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findExamByID(@PathVariable Integer id) {
+        return examService.findExamByID(id);
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> addExam(@RequestBody ExamDTO examDTO) {
         return examService.addExam(examDTO);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateExam(@PathVariable Integer id, @RequestBody ExamDTO examDTO) {
+        return examService.updateExam(id, examDTO);
+    }
+
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<?> deleteExam(@PathVariable Integer id) {
+//        return examService.deleteExam(id);
+//    }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class QuestionMapper {
     public static QuestionDTO entityToDTO(Question question, List<AnswerDTO> answerList) {
         QuestionDTO questionDTO = new QuestionDTO();
-        questionDTO.setQuestionID(question.getQuestionID());
+        questionDTO.setQuestionID(question.getQuestionId());
         questionDTO.setContent(question.getContent());
         questionDTO.setImage(question.getImage());
         questionDTO.setTopic(question.getTopic());
@@ -24,7 +24,7 @@ public class QuestionMapper {
         List<QuestionDTO> questionDTOS = new ArrayList<>();
         for (int i = 0; i < questions.size(); i++) {
             questionDTOS.add(new QuestionDTO(
-                    questions.get(i).getQuestionID(),
+                    questions.get(i).getQuestionId(),
                     questions.get(i).getContent(),
                     questions.get(i).getImage(),
                     questions.get(i).getTopic(),

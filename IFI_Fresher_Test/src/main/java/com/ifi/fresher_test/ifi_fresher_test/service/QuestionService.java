@@ -37,13 +37,13 @@ public class QuestionService {
         for (int i = 0; i < questionList.size(); i++) {
             questionDTOList.add(
                     new QuestionDTO(
-                            questionList.get(i).getQuestionID(),
+                            questionList.get(i).getQuestionId(),
                             questionList.get(i).getContent(),
                             questionList.get(i).getImage(),
                             questionList.get(i).getTopic(),
                             questionList.get(i).getIsDeleted(),
                             questionList.get(i).getContributorID(),
-                            answerService.findListAnswerByQuestionID(questionList.get(i).getQuestionID())
+                            answerService.findListAnswerByQuestionID(questionList.get(i).getQuestionId())
                     )
             );
         }
@@ -60,6 +60,12 @@ public class QuestionService {
         } else {
             return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
+    }
+
+    public QuestionDTO finQuestionDTOByID(Integer id) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        List<AnswerDTO> answerList = answerService.findListAnswerByQuestionID(id);
+        return QuestionMapper.entityToDTO(optionalQuestion.get(), answerList);
     }
 
     public List<QuestionDTO> findQuestionByTopic(String topic) {
@@ -79,7 +85,7 @@ public class QuestionService {
             questionRepository.save(question);
             return new ResponseEntity<QuestionDTO>(
                     new QuestionDTO(
-                            question.getQuestionID(),
+                            question.getQuestionId(),
                             question.getContent(),
                             question.getImage(),
                             question.getTopic(),
@@ -107,7 +113,7 @@ public class QuestionService {
                 question.setTopic(questionDTO.getTopic());
                 questionRepository.save(question);
                 return new ResponseEntity<QuestionDTO>(new QuestionDTO(
-                        question.getQuestionID(),
+                        question.getQuestionId(),
                         question.getContent(),
                         question.getImage(),
                         question.getTopic(),
@@ -125,7 +131,7 @@ public class QuestionService {
                 question.setIsDeleted(true);
                 questionRepository.save(question);
                 return new ResponseEntity<QuestionDTO>(new QuestionDTO(
-                        question.getQuestionID(),
+                        question.getQuestionId(),
                         question.getContent(),
                         question.getImage(),
                         question.getTopic(),

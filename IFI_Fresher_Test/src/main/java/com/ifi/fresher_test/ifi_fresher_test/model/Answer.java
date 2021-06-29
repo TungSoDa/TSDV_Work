@@ -34,7 +34,6 @@ public class Answer {
 //    @JoinColumn
 //    private Question question;
 
-
     public Answer(String content, Boolean isCorrect, Boolean isDeleted, Integer questionID) {
         this.content = content;
         this.isCorrect = isCorrect;
