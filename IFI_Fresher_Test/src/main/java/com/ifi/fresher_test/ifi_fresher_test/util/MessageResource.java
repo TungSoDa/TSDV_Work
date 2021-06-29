@@ -44,6 +44,8 @@ public class MessageResource {
     public static final String JAVA_SPRING = "Java Spring";
     public static final String SYNTHESIS_TOPIC = "Synthesis";
 
+    public static final String INCORRECT_QUESTION_LIST_WITH_TOPIC = "INCORRECT QUESTION LIST WITH TOPIC";
+
     /**
      * For Notice
      */

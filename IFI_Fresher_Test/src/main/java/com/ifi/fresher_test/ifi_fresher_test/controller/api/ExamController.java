@@ -39,8 +39,8 @@ public class ExamController {
         return examService.updateExam(id, examDTO);
     }
 
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<?> deleteExam(@PathVariable Integer id) {
-//        return examService.deleteExam(id);
-//    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteExam(@PathVariable Integer id) {
+        return examService.deleteExam(id);
+    }
 }

@@ -172,7 +172,11 @@ public class ExamService {
         Optional<Exam> optionalExam = examRepository.findById(id);
         if (!optionalExam.isPresent()) {
             return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.ALREADY_REPORTED);
-        } else if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+        }
+//        else if (examRepository.findExamByName(examDTO.getName()).isPresent()) {
+//            return new ResponseEntity<String>(MessageResource.EXAM + " " + examDTO.getName() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+//        }
+        else if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
             if (examDTO.getListQuestionID().split(",").length != MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER) {
                 return new ResponseEntity<String>("QUESTION NUMBER FOR " + examDTO.getTopic() + " MUST BE " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.ALREADY_REPORTED);
             } else {
@@ -194,7 +198,11 @@ public class ExamService {
         } else {
             if (examDTO.getListQuestionID().split(",").length != MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER) {
                 return new ResponseEntity<String>("QUESTION NUMBER FOR " + examDTO.getTopic() + " MUST BE " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.ALREADY_REPORTED);
-            } else {
+            }
+//            else if (!questionService.findQuestionByTopic(examDTO.getTopic()).contains(stringToListQuestionDTO(examDTO.getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER))) {
+//                return new ResponseEntity<String>(MessageResource.INCORRECT_QUESTION_LIST_WITH_TOPIC, HttpStatus.ALREADY_REPORTED);
+//            }
+            else {
                 return optionalExam.map(exam -> {
                     exam.setName(examDTO.getName());
                     exam.setTopic(examDTO.getTopic());
@@ -210,6 +218,26 @@ public class ExamService {
                     ), HttpStatus.OK);
                 }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
             }
+        }
+    }
+
+    public ResponseEntity<?> deleteExam(Integer id) {
+        Optional<Exam> optionalExam = examRepository.findById(id);
+        if (optionalExam.isPresent()) {
+            return optionalExam.map(exam -> {
+                exam.setIsDeleted(true);
+                examRepository.save(exam);
+                return new ResponseEntity<ExamDTO>(new ExamDTO(
+                        exam.getExamID(),
+                        exam.getName(),
+                        exam.getTopic(),
+                        exam.getListQuestionID(),
+                        exam.getIsDeleted(),
+                        stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER)
+                ), HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.ALREADY_REPORTED);
         }
     }
 }
