@@ -3,6 +3,7 @@ package com.ifi.fresher_test.ifi_fresher_test.mapper;
 import com.ifi.fresher_test.ifi_fresher_test.dto.AnswerDTO;
 import com.ifi.fresher_test.ifi_fresher_test.dto.QuestionDTO;
 import com.ifi.fresher_test.ifi_fresher_test.model.Question;
+import com.ifi.fresher_test.ifi_fresher_test.service.AnswerService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +21,17 @@ public class QuestionMapper {
         return questionDTO;
     }
 
-    public static List<QuestionDTO> arrayEntityToDTO(List<Question> questions) {
+    public static List<QuestionDTO> arrayEntityToDTO(List<Question> questions, AnswerService answerService) {
         List<QuestionDTO> questionDTOS = new ArrayList<>();
-        for (int i = 0; i < questions.size(); i++) {
+        for (Question question : questions) {
             questionDTOS.add(new QuestionDTO(
-                    questions.get(i).getQuestionId(),
-                    questions.get(i).getContent(),
-                    questions.get(i).getImage(),
-                    questions.get(i).getTopic(),
-                    questions.get(i).getIsDeleted(),
-                    questions.get(i).getContributorID()
+                            question.getQuestionId(),
+                            question.getContent(),
+                            question.getImage(),
+                            question.getTopic(),
+                            question.getIsDeleted(),
+                            question.getContributorID(),
+                            answerService.findListAnswerByQuestionID(question.getQuestionId())
                     )
             );
         }

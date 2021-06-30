@@ -9,7 +9,13 @@ import java.util.Optional;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
-    public Optional<List<Question>> findQuestionByTopic(String topic);
+    public Optional<List<Question>> findAllByIsDeletedFalse();
 
-    public Optional<Question> findQuestionByContentAndTopic(String content, String topic);
+    public Optional<Question> findQuestionByQuestionIdAndIsDeletedFalse(Integer id);
+
+    public Optional<List<Question>> findQuestionByTopicAndIsDeletedFalse(String topic);
+
+    public Optional<Question> findQuestionByContentAndTopicAndIsDeletedFalse(String content, String topic);
+
+    public Optional<List<Question>> findQuestionsByIsDeletedTrue();
 }

@@ -21,7 +21,12 @@ public class AnswerController {
 
     @GetMapping("/all")
     public List<AnswerDTO> findAll() {
-        return answerService.findAll();
+        return answerService.findAllByIsDeletedFalse();
+    }
+
+    @GetMapping("/deletedList")
+    public List<AnswerDTO> getDeletedAnswerList() {
+        return answerService.getDeletedAnswerList();
     }
 
     @GetMapping("/{id}")

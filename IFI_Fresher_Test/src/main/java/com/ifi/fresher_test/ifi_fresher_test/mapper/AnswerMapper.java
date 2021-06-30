@@ -9,7 +9,7 @@ import java.util.List;
 public class AnswerMapper {
     public static AnswerDTO entityToDTO(Answer answer) {
         AnswerDTO answerDTO = new AnswerDTO();
-//        answerDTO.setAnswerID(answer.getAnswerID());
+        answerDTO.setAnswerID(answer.getAnswerID());
         answerDTO.setContent(answer.getContent());
         answerDTO.setIsCorrect(answer.getIsCorrect());
         answerDTO.setIsDeleted(answer.getIsDeleted());
@@ -21,7 +21,7 @@ public class AnswerMapper {
         List<AnswerDTO> answerDTOS = new ArrayList<>();
         for (int i = 0; i < answers.size(); i++) {
             answerDTOS.add(new AnswerDTO(
-//                    answers.get(i).getAnswerID(),
+                    answers.get(i).getAnswerID(),
                     answers.get(i).getContent(),
                     answers.get(i).getIsCorrect(),
                     answers.get(i).getIsDeleted(),
@@ -34,7 +34,7 @@ public class AnswerMapper {
 
     public static Answer dtoToEntity(AnswerDTO contestantDTO) {
         Answer answer = new Answer();
-//        answer.setAnswerID(contestantDTO.getAnswerID());
+        answer.setAnswerID(contestantDTO.getAnswerID());
         answer.setContent(contestantDTO.getContent());
         answer.setIsCorrect(contestantDTO.getIsCorrect());
         answer.setIsDeleted(contestantDTO.getIsDeleted());

@@ -27,34 +27,38 @@ public class AnswerService {
         return AnswerMapper.arrayEntityToDTO(answerRepository.findAll());
     }
 
+    public List<AnswerDTO> findAllByIsDeletedFalse() {
+        return AnswerMapper.arrayEntityToDTO(answerRepository.findAllByIsDeletedFalse().get());
+    }
+
     public ResponseEntity<?> findAnswerByID(Integer id) {
-        Optional<Answer> optionalAnswer = answerRepository.findById(id);
+        Optional<Answer> optionalAnswer = answerRepository.findAnswersByAnswerIDAndIsDeletedFalse(id);
         if (optionalAnswer.isPresent()) {
             return optionalAnswer.map(answer -> new ResponseEntity<>(
                     AnswerMapper.entityToDTO(answer), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET  + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
     public ResponseEntity<?> findAnswerByQuestionID(Integer questionID) {
-        Optional<List<Answer>> optionalAnswerList = answerRepository.findAnswersByQuestionID(questionID);
+        Optional<List<Answer>> optionalAnswerList = answerRepository.findAnswersByQuestionIDAndIsDeletedFalse(questionID);
         if (optionalAnswerList.isPresent()) {
             return optionalAnswerList.map(answers -> new ResponseEntity<List<AnswerDTO>>(
                     AnswerMapper.arrayEntityToDTO(answers), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + questionID + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + questionID + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
     public List<AnswerDTO> findListAnswerByQuestionID(Integer questionID) {
-        return  AnswerMapper.arrayEntityToDTO(answerRepository.findAnswersByQuestionID(questionID).get());
+        return  AnswerMapper.arrayEntityToDTO(answerRepository.findAnswersByQuestionIDAndIsDeletedFalse(questionID).get());
     }
 
     public ResponseEntity<?> getCorrectAnswerOfQuestion(Integer questionID) {
-        Optional<Answer> optionalAnswer = answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(questionID);
+        Optional<Answer> optionalAnswer = answerRepository.findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(questionID);
         if (optionalAnswer.isPresent()) {
             return optionalAnswer.map(answer -> new ResponseEntity<AnswerDTO>(
                     AnswerMapper.entityToDTO(answer), HttpStatus.OK)
@@ -65,12 +69,13 @@ public class AnswerService {
     }
 
     public ResponseEntity<?> addAnswer(AnswerDTO answerDTO) {
+        answerDTO.setIsDeleted(false);
         try {
-            if (!answerRepository.findAnswersByContentAndQuestionID(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
-                if (answerRepository.findAnswersByContentAndQuestionID(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
+            if (!answerRepository.findAnswersByContentAndQuestionIDAndIsDeletedFalse(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
+                if (answerRepository.findAnswersByContentAndQuestionIDAndIsDeletedFalse(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
                     return new ResponseEntity<String>(MessageResource.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
                 }
-                else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
+                else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
                     return new ResponseEntity<String>(MessageResource.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
                 }
                 else {
@@ -78,7 +83,7 @@ public class AnswerService {
                     answerRepository.save(answer);
                     return new ResponseEntity<AnswerDTO>(
                             new AnswerDTO(
-//                                answer.getAnswerID(),
+                                    answer.getAnswerID(),
                                     answer.getContent(),
                                     answer.getIsCorrect(),
                                     answer.getIsDeleted(),
@@ -95,12 +100,12 @@ public class AnswerService {
     }
 
     public ResponseEntity<?> updateAnswer(Integer id, AnswerDTO answerDTO) {
-        Optional<Answer> optionalAnswer = answerRepository.findById(id);
+        Optional<Answer> optionalAnswer = answerRepository.findAnswersByAnswerIDAndIsDeletedFalse(id);
         if (optionalAnswer.isPresent()) {
-            if (answerRepository.findAnswersByContentAndQuestionID(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
+            if (answerRepository.findAnswersByContentAndQuestionIDAndIsDeletedFalse(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
                 return new ResponseEntity<String>(MessageResource.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
             }
-            else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrue(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
+            else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
                 return new ResponseEntity<String>(MessageResource.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
             }
             else {
@@ -110,7 +115,7 @@ public class AnswerService {
                     answer.setQuestionID(answerDTO.getQuestionID());
                     answerRepository.save(answer);
                     return new ResponseEntity<AnswerDTO>(new AnswerDTO(
-//                            answer.getAnswerID(),
+                            answer.getAnswerID(),
                             answer.getContent(),
                             answer.getIsCorrect(),
                             answer.getIsDeleted(),
@@ -119,18 +124,18 @@ public class AnswerService {
                 }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
             }
         } else {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
     public ResponseEntity<?> deleteAnswer(Integer id) {
-        Optional<Answer> optionalAnswer = answerRepository.findById(id);
+        Optional<Answer> optionalAnswer = answerRepository.findAnswersByAnswerIDAndIsDeletedFalse(id);
         if (optionalAnswer.isPresent()) {
             return optionalAnswer.map(answer -> {
                 answer.setIsDeleted(true);
                 answerRepository.save(answer);
                 return new ResponseEntity<AnswerDTO>(new AnswerDTO(
-//                            answer.getAnswerID(),
+                        answer.getAnswerID(),
                         answer.getContent(),
                         answer.getIsCorrect(),
                         answer.getIsDeleted(),
@@ -138,7 +143,11 @@ public class AnswerService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
+    }
+
+    public List<AnswerDTO> getDeletedAnswerList() {
+        return AnswerMapper.arrayEntityToDTO(answerRepository.findAnswersByIsDeletedTrue().get());
     }
 }

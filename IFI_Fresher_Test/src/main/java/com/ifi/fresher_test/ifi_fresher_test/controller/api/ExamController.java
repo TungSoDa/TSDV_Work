@@ -1,7 +1,6 @@
 package com.ifi.fresher_test.ifi_fresher_test.controller.api;
 
 import com.ifi.fresher_test.ifi_fresher_test.dto.ExamDTO;
-import com.ifi.fresher_test.ifi_fresher_test.dto.QuestionDTO;
 import com.ifi.fresher_test.ifi_fresher_test.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +21,11 @@ public class ExamController {
     @GetMapping("/all")
     public List<ExamDTO> findAll() {
         return examService.findAll();
+    }
+
+    @GetMapping("/deletedList")
+    public List<ExamDTO> getDeletedExamList() {
+        return examService.getDeletedExamList();
     }
 
     @GetMapping("/{id}")

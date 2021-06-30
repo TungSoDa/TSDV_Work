@@ -1,5 +1,6 @@
 package com.ifi.fresher_test.ifi_fresher_test.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamDTO {
+    @JsonIgnore
     private Integer examID;
 
     private String name;
@@ -20,6 +22,7 @@ public class ExamDTO {
 
     private String listQuestionID;
 
+    @JsonIgnore
     private Boolean isDeleted;
 
     private List<QuestionDTO> questionList;

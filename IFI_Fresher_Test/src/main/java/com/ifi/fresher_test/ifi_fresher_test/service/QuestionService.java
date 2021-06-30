@@ -33,17 +33,17 @@ public class QuestionService {
 
     public List<QuestionDTO> findAll() {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
-        List<Question> questionList = questionRepository.findAll();
-        for (int i = 0; i < questionList.size(); i++) {
+        List<Question> questionList = questionRepository.findAllByIsDeletedFalse().get();
+        for (Question question : questionList) {
             questionDTOList.add(
                     new QuestionDTO(
-                            questionList.get(i).getQuestionId(),
-                            questionList.get(i).getContent(),
-                            questionList.get(i).getImage(),
-                            questionList.get(i).getTopic(),
-                            questionList.get(i).getIsDeleted(),
-                            questionList.get(i).getContributorID(),
-                            answerService.findListAnswerByQuestionID(questionList.get(i).getQuestionId())
+                            question.getQuestionId(),
+                            question.getContent(),
+                            question.getImage(),
+                            question.getTopic(),
+                            question.getIsDeleted(),
+                            question.getContributorID(),
+                            answerService.findListAnswerByQuestionID(question.getQuestionId())
                     )
             );
         }
@@ -51,35 +51,42 @@ public class QuestionService {
     }
 
     public ResponseEntity<?> findQuestionByID(Integer id) {
-        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id);
         List<AnswerDTO> answerList = answerService.findListAnswerByQuestionID(id);
         if (optionalQuestion.isPresent()) {
             return optionalQuestion.map(question -> new ResponseEntity<>(
                     QuestionMapper.entityToDTO(question, answerList), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
-    public QuestionDTO finQuestionDTOByID(Integer id) {
-        Optional<Question> optionalQuestion = questionRepository.findById(id);
+    public List<QuestionDTO> stringToListQuestionDTO(String listQuestionID, Integer questionNumber) {
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        String[] questionIDs = listQuestionID.split(",");
+        for (int i = 0; i < questionNumber; i++) {
+            questionDTOList.add(findQuestionDTOByID(Integer.parseInt(questionIDs[i])));
+        }
+        return null;
+    }
+
+    public QuestionDTO findQuestionDTOByID(Integer id) {
+        Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id);
         List<AnswerDTO> answerList = answerService.findListAnswerByQuestionID(id);
         return QuestionMapper.entityToDTO(optionalQuestion.get(), answerList);
     }
 
     public List<QuestionDTO> findQuestionByTopic(String topic) {
-        Optional<List<Question>> optionalQuestion = questionRepository.findQuestionByTopic(topic);
-        return QuestionMapper.arrayEntityToDTO(optionalQuestion.get());
+        Optional<List<Question>> optionalQuestion = questionRepository.findQuestionByTopicAndIsDeletedFalse(topic);
+        return QuestionMapper.arrayEntityToDTO(optionalQuestion.get(), answerService);
     }
 
     public ResponseEntity<?> addQuestion(QuestionDTO questionDTO) {
-        if (questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
+        questionDTO.setIsDeleted(false);
+        System.out.println(questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()));
+        if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
-        } else if (questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
-                questionDTO.getContent().toLowerCase().contains(questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).get().getContent().toLowerCase())
-        ) {
-            return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + "  " + MessageResource.MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION, HttpStatus.ALREADY_REPORTED);
         } else {
             Question question = QuestionMapper.dtoToEntity(questionDTO);
             questionRepository.save(question);
@@ -97,13 +104,13 @@ public class QuestionService {
     }
 
     public ResponseEntity<?> updateQuestion(Integer id, QuestionDTO questionDTO) {
-        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id);
         if (!optionalQuestion.isPresent()) {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.ALREADY_REPORTED);
-        } else if (questionRepository.findQuestionByContentAndTopic(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.ALREADY_REPORTED);
+        } else if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
-        } else if (questionRepository.findById(id).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
-                questionDTO.getContent().toLowerCase().contains(questionRepository.findById(id).get().getContent().toLowerCase())
+        } else if (questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
+                questionDTO.getContent().toLowerCase().contains(questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase())
         ) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT_WITH_TOPIC + " " + questionDTO.getTopic() + "  " + MessageResource.MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION, HttpStatus.ALREADY_REPORTED);
         } else {
@@ -125,7 +132,7 @@ public class QuestionService {
     }
 
     public ResponseEntity<?> deleteQuestion(Integer id) {
-        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id);
         if (optionalQuestion.isPresent()) {
             return optionalQuestion.map(question -> {
                 question.setIsDeleted(true);
@@ -136,11 +143,16 @@ public class QuestionService {
                         question.getImage(),
                         question.getTopic(),
                         question.getIsDeleted(),
-                        question.getContributorID()
+                        question.getContributorID(),
+                        answerService.findListAnswerByQuestionID(question.getQuestionId())
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
+    }
+
+    public List<QuestionDTO> getDeletedQuestionList() {
+        return QuestionMapper.arrayEntityToDTO(questionRepository.findQuestionsByIsDeletedTrue().get(), answerService);
     }
 }

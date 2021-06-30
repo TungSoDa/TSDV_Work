@@ -9,11 +9,15 @@ import java.util.Optional;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
-    public Optional<Answer> findAnswersByContentAndQuestionID(String content, Integer questionID);
+    public Optional<List<Answer>> findAllByIsDeletedFalse();
 
-    public Optional<List<Answer>> findAnswersByQuestionID(Integer questionID);
+    public Optional<Answer> findAnswersByAnswerIDAndIsDeletedFalse(Integer id);
 
-    public Optional<Answer> findAnswersByQuestionIDAndIsCorrectTrue(Integer questionID);
+    public Optional<Answer> findAnswersByContentAndQuestionIDAndIsDeletedFalse(String content, Integer questionID);
 
-    public Optional<Answer> findAnswersByQuestionIDAndIsDeletedIsFalse(Integer questionID);
+    public Optional<List<Answer>> findAnswersByQuestionIDAndIsDeletedFalse(Integer questionID);
+
+    public Optional<Answer> findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(Integer questionID);
+
+    public Optional<List<Answer>> findAnswersByIsDeletedTrue();
 }
