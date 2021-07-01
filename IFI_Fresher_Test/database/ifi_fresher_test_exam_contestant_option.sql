@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contestant`
+-- Table structure for table `exam_contestant_option`
 --
 
-DROP TABLE IF EXISTS `contestant`;
+DROP TABLE IF EXISTS `exam_contestant_option`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contestant` (
-  `username` varchar(100) NOT NULL,
-  `fullname` varchar(50) NOT NULL,
-  PRIMARY KEY (`username`),
-  CONSTRAINT `contestant` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
+CREATE TABLE `exam_contestant_option` (
+  `option_id` varchar(100) NOT NULL,
+  `selected_answer_id` int NOT NULL,
+  `exam_result_id` int NOT NULL,
+  PRIMARY KEY (`option_id`),
+  KEY `exam_option_exam_result_fk_idx` (`exam_result_id`),
+  KEY `exam_option_anwer_fk_idx` (`selected_answer_id`),
+  CONSTRAINT `exam_option_anwer_fk` FOREIGN KEY (`selected_answer_id`) REFERENCES `answer` (`answer_id`),
+  CONSTRAINT `exam_option_exam_result_fk` FOREIGN KEY (`exam_result_id`) REFERENCES `exam_result` (`exam_result_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contestant`
+-- Dumping data for table `exam_contestant_option`
 --
 
-LOCK TABLES `contestant` WRITE;
-/*!40000 ALTER TABLE `contestant` DISABLE KEYS */;
-INSERT INTO `contestant` VALUES ('haind','Nguyễn Đình Hải'),('hungnt','Nguyễn Trung Hưng'),('nghiavt','Vũ Trường Nghĩa'),('tungds','Đặng Sơn Tùng');
-/*!40000 ALTER TABLE `contestant` ENABLE KEYS */;
+LOCK TABLES `exam_contestant_option` WRITE;
+/*!40000 ALTER TABLE `exam_contestant_option` DISABLE KEYS */;
+/*!40000 ALTER TABLE `exam_contestant_option` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

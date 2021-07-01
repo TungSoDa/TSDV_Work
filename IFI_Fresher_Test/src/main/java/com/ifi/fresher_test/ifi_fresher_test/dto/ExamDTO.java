@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamDTO {
-    @JsonIgnore
     private Integer examID;
 
     private String name;

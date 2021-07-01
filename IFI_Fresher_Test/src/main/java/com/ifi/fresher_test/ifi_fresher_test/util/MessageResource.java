@@ -52,4 +52,5 @@ public class MessageResource {
     public static final String ALREADY_EXISTS = "ALREADY EXISTS";
     public static final String NOT_CREATED_YET = "NOT CREATED YET";
     public static final String OR_IS_DELETED = "OR IS DELETED";
+    public static final String UNTESTED = "UNTESTED";
 }

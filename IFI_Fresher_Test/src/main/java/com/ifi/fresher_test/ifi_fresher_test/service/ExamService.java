@@ -69,15 +69,6 @@ public class ExamService {
         return listQuestionID.toString();
     }
 
-//    public List<QuestionDTO> stringToListQuestionDTO(String listQuestionID, Integer questionNumber) {
-//        List<QuestionDTO> questionDTOList = new ArrayList<>();
-//        String[] questionIDs = listQuestionID.split(",");
-//        for (int i = 0; i < questionNumber; i++) {
-//            questionDTOList.add(questionService.findQuestionDTOByID(Integer.parseInt(questionIDs[i])));
-//        }
-//        return null;
-//    }
-
     public String getExamNameByTopicAndIndex(String topic) {
         String[] splitStr = topic.split(" ");
         StringBuilder returnName = new StringBuilder();
@@ -155,15 +146,19 @@ public class ExamService {
     }
 
     public ResponseEntity<?> addExam(ExamDTO examDTO) {
-        examDTO.setIsDeleted(false);
         List<QuestionDTO> examQuestion;
         if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
             examQuestion = randomQuestionToExam(questionService.findAll(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
         } else {
             examQuestion = randomQuestionToExam(questionService.findQuestionByTopic(examDTO.getTopic()), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
         }
+
         examDTO.setName(getExamNameByTopicAndIndex(examDTO.getTopic()));
+
         examDTO.setListQuestionID(getRandomListQuestionID(examQuestion));
+
+        examDTO.setIsDeleted(false);
+
         if (examRepository.findExamByListQuestionIDAndIsDeletedFalse(examDTO.getListQuestionID()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else {
@@ -258,7 +253,7 @@ public class ExamService {
                 }
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 

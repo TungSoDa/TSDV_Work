@@ -19,13 +19,13 @@ public class AnswerMapper {
 
     public static List<AnswerDTO> arrayEntityToDTO(List<Answer> answers) {
         List<AnswerDTO> answerDTOS = new ArrayList<>();
-        for (int i = 0; i < answers.size(); i++) {
+        for (Answer answer : answers) {
             answerDTOS.add(new AnswerDTO(
-                    answers.get(i).getAnswerID(),
-                    answers.get(i).getContent(),
-                    answers.get(i).getIsCorrect(),
-                    answers.get(i).getIsDeleted(),
-                    answers.get(i).getQuestionID()
+                            answer.getAnswerID(),
+                            answer.getContent(),
+                            answer.getIsCorrect(),
+                            answer.getIsDeleted(),
+                            answer.getQuestionID()
                     )
             );
         }

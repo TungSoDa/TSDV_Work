@@ -1,5 +1,6 @@
 package com.ifi.fresher_test.ifi_fresher_test.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,19 +13,22 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamResultDTO {
-    private String examResultID;
+    private Integer examResultID;
 
-    private String examID;
+    private Integer examID;
 
     private String examName;
 
-    private String contestantID;
+    private String contestantUsername;
 
-    private String testMark;
+    private Double testMark;
 
     private String topic;
 
+    @JsonIgnore
     private Boolean isDeleted;
 
     private List<QuestionDTO> questionList;
+
+//    private List<ExamOptionDTO> optionList;
 }

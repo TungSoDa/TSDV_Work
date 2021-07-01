@@ -68,7 +68,7 @@ public class QuestionService {
         for (int i = 0; i < questionNumber; i++) {
             questionDTOList.add(findQuestionDTOByID(Integer.parseInt(questionIDs[i])));
         }
-        return null;
+        return questionDTOList;
     }
 
     public QuestionDTO findQuestionDTOByID(Integer id) {

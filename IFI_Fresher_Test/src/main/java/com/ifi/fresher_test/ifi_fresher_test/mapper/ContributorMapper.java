@@ -1,6 +1,5 @@
 package com.ifi.fresher_test.ifi_fresher_test.mapper;
 
-
 import com.ifi.fresher_test.ifi_fresher_test.dto.ContributorDTO;
 import com.ifi.fresher_test.ifi_fresher_test.model.Contributor;
 
@@ -17,8 +16,8 @@ public class ContributorMapper {
 
     public static List<ContributorDTO> arrayEntityToDTO(List<Contributor> contestants) {
         List<ContributorDTO> contributorDTOS = new ArrayList<>();
-        for (int i = 0; i < contestants.size(); i++) {
-            contributorDTOS.add(new ContributorDTO(contestants.get(i).getUsername(), contestants.get(i).getFullName()));
+        for (Contributor contestant : contestants) {
+            contributorDTOS.add(new ContributorDTO(contestant.getUsername(), contestant.getFullName()));
         }
         return contributorDTOS;
     }

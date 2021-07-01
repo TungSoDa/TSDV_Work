@@ -1,6 +1,5 @@
 package com.ifi.fresher_test.ifi_fresher_test.controller.api;
 
-import com.ifi.fresher_test.ifi_fresher_test.dto.AnswerDTO;
 import com.ifi.fresher_test.ifi_fresher_test.dto.QuestionDTO;
 import com.ifi.fresher_test.ifi_fresher_test.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;

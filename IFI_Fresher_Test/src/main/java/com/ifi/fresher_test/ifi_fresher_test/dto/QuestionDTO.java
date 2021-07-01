@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionDTO {
-    @JsonIgnore
     private Integer questionID;
 
     private String content;
@@ -36,24 +35,5 @@ public class QuestionDTO {
         this.topic = topic;
         this.isDeleted = isDeleted;
         this.contributorID = contributorID;
-    }
-
-    public QuestionDTO(Integer questionID, String content, String topic, Boolean isDeleted, String contributorID) {
-        this.questionID = questionID;
-        this.content = content;
-        this.image = null;
-        this.topic = topic;
-        this.isDeleted = isDeleted;
-        this.contributorID = contributorID;
-    }
-
-    public QuestionDTO(Integer questionID, String content, String topic, Boolean isDeleted, String contributorID, List<AnswerDTO> answerList) {
-        this.questionID = questionID;
-        this.content = content;
-        this.image = null;
-        this.topic = topic;
-        this.isDeleted = isDeleted;
-        this.contributorID = contributorID;
-        this.answerList = answerList;
     }
 }

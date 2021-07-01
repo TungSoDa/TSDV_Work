@@ -27,15 +27,11 @@ CREATE TABLE `exam_result` (
   `exam_id` int NOT NULL,
   `exam_name` varchar(50) NOT NULL,
   `contestant_username` varchar(100) NOT NULL,
-  `topic` varchar(255) NOT NULL,
-  `test_mark` varchar(255) NOT NULL,
+  `topic` varchar(50) NOT NULL,
+  `test_mark` double NOT NULL,
   `is_deleted` bit(1) NOT NULL,
-  PRIMARY KEY (`exam_result_id`),
-  KEY `exam_fk_idx` (`contestant_username`),
-  KEY `exam_result_exam_fk_idx` (`exam_id`),
-  CONSTRAINT `exam_result_contestant_fk` FOREIGN KEY (`contestant_username`) REFERENCES `contestant` (`username`),
-  CONSTRAINT `exam_result_exam_fk` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`exam_result_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-29 14:46:21
+-- Dump completed on 2021-07-01 15:09:27

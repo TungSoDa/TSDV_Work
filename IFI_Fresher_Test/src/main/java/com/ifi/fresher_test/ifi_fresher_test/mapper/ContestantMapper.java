@@ -16,8 +16,8 @@ public class ContestantMapper {
 
     public static List<ContestantDTO> arrayEntityToDTO(List<Contestant> contestants) {
         List<ContestantDTO> contestantDTOS = new ArrayList<>();
-        for (int i = 0; i < contestants.size(); i++) {
-            contestantDTOS.add(new ContestantDTO(contestants.get(i).getUsername(), contestants.get(i).getFullName()));
+        for (Contestant contestant : contestants) {
+            contestantDTOS.add(new ContestantDTO(contestant.getUsername(), contestant.getFullName()));
         }
         return contestantDTOS;
     }

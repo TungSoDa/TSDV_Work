@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerDTO {
-    @JsonIgnore
     private Integer answerID;
 
     private String content;
@@ -22,11 +21,4 @@ public class AnswerDTO {
     private Boolean isDeleted;
 
     private Integer questionID;
-
-    public AnswerDTO(Integer answerID, String content, Boolean isCorrect, Boolean isDeleted) {
-        this.answerID = answerID;
-        this.content = content;
-        this.isCorrect = isCorrect;
-        this.isDeleted = isDeleted;
-    }
 }

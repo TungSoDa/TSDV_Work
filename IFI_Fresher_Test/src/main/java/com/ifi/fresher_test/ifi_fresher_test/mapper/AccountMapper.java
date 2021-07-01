@@ -16,8 +16,8 @@ public class AccountMapper {
 
     public static List<AccountDTO> arrayEntityToDTO(List<Account> accounts) {
         List<AccountDTO> accountDTOS = new ArrayList<>();
-        for (int i = 0; i < accounts.size(); i++) {
-            accountDTOS.add(new AccountDTO(accounts.get(i).getUsername(), accounts.get(i).getRole()));
+        for (Account account : accounts) {
+            accountDTOS.add(new AccountDTO(account.getUsername(), account.getRole()));
         }
         return accountDTOS;
     }

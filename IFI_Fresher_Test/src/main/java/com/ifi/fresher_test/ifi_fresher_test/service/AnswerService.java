@@ -95,7 +95,7 @@ public class AnswerService {
                 return new ResponseEntity<String>(MessageResource.ANSWER + " " + answerDTO.getContent() + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION " + answerDTO.getQuestionID(), HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " ID " + MessageResource.ALREADY_EXISTS, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + answerDTO.getQuestionID() + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 

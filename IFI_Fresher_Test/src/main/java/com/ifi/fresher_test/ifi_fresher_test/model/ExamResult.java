@@ -17,10 +17,10 @@ public class ExamResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exam_result_id")
-    private String examResultID;
+    private Integer examResultID;
 
     @Column(name = "exam_id")
-    private String examID;
+    private Integer examID;
 
     @Column(name = "exam_name")
     private String examName;
@@ -29,7 +29,7 @@ public class ExamResult {
     private String contestantUsername;
 
     @Column(name = "test_mark")
-    private String testMark;
+    private Double testMark;
 
     private String topic;
 
