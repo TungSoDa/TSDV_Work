@@ -1,1 +1,63 @@
+.lession-list.bg {
+  min-height: 480px;
+  width: 100%;
+  position: relative;
+  padding-top: 30px;
+}
 
+.lession-list.bg:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.lession-list .lession-box {
+  padding-top: 146px;
+  padding-left: 50px;
+  position: relative;
+  z-index: 3;
+}
+
+.title40Bold {
+  font-family: "Nunito", sans-serif;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.lession-list .lession-box p {
+  margin: 14px 0 30px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: #0c0c0c;
+}
+
+.btn {
+  height: 42px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 42px;
+  font-weight: 700;
+  color: #fff;
+  padding: 0 55px;
+  min-width: 172px;
+  margin: 0 auto;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -khtml-border-radius: 5px;
+}
+.btn.orange {
+  background: #ffb83c;
+}
+
+.lession-list .lession-img {
+  width: 100%;
+  height: 100%;
+}

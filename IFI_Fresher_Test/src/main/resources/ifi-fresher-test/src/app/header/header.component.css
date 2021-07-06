@@ -1,3 +1,7 @@
+#header {
+  background-color: #f2f4ee;
+}
+
 .logo img {
   max-height: 100px;
 }
@@ -5,17 +9,4 @@
 .navbar.navbar-expand-md {
   display:flex;
   justify-content:space-between;
-}
-
-#ifiTestNav ul > li > a {
-  line-height: 100px;
-  text-transform: uppercase;
-  padding: 0 30px;
-  color: #323332;
-  border-right: 1px solid #c1c1c3;
-}
-
-#ifiTestNav ul > li > a.active {
-  background: #f68a3c;
-  color: #fff;
 }

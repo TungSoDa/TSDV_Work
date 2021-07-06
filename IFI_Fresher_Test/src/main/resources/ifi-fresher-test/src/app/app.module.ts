@@ -11,6 +11,10 @@ import { ContestantHomeComponent } from './contestant/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { ListItemComponent } from './list-item/list-item.component';
+import { ListComponent } from './list/list.component';
+import { ExamComponent } from './exam/exam.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { NavigationComponent } from './navigation/navigation.component';
     ContestantHomeComponent,
     HeaderComponent,
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    ListItemComponent,
+    ListComponent,
+    ExamComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
