@@ -1,6 +1,0 @@
-2021-04-19 23:11:02.903  INFO 11712 --- [restartedMain] c.example.demo.DemoWidgetAppApplication  : Starting DemoWidgetAppApplication using Java 1.8.0_281 on TungDS with PID 11712 (E:\TaiLieuHocTap\DuAn\demo_spring\target\classes started by Admin in E:\TaiLieuHocTap\DuAn\demo_spring)
-2021-04-19 23:11:02.909  INFO 11712 --- [restartedMain] c.example.demo.DemoWidgetAppApplication  : No active profile set, falling back to default profiles: default
-2021-04-19 23:14:19.541  INFO 11860 --- [restartedMain] c.example.demo.DemoWidgetAppApplication  : Starting DemoWidgetAppApplication using Java 1.8.0_281 on TungDS with PID 11860 (E:\TaiLieuHocTap\DuAn\demo_spring\target\classes started by Admin in E:\TaiLieuHocTap\DuAn\demo_spring)
-2021-04-19 23:14:19.586  INFO 11860 --- [restartedMain] c.example.demo.DemoWidgetAppApplication  : No active profile set, falling back to default profiles: default
-2021-04-19 23:16:09.494  INFO 3140 --- [restartedMain] c.example.demo.DemoWidgetAppApplication  : Starting DemoWidgetAppApplication using Java 1.8.0_281 on TungDS with PID 3140 (E:\TaiLieuHocTap\DuAn\demo_spring\target\classes started by Admin in E:\TaiLieuHocTap\DuAn\demo_spring)
-2021-04-19 23:16:09.505  INFO 3140 --- [restartedMain] c.example.demo.DemoWidgetAppApplication  : No active profile set, falling back to default profiles: default
