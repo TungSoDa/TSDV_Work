@@ -1,0 +1,26 @@
+h1 {
+  font-size: 34px;
+  text-transform: uppercase !important;
+  font-family: lato-regular;
+  text-align: center;
+}
+
+h1 label {
+  color: #f68a3c;
+}
+
+h3 {
+  font-size: 24px;
+  text-transform: uppercase !important;
+  font-family: lato-regular;
+  text-align: center;
+  color: crimson;
+}
+
+p {
+  font-size: 14px;
+  font-family: lato-regular;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}

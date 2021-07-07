@@ -1,7 +1,7 @@
 <div id="exam" class="container">
   <div class="examInfo">
     <div class="col-md-12">
-      <h1 class="examName">Câu hỏi trắc nghiệm lập trình Angular</h1>
+      <h1 class="examName">Câu hỏi trắc nghiệm chủ đề {{"topic"}}</h1>
     </div>
     <div id="contestantInfo">
       <div class="col-md-6">
@@ -21,6 +21,18 @@
   <div class="examContent">
     <ul>
       <app-question></app-question>
+      <div class="separator"></div>
+      <app-question></app-question>
+      <div class="separator"></div>
+      <app-question></app-question>
+      <div class="separator"></div>
     </ul>
+  </div>
+  <div class="exam-check">
+    <a class="btn btn-primary disabled check-quiz">Nộp bài</a>
+    <div class="exam-result hide">
+      <span>Tổng số câu trả lời đúng: {{"correct"}}/{{"totalQuestion"}}</span>
+      <span> Số điểm bạn đạt được: {{"mark"}} điểm.</span>
+    </div>
   </div>
 </div>

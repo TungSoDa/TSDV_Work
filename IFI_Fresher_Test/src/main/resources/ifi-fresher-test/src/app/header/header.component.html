@@ -2,7 +2,7 @@
   <div class="container position-relative">
     <nav class="navbar navbar-expand-md">
       <div class="float-left">
-        <a href="/contestant/home" class="logo">
+        <a href="/contributor/home" class="logo">
             <img src="../../assets/images/logo/ifiLogo.png" alt="IFI Solution">
         </a>
       </div>
@@ -10,7 +10,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <app-navigation *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration')"></app-navigation>
+      <app-navigation-contestant *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url === '/unfinished' || router.url.includes('/contributor'))"></app-navigation-contestant>
+      <app-navigation-contributor *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url === '/unfinished' || router.url.includes('/contestant'))"></app-navigation-contributor>
     </nav>
   </div>
 </div>

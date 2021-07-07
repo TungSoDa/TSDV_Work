@@ -1,0 +1,133 @@
+.banner {
+  background: url(https://www.ifisolution.com/wp-content/uploads/2018/09/our-software.png) no-repeat top center;
+  min-height: 360px;
+  background-size: cover;
+  text-align: center;
+  padding-top: 70px;
+  width: 100%;
+}
+
+.banner h1 {
+  font-size: 43px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #f68a3c;
+}
+
+.featued-list {
+  margin-top: -82px;
+  margin-bottom: 30px;
+}
+
+.featued-list .relative {
+  min-height: 370px;
+}
+
+.featued-list .shadow-box {
+  text-align: center;
+  overflow: hidden;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  padding-top: 78px;
+  height: 370px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin-right: .5rem;
+  margin-left: .5rem;
+}
+
+.shadow-box {
+  box-shadow: 0 7px 15px 0 rgb(58 75 205 / 33%);
+  background-color: #fff;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -khtml-border-radius: 8px;
+  position: relative;
+}
+
+.featued-list .shadow-box .btn {
+  margin-bottom: 30px;
+  margin-top: -30px;
+  opacity: 0;
+}
+
+.featued-list .shadow-box .img {
+  min-height: 150px;
+}
+
+.featued-list .shadow-box .img img {
+  width: 150px;
+  height: 150px;
+}
+
+.featued-list .shadow-box h3 {
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #0c0c0c;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.featued-list .shadow-box p {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: #3a3a3a;
+  padding: 12px 22px 24px;
+  min-height: 108px;
+}
+
+.featued-list .shadow-box:before {
+  content: "";
+  height: 8px;
+  background: transparent;
+  width: 100%;
+  -webkit-transition: all .1s "";
+  -moz-transition: all .1s "";
+  -o-transition: all .1s "";
+  transition: all .1s "";
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.featued-list .shadow-box:hover {
+  height: 456px;
+}
+
+.featued-list .shadow-box:hover .btn {
+  opacity: 1;
+}
+
+.featued-list .shadow-box:hover:before {
+  background: #ffb83c;
+}
+
+.btn.orange {
+  background: #ffb83c;
+}
+
+.btn {
+  height: 42px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 42px;
+  font-weight: 700;
+  color: #fff;
+  padding: 0 55px;
+  min-width: 172px;
+  margin: 0 auto;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -khtml-border-radius: 5px;
+}
+
+
+

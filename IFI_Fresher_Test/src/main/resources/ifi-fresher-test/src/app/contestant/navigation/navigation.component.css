@@ -6,11 +6,20 @@
   border-right: 1px solid #c1c1c3;
 }
 
-#ifiTestNav ul li a.active {
+#ifiTestNav ul li.active {
   background: #f68a3c;
   color: #fff;
 }
 
+#ifiTestNav .nav-item.dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
 #ifiTestNav .nav-item.dropdown .dropdown-item:hover {
   background: #f68a3c;
+}
+
+#ifiTestNav .nav-item.dropdown .dropdown-item span{
+  padding-left: 10px;
 }

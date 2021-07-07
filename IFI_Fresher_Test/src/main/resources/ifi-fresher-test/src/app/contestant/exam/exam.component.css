@@ -1,0 +1,73 @@
+.hide {
+  display: none !important;
+}
+
+#exam .examInfo {
+  padding-top: 30px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+#exam .examInfo .examName {
+  text-align: center;
+}
+
+#exam .examInfo #contestantInfo {
+  display: flex;
+  padding-top: 30px;
+}
+
+.separator {
+  border-bottom: 1px solid #d9d9d9;
+  margin-top: 20px;
+}
+
+.exam-check {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.exam-result {
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.exam-result span {
+  display: block;
+  line-height: 28px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  color: #373a3c;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #0275d8;
+  border-color: #0275d8;
+}
+
+.check-quiz.disabled {
+  pointer-events: none;
+  color: rgba(0,0,0,.54) !important;
+  background-color: #eee;
+  border-color: #eee;
+}

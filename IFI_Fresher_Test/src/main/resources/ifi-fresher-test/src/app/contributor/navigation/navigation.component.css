@@ -1,0 +1,25 @@
+#ifiTestNav ul li a {
+  line-height: 100px;
+  text-transform: uppercase;
+  padding: 0 30px;
+  color: #323332;
+  border-right: 1px solid #c1c1c3;
+}
+
+#ifiTestNav ul li.active {
+  background: #f68a3c;
+  color: #fff;
+}
+
+#ifiTestNav .nav-item.dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+#ifiTestNav .nav-item.dropdown .dropdown-item:hover {
+  background: #f68a3c;
+}
+
+#ifiTestNav .nav-item.dropdown .dropdown-item span{
+  padding-left: 10px;
+}
