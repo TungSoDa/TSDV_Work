@@ -1,38 +1,40 @@
 <div id="exam" class="container">
-  <div class="examInfo">
-    <div class="col-md-12">
-      <h1 class="examName">Câu hỏi trắc nghiệm chủ đề {{"topic"}}</h1>
-    </div>
-    <div id="contestantInfo">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="label" for="fullName">Tên nhân viên</label>
-          <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Tên đầy đủ">
+  <form action="">
+    <div class="examInfo">
+      <div class="col-md-12">
+        <h1 class="examName">Câu hỏi trắc nghiệm chủ đề {{"topic"}}</h1>
+      </div>
+      <div id="contestantInfo">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="label" for="fullName">Tên nhân viên</label>
+            <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Tên đầy đủ">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+          <label class="label" for="employeeID">Mã nhân viên</label>
+          <input type="text" class="form-control" name="employeeID" id="employeeID" placeholder="Mã nhân viên">
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-        <label class="label" for="employeeID">Mã nhân viên</label>
-        <input type="text" class="form-control" name="employeeID" id="employeeID" placeholder="Mã nhân viên">
-        </div>
+    </div>
+    <div class="examContent">
+      <ul>
+        <app-question-contestant></app-question-contestant>
+        <div class="separator"></div>
+        <app-question-contestant></app-question-contestant>
+        <div class="separator"></div>
+        <app-question-contestant></app-question-contestant>
+        <div class="separator"></div>
+      </ul>
+    </div>
+    <div class="exam-check">
+      <button type="submit" class="btn btn-primary check-quiz" (click)="showExamResult()">Nộp bài</button>
+      <div class="exam-result hide">
+        <span>Tổng số câu trả lời đúng: {{"correct"}}/{{"totalQuestion"}}</span>
+        <span> Số điểm bạn đạt được: {{"mark"}} điểm.</span>
       </div>
     </div>
-  </div>
-  <div class="examContent">
-    <ul>
-      <app-question></app-question>
-      <div class="separator"></div>
-      <app-question></app-question>
-      <div class="separator"></div>
-      <app-question></app-question>
-      <div class="separator"></div>
-    </ul>
-  </div>
-  <div class="exam-check">
-    <a class="btn btn-primary disabled check-quiz">Nộp bài</a>
-    <div class="exam-result hide">
-      <span>Tổng số câu trả lời đúng: {{"correct"}}/{{"totalQuestion"}}</span>
-      <span> Số điểm bạn đạt được: {{"mark"}} điểm.</span>
-    </div>
-  </div>
+  </form>
 </div>

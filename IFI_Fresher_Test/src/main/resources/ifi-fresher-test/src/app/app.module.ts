@@ -12,15 +12,16 @@ import { UnfinishedComponent } from './unfinished/unfinished.component';
 
 import { ContestantHomeComponent } from './contestant/home/home.component';
 import { ContestantNavigationComponent } from './contestant/navigation/navigation.component';
-import { ListComponent } from './contestant/list/list.component';
-import { ListItemComponent } from './contestant/list-item/list-item.component';
+import { ListComponent } from './list/list.component';
+import { ListItemComponent } from './list-item/list-item.component';
 import { ContestantExamComponent } from './contestant/exam/exam.component';
-import { QuestionComponent } from './contestant/question/question.component';
+import { ContestantQuestionComponent } from './contestant/question/question.component';
 
 import { ContributorHomeComponent } from './contributor/home/home.component';
 import { ContributorNavigationComponent } from './contributor/navigation/navigation.component';
 import { ContributorExamComponent } from './contributor/exam/exam.component';
 import { ContributorQuestionComponent } from './contributor/question/question.component';
+import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { ContributorQuestionComponent } from './contributor/question/question.co
     ListComponent,
     ListItemComponent,
     ContestantExamComponent,
-    QuestionComponent,
+    ContestantQuestionComponent,
 
     ContributorHomeComponent,
     ContributorNavigationComponent,
     ContributorExamComponent,
-    ContributorQuestionComponent
+    ContributorQuestionComponent,
+    QuestionBankComponent
   ],
   imports: [
     BrowserModule,

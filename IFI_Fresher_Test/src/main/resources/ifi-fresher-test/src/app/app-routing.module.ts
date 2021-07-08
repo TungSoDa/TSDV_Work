@@ -6,12 +6,11 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UnfinishedComponent } from './unfinished/unfinished.component';
 
 import { ContestantHomeComponent } from './contestant/home/home.component';
-import { ListComponent } from './contestant/list/list.component';
+import { ListComponent } from './list/list.component';
 import { ContestantExamComponent } from './contestant/exam/exam.component';
 
 import { ContributorHomeComponent } from './contributor/home/home.component';
 import { ContributorExamComponent } from './contributor/exam/exam.component';
-import { ContributorQuestionComponent } from './contributor/question/question.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -24,8 +23,8 @@ const routes: Routes = [
   {path: 'contestant/exam', component: ContestantExamComponent},
 
   {path: 'contributor/home', component: ContributorHomeComponent},
+  {path: 'contributor/list', component: ListComponent},
   {path: 'contributor/exam', component: ContributorExamComponent},
-  {path: 'contributor/question', component: ContributorQuestionComponent}
 ];
 
 @NgModule({

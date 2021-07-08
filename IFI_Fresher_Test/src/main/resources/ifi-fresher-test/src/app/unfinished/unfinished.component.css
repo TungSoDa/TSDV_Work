@@ -3,6 +3,7 @@ h1 {
   text-transform: uppercase !important;
   font-family: lato-regular;
   text-align: center;
+  margin-top: 13%;
 }
 
 h1 label {
@@ -23,4 +24,8 @@ p {
   text-align: center;
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+p.contact {
+  margin-bottom: 13%;
 }

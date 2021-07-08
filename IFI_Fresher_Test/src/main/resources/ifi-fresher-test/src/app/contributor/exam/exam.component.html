@@ -1,1 +1,48 @@
-<p>exam works!</p>
+<div id="exam" class="container">
+  <form action="">
+    <div class="examInfo">
+      <div class="col-md-12">
+        <h1 class="examName">Câu hỏi trắc nghiệm chủ đề {{"topic"}}</h1>
+      </div>
+      <div id="contributorInfo">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="label" for="examName">Tên đề thi</label>
+            <input type="text" class="form-control" name="examName" id="examName">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+          <label class="label" for="topic">Chủ đề</label>
+          <input type="text" class="form-control" name="topic" id="topic">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="examContent">
+      <div id="searchQuestionBlock" class="header">
+        <input type="text" id="searchQuestion" placeholder="Search question">
+        <span (click)="addNewQuestion()" class="addBtn">Add question</span>
+      </div>
+
+      <ul id="listQuestion">
+        <li class="dropdown">
+          <div class="drop-item">
+            <svg aria-hidden="true" width="20" height="20" focusable="false" data-prefix="fal" data-icon="chevron-double-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-double-down fa-w-14 fa-2x"><path fill="currentColor" d="M443.5 98.5l-211 211.1c-4.7 4.7-12.3 4.7-17 0L4.5 98.5c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0L224 269.9 419.5 74.5c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.6 4.6 4.6 12.2-.1 16.9zm0 111l-7.1-7.1c-4.7-4.7-12.3-4.7-17 0L224 397.9 28.5 202.5c-4.7-4.7-12.3-4.7-17 0l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l211 211.1c4.7 4.7 12.3 4.7 17 0l211-211.1c4.8-4.8 4.8-12.4.1-17.1z" class=""></path></svg>
+            <span style="width: 90%;">Question1</span>
+            <svg aria-hidden="true" width="20" height="20" focusable="false" data-prefix="fas" data-icon="minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-minus fa-w-14 fa-2x"><path fill="currentColor" d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" class=""></path></svg>
+          </div>
+          <div class="dropdown-content">
+            <div class="content-item">Answer1</div>
+            <div class="content-item">Answer2</div>
+            <div class="content-item">Answer3</div>
+            <div class="content-item">Answer4</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="exam-check">
+      <button type="submit" class="btn btn-primary check-quiz">Lưu</button>
+    </div>
+  </form>
+</div>
