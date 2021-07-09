@@ -1,6 +1,8 @@
 <div class="tests-list">
   <div class="container">
     <h1 class="exam-topic-title">Kho để kiểm tra chủ đề {{"topic"}}</h1>
-    <app-list-item></app-list-item>
+    <div *ngFor="let Exam of examList">
+      <app-list-item [exam]="Exam"></app-list-item>
+    </div>
   </div>
 </div>
