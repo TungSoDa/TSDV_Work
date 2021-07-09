@@ -6,16 +6,16 @@
   display: none !important;
 }
 
-#exam .examInfo {
+#exam .exam-info {
   padding-top: 30px;
   border-bottom: 1px solid #d9d9d9;
 }
 
-#exam .examInfo .examName {
+#exam .exam-info .exam-title {
   text-align: center;
 }
 
-#exam .examInfo #contributorInfo {
+#exam .exam-info #contributor-info {
   display: flex;
   padding-top: 30px;
 }
@@ -180,7 +180,7 @@ ul li:hover {
   height: 40px;
   font-size: 18px;
   margin-top: 5px;
-  padding-left: 20px;
+  padding-left: 60px;
   display: flex;
   align-items: center;
   transition: 0.3s;

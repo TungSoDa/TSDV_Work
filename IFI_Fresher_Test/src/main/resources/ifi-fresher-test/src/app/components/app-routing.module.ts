@@ -11,20 +11,23 @@ import { ContestantExamComponent } from './contestant/exam/exam.component';
 
 import { ContributorHomeComponent } from './contributor/home/home.component';
 import { ContributorExamComponent } from './contributor/exam/exam.component';
+import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'unfinished', component: UnfinishedComponent},
 
   {path: 'contestant/home', component: ContestantHomeComponent},
   {path: 'contestant/list', component: ListComponent},
   {path: 'contestant/exam', component: ContestantExamComponent},
+  {path: 'contestant/unfinished', component: UnfinishedComponent},
 
   {path: 'contributor/home', component: ContributorHomeComponent},
   {path: 'contributor/list', component: ListComponent},
   {path: 'contributor/exam', component: ContributorExamComponent},
+  {path: 'contributor/questionBank', component: QuestionBankComponent},
+  {path: 'contributor/unfinished', component: UnfinishedComponent},
 ];
 
 @NgModule({

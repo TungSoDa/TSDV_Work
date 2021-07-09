@@ -1,0 +1,23 @@
+<div id="header">
+  <div class="container position-relative">
+    <nav class="navbar navbar-expand-md">
+      <div class="float-left">
+        <a *ngIf="router.url === '/' || router.url === '/login' || router.url === '/registration'" href="/" class="logo">
+          <img src="../../assets/images/logo/ifiLogo.png" alt="IFI Solution">
+        </a>
+        <a *ngIf="router.url.includes('/contributor')" href="/contributor/home" class="logo">
+            <img src="../../assets/images/logo/ifiLogo.png" alt="IFI Solution">
+        </a>
+        <a *ngIf="router.url.includes('/contestant')" href="/contestant/home" class="logo">
+          <img src="../../assets/images/logo/ifiLogo.png" alt="IFI Solution">
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ifiTestNav" aria-controls="ifiTestNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <app-navigation-contestant *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url.includes('/contributor'))"></app-navigation-contestant>
+      <app-navigation-contributor *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url.includes('/contestant'))"></app-navigation-contributor>
+    </nav>
+  </div>
+</div>
