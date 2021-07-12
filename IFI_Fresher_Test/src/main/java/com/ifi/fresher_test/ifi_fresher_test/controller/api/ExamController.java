@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin
 @RestController
 @RequestMapping("/exam")
 public class ExamController {
@@ -32,6 +32,11 @@ public class ExamController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findExamByID(@PathVariable Integer id) {
         return examService.findExamByID(id);
+    }
+
+    @GetMapping("/topic/{topic}")
+    public ResponseEntity<?> findExamByTopic(@PathVariable String topic) {
+        return examService.findExamByTopic(topic);
     }
 
     @PostMapping("/add")

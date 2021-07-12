@@ -98,33 +98,8 @@ public class ExamService {
     }
 
     public List<ExamDTO> findAll() {
-        List<ExamDTO> examDTOList = new ArrayList<>();
         List<Exam> examList = examRepository.findAllByIsDeletedFalse().get();
-        for (Exam exam : examList) {
-            if (exam.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
-                examDTOList.add(
-                        new ExamDTO(
-                                exam.getExamID(),
-                                exam.getName(),
-                                exam.getTopic(),
-                                exam.getListQuestionID(),
-                                exam.getIsDeleted(),
-                                questionService.stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER)
-                        )
-                );
-            } else {
-                examDTOList.add(
-                        new ExamDTO(
-                                exam.getExamID(),
-                                exam.getName(),
-                                exam.getTopic(),
-                                exam.getListQuestionID(),
-                                exam.getIsDeleted(),
-                                questionService.stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER)
-                        )
-                );
-            }
-        }
+        List<ExamDTO> examDTOList = ExamMapper.arrayEntityToDTO(examList, questionService);
         return examDTOList;
     }
 
@@ -142,6 +117,18 @@ public class ExamService {
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
             return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> findExamByTopic(String topic) {
+        String topicData = topic.replace('_', ' ');
+        Optional<List<Exam>> optionalExamList = examRepository.findExamByTopicAndIsDeletedFalse(topicData);
+        if (optionalExamList.isPresent()) {
+            return optionalExamList.map(examList -> new ResponseEntity<>(
+                    ExamMapper.arrayEntityToDTO(examList, questionService), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.EXAM + " WITH " + topic  + " TOPIC" + MessageResource.IS_EMPTY, HttpStatus.NOT_FOUND);
         }
     }
 

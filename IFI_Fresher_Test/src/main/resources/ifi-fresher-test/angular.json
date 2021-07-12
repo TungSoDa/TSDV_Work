@@ -79,7 +79,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 8888
+            "port": 4242
           }
         },
         "extract-i18n": {

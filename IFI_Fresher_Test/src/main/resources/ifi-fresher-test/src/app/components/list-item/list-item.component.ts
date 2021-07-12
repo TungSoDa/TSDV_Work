@@ -15,4 +15,10 @@ export class ListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  imageTopicSource = "../../assets/images/topic/topic";
+  imageTopicExtension = ".png";
+
+  removeSpace(str: any) {
+    return str.replace(' ', '');
+  }
 }

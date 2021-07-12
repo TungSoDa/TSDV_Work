@@ -1,8 +1,22 @@
 <div class="tests-list">
   <div class="container">
-    <h1 class="exam-topic-title">Kho để kiểm tra chủ đề {{"topic"}}</h1>
-    <div *ngFor="let Exam of examList">
-      <app-list-item [exam]="Exam"></app-list-item>
+    <div *ngIf="router.url === '/contestant/list'">
+      <h1 class="exam-topic-title">Kho đề thi tất cả các chủ đề</h1>
+      <div *ngFor="let Exam of examList">
+        <app-list-item [exam]="Exam"></app-list-item>
+      </div>
+    </div>
+
+    <div *ngIf="router.url.includes('/contestant/topic/')">
+      <h1 class="exam-topic-title">Kho đề thi chủ đề {{topic}}</h1>
+      <div *ngIf="examList?.length !== 0">
+        <div *ngFor="let Exam of examList">
+          <app-list-item [exam]="Exam"></app-list-item>
+        </div>
+      </div>
+      <div *ngIf="examList?.length === 0">
+        <p>No data</p>
+      </div>
     </div>
   </div>
 </div>

@@ -13,6 +13,8 @@ public interface ExamRepository extends JpaRepository<Exam, Integer> {
 
     public Optional<Exam> findExamByExamIDAndIsDeletedFalse(Integer id);
 
+    public Optional<List<Exam>> findExamByTopicAndIsDeletedFalse(String topic);
+
     public Optional<Exam> findExamByListQuestionIDAndIsDeletedFalse(String listQuestionID);
 
     public Optional<Exam> findExamByNameAndIsDeletedFalse(String name);

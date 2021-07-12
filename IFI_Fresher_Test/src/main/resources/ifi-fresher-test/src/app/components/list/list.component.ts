@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
+
 import { Exam } from 'src/app/models/exam-model';
 import { ExamService } from 'src/app/services/exam/exam.service';
 
@@ -11,11 +14,18 @@ import { ExamService } from 'src/app/services/exam/exam.service';
 export class ListComponent implements OnInit {
   examList?: Exam[]= [];
 
-  constructor(private examService: ExamService) { }
+  topic?: string;
+
+  constructor(public router:Router ,private examService: ExamService) { }
 
   ngOnInit(): void {
-    this.examService.getAllExam().subscribe((examList) => (this.examList = examList));
-
+    if(this.router.url.includes('/contestant/list')) {
+      this.examService.getAllExam().subscribe((examList) => (this.examList = examList));
+    }
+    if(this.router.url.includes('/contestant/topic/')) {
+      this.topic = this.router.url.substring(18).replace('_', ' ');
+      this.examService.getTopicExam(this.router.url.substring(18)).subscribe((examList) => (this.examList = examList));
+    }
   }
 }
 

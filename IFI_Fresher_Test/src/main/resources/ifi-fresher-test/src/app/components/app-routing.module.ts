@@ -23,11 +23,28 @@ const routes: Routes = [
   {path: 'contestant/exam', component: ContestantExamComponent},
   {path: 'contestant/unfinished', component: UnfinishedComponent},
 
+  {path: 'contestant/topic/HTML', component: ListComponent},
+  {path: 'contestant/topic/CSS', component: ListComponent},
+  {path: 'contestant/topic/JavaScript', component: ListComponent},
+  {path: 'contestant/topic/Bootstrap', component: ListComponent},
+  {path: 'contestant/topic/Angular', component: ListComponent},
+  {path: 'contestant/topic/Java_Basic', component: ListComponent},
+  {path: 'contestant/topic/Java_Advanced', component: ListComponent},
+  {path: 'contestant/topic/Java_OOP', component: ListComponent},
+  {path: 'contestant/topic/Java_Spring', component: ListComponent},
+  {path: 'contestant/topic/Database', component: ListComponent},
+  {path: 'contestant/topic/IELTS', component: ListComponent},
+  {path: 'contestant/topic/TOEIC', component: ListComponent},
+  {path: 'contestant/topic/TOEFL', component: ListComponent},
+  {path: 'contestant/topic/SAT', component: ListComponent},
+  {path: 'contestant/topic/CEFR', component: ListComponent},
+
   {path: 'contributor/home', component: ContributorHomeComponent},
   {path: 'contributor/list', component: ListComponent},
   {path: 'contributor/exam', component: ContributorExamComponent},
   {path: 'contributor/questionBank', component: QuestionBankComponent},
   {path: 'contributor/unfinished', component: UnfinishedComponent},
+
 ];
 
 @NgModule({
