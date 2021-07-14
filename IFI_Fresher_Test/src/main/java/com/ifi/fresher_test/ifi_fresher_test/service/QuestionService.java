@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +69,7 @@ public class QuestionService {
         for (int i = 0; i < questionNumber; i++) {
             questionDTOList.add(findQuestionDTOByID(Integer.parseInt(questionIDs[i])));
         }
+        Collections.shuffle(questionDTOList);
         return questionDTOList;
     }
 

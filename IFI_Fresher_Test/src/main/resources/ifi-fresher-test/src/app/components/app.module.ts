@@ -23,6 +23,7 @@ import { ContributorNavigationComponent } from './contributor/navigation/navigat
 import { ContributorExamComponent } from './contributor/exam/exam.component';
 import { ContributorQuestionComponent } from './contributor/question/question.component';
 import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
+import { ContestantAnswerComponent } from './contestant/answer/answer.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { QuestionBankComponent } from './contributor/question-bank/question-bank
     ListItemComponent,
     ContestantExamComponent,
     ContestantQuestionComponent,
+    ContestantAnswerComponent,
 
     ContributorHomeComponent,
     ContributorNavigationComponent,

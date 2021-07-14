@@ -6,3 +6,10 @@
   text-align: center;
   padding-top: 30px;
 }
+
+.noExam {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px 30px 10px;
+}

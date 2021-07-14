@@ -10,17 +10,20 @@ export class ExamService {
 
   questions: Exam[]= [];
 
-  private allExam = 'http://localhost:8080/exam/all'
-
-  private topicExam = 'http://localhost:8080/exam/topic/';
-
   constructor(private http:HttpClient) { }
 
+  private allExam = 'http://localhost:8080/exam/all'
   getAllExam(): Observable<Exam[]> {
-    return this.http.get<Exam[]>(this.allExam)
+    return this.http.get<Exam[]>(this.allExam);
   }
 
-  getTopicExam(topic: string): Observable<Exam[]> {
-    return this.http.get<Exam[]>(this.topicExam + topic)
+  private topicExam = 'http://localhost:8080/exam/topic/';
+  getExamByTopic(topic: string): Observable<Exam[]> {
+    return this.http.get<Exam[]>(this.topicExam + topic);
+  }
+
+  private searchExam = 'http://localhost:8080/exam/'
+  getExamByID(examID: any): Observable<Exam> {
+    return this.http.get<Exam>(this.searchExam + examID);
   }
 }

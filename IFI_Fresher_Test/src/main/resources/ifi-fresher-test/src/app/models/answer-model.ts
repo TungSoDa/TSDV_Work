@@ -1,6 +1,6 @@
 export interface Answer {
   answerID: number;
-  answerContent: string;
+  content: string;
   isCorrect:boolean;
   questionId: number;
 }

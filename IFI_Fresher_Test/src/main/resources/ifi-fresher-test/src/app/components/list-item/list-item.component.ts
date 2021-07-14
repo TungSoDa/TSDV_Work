@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Exam } from 'src/app/models/exam-model';
 
@@ -9,7 +9,7 @@ import { Exam } from 'src/app/models/exam-model';
 })
 export class ListItemComponent implements OnInit {
   @Input() exam?: Exam;
-
+  
   constructor(public router: Router) {}
 
   ngOnInit(): void {
@@ -22,3 +22,4 @@ export class ListItemComponent implements OnInit {
     return str.replace(' ', '');
   }
 }
+

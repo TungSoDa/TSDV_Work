@@ -14,13 +14,15 @@ import { ContributorExamComponent } from './contributor/exam/exam.component';
 import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
 
 const routes: Routes = [
+
+
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
 
   {path: 'contestant/home', component: ContestantHomeComponent},
   {path: 'contestant/list', component: ListComponent},
-  {path: 'contestant/exam', component: ContestantExamComponent},
+  {path: 'contestant/exam/:examID', component: ContestantExamComponent},
   {path: 'contestant/unfinished', component: UnfinishedComponent},
 
   {path: 'contestant/topic/HTML', component: ListComponent},
@@ -52,4 +54,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+
+}

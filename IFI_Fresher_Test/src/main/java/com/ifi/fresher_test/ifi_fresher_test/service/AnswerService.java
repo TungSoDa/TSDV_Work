@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,9 @@ public class AnswerService {
     }
 
     public List<AnswerDTO> findListAnswerByQuestionID(Integer questionID) {
-        return  AnswerMapper.arrayEntityToDTO(answerRepository.findAnswersByQuestionIDAndIsDeletedFalse(questionID).get());
+        List<Answer> answerList = answerRepository.findAnswersByQuestionIDAndIsDeletedFalse(questionID).get();
+        Collections.shuffle(answerList);
+        return  AnswerMapper.arrayEntityToDTO(answerList);
     }
 
     public ResponseEntity<?> getCorrectAnswerOfQuestion(Integer questionID) {

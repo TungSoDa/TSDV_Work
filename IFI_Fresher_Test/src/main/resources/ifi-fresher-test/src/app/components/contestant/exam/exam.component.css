@@ -11,8 +11,13 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
+#exam .examInfo .examTopic,
 #exam .examInfo .examName {
   text-align: center;
+}
+
+#exam .examInfo .examName {
+  margin-top: 20px;
 }
 
 #exam .examInfo #contestantInfo {

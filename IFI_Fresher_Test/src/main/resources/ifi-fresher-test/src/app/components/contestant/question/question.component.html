@@ -1,31 +1,11 @@
 <div class="quiz-section-title">
-  <div class="quiz-content">Question {{"number"}}. Trong câu lệnh sau: public static void main(String[] agrs) thì phần tử agrs[0] chứa giá trị gì?.</div>
-  <div class="quiz-image"><img src="../../../assets/images/question/question4.png" alt=""></div>
+  <div class="quiz-content">Question {{'i'}}. {{question?.content}}</div>
+  <div class="quiz-image"><img [src]="imagePath + question?.image" alt=""></div>
 </div>
 <div class="quiz-section-content">
   <div class="container">
-    <label class="rad-label">
-      <input type="radio" class="rad-input" name="rad">
-      <div class="rad-design"></div>
-      <div class="rad-text">Tham số đầu tiên của danh sách tham số</div>
-    </label>
-
-    <label class="rad-label">
-      <input type="radio" class="rad-input" name="rad">
-      <div class="rad-design"></div>
-      <div class="rad-text">Tên của chương trình</div>
-    </label>
-
-    <label class="rad-label">
-      <input type="radio" class="rad-input" name="rad">
-      <div class="rad-design"></div>
-      <div class="rad-text">Số lượng tham số</div>
-    </label>
-
-    <label class="rad-label">
-      <input type="radio" class="rad-input" name="rad">
-      <div class="rad-design"></div>
-      <div class="rad-text">Không câu nào đúng</div>
-    </label>
+    <div *ngFor="let Answer of question?.answerList">
+      <app-answer-contestant [answer]="Answer"></app-answer-contestant>
+    </div>
   </div>
 </div>

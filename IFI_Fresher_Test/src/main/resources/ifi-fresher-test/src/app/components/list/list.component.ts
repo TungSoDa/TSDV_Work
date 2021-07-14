@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
 
 import { Exam } from 'src/app/models/exam-model';
 import { ExamService } from 'src/app/services/exam/exam.service';
@@ -24,7 +23,7 @@ export class ListComponent implements OnInit {
     }
     if(this.router.url.includes('/contestant/topic/')) {
       this.topic = this.router.url.substring(18).replace('_', ' ');
-      this.examService.getTopicExam(this.router.url.substring(18)).subscribe((examList) => (this.examList = examList));
+      this.examService.getExamByTopic(this.router.url.substring(18)).subscribe((examList) => (this.examList = examList));
     }
   }
 }

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Question } from 'src/app/models/question-model';
+import { QuestionService } from 'src/app/services/question/question.service';
 
 @Component({
   selector: 'app-question-contestant',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContestantQuestionComponent implements OnInit {
 
-  constructor() { }
+  @Input() question?: Question;
+
+  constructor(private questionService: QuestionService) { }
+
+  imagePath = "../../../assets/images/question/";
 
   ngOnInit(): void {
-  }
 
+  }
 }
