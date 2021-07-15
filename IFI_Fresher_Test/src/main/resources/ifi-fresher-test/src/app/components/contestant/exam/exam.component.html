@@ -23,7 +23,7 @@
     <div class="examContent">
       <ul>
         <div *ngFor="let Question of exam?.questionList; let i = index">
-          <app-question-contestant [question]="Question" [id]="i+1"></app-question-contestant>
+          <app-question-contestant [question]="Question" [index]="i+1"></app-question-contestant>
           <div class="separator"></div>
         </div>
       </ul>

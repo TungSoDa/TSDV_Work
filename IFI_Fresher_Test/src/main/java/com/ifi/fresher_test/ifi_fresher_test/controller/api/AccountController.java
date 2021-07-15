@@ -30,6 +30,11 @@ public class AccountController {
         return accountService.findAccountByUsername(username);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Account account) {
+        return accountService.login(account);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addAccount(@RequestBody Account account) {
         return accountService.addAccount(account);

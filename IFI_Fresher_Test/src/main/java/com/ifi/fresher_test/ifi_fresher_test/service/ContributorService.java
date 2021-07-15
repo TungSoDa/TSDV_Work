@@ -41,7 +41,7 @@ public class ContributorService {
                     ContributorMapper.entityToDTO(contributor), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTRIBUTOR + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTRIBUTOR + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -58,13 +58,13 @@ public class ContributorService {
                             ), HttpStatus.CREATED
                     );
                 } else {
-                    return new ResponseEntity<String>(MessageResource.CONTESTANT + " " + contributorDTO.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                    return new ResponseEntity<String>(MessageResource.CONTESTANT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.CONTRIBUTOR + " " + contributorDTO.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.CONTRIBUTOR + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + contributorDTO.getUsername() + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -80,7 +80,7 @@ public class ContributorService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTRIBUTOR + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTRIBUTOR + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -96,7 +96,7 @@ public class ContributorService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTRIBUTOR + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTRIBUTOR + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
 
     }

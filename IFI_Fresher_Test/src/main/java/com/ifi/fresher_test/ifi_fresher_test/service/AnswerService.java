@@ -39,7 +39,7 @@ public class AnswerService {
                     AnswerMapper.entityToDTO(answer), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET  + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.NOT_CREATED_YET  + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -50,7 +50,7 @@ public class AnswerService {
                     AnswerMapper.arrayEntityToDTO(answers), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + questionID + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -95,10 +95,10 @@ public class AnswerService {
                     );
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.ANSWER + " " + answerDTO.getContent() + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION " + answerDTO.getQuestionID(), HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION ", HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + answerDTO.getQuestionID() + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -127,7 +127,7 @@ public class AnswerService {
                 }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
             }
         } else {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -146,7 +146,7 @@ public class AnswerService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ANSWER + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 

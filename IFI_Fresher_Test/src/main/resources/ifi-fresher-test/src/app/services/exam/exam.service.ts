@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Exam } from 'src/app/models/exam-model';
+import { HOSTNAME } from '../../models/constant';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +13,17 @@ export class ExamService {
 
   constructor(private http:HttpClient) { }
 
-  private allExam = 'http://localhost:8080/exam/all'
+  private allExam = `${HOSTNAME.backend}/exam/all`
   getAllExam(): Observable<Exam[]> {
     return this.http.get<Exam[]>(this.allExam);
   }
 
-  private topicExam = 'http://localhost:8080/exam/topic/';
+  private topicExam = `${HOSTNAME.backend}/exam/topic/`;
   getExamByTopic(topic: string): Observable<Exam[]> {
     return this.http.get<Exam[]>(this.topicExam + topic);
   }
 
-  private searchExam = 'http://localhost:8080/exam/'
+  private searchExam = `${HOSTNAME.backend}/exam/`
   getExamByID(examID: any): Observable<Exam> {
     return this.http.get<Exam>(this.searchExam + examID);
   }

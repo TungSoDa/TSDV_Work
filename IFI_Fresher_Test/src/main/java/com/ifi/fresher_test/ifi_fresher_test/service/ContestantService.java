@@ -41,7 +41,7 @@ public class ContestantService {
                     ContestantMapper.entityToDTO(contestant), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTESTANT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -58,13 +58,13 @@ public class ContestantService {
                             ), HttpStatus.CREATED
                     );
                 } else {
-                    return new ResponseEntity<String>(MessageResource.CONTRIBUTOR + " " + contestantDTO.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                    return new ResponseEntity<String>(MessageResource.CONTRIBUTOR + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.CONTESTANT + " " + contestantDTO.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.CONTESTANT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + contestantDTO.getUsername() + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -80,7 +80,7 @@ public class ContestantService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTESTANT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -96,7 +96,7 @@ public class ContestantService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET + " or " + MessageResource.CONTESTANT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }

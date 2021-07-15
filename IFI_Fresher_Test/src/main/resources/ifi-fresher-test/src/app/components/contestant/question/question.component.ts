@@ -12,6 +12,8 @@ export class ContestantQuestionComponent implements OnInit {
 
   @Input() question?: Question;
 
+  @Input() index?: number;
+
   constructor(private questionService: QuestionService) { }
 
   imagePath = "../../../assets/images/question/";

@@ -30,7 +30,7 @@ public class MessageResource {
     /**
      * For Question
      */
-    public static final String THIS_QUESTION_CONTENT_WITH_TOPIC = "THIS QUESTION CONTENT WITH TOPIC";
+    public static final String THIS_QUESTION_CONTENT = "THIS QUESTION CONTENT";
     public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "MAY BE THE SAME CONTENT AS EXISTING QUESTION";
 
     /**
@@ -54,4 +54,11 @@ public class MessageResource {
     public static final String IS_EMPTY = "IS EMPTY";
     public static final String OR_IS_DELETED = "OR IS DELETED";
     public static final String UNTESTED = "UNTESTED";
+
+    /**
+     * For Account
+     */
+    public static final String LOGIN_SUCCESS = "LOGIN SUCCESS";
+    public static final String WRONG_USERNAME = "WRONG USERNAME";
+    public static final String WRONG_PASSWORD = "WRONG PASSWORD";
 }

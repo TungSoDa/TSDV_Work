@@ -116,7 +116,7 @@ public class ExamService {
                     ExamMapper.entityToDTO(exam, questionDTOList), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -128,7 +128,7 @@ public class ExamService {
                     ExamMapper.arrayEntityToDTO(examList, questionService), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.EXAM + " WITH " + topic  + " TOPIC" + MessageResource.IS_EMPTY, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.IS_EMPTY, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -172,7 +172,7 @@ public class ExamService {
             return new ResponseEntity<String>(MessageResource.EXAM + " " + examDTO.getName() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
             if (examDTO.getListQuestionID().split(",").length != MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER) {
-                return new ResponseEntity<String>("QUESTION NUMBER FOR " + examDTO.getTopic() + " MUST BE " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>("QUESTION NUMBER MUST BE " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.ALREADY_REPORTED);
             } else {
                 return optionalExam.map(exam -> {
                     exam.setName(examDTO.getName());
@@ -191,7 +191,7 @@ public class ExamService {
             }
         } else {
             if (examDTO.getListQuestionID().split(",").length != MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER) {
-                return new ResponseEntity<String>("QUESTION NUMBER FOR " + examDTO.getTopic() + " MUST BE " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>("QUESTION NUMBER MUST BE " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.ALREADY_REPORTED);
             } else if (!isAllTopicQuestionContainListQuestionID(getRandomListQuestionID(questionService.findQuestionByTopic(examDTO.getTopic())), examDTO.getListQuestionID())) {
                 return new ResponseEntity<String>(MessageResource.INCORRECT_QUESTION_LIST_WITH_TOPIC, HttpStatus.ALREADY_REPORTED);
             } else {
@@ -240,7 +240,7 @@ public class ExamService {
                 }
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.EXAM + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 

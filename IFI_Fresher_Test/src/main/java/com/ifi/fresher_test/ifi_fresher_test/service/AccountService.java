@@ -33,7 +33,23 @@ public class AccountService {
                     AccountMapper.entityToDTO(account), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> login(Account account) {
+        Optional<Account> optionalAccount = accountRepository.findById(account.getUsername());
+        if (optionalAccount.isPresent()) {
+            if (optionalAccount.get().getPassword().equals(account.getPassword())) {
+                return new ResponseEntity<AccountDTO>(new AccountDTO(
+                        optionalAccount.get().getUsername(),
+                        optionalAccount.get().getRole()
+                ), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<String>(MessageResource.WRONG_PASSWORD, HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity<String>(MessageResource.WRONG_USERNAME, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -41,7 +57,7 @@ public class AccountService {
         if (!accountRepository.existsById(account.getUsername())) {
             return new ResponseEntity<Account>(accountRepository.save(account), HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + account.getUsername() + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         }
     }
 
@@ -58,7 +74,7 @@ public class AccountService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -70,7 +86,7 @@ public class AccountService {
                 return new ResponseEntity<Account>(account, HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + username + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }

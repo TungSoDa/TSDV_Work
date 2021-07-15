@@ -56,7 +56,7 @@ public class ExamResultService {
                     ExamResultMapper.entityToDTO(examResult, questionDTOList), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.EXAM + " " + optionalExamResult.get().getExamName() + "-" + optionalExamResult.get().getContestantUsername() + " " + MessageResource.UNTESTED + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.UNTESTED + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -121,7 +121,7 @@ public class ExamResultService {
                 }
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.EXAM + " " + optionalExamResult.get().getExamName() + "-" + optionalExamResult.get().getContestantUsername() + " " + MessageResource.UNTESTED + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.UNTESTED + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
 }
