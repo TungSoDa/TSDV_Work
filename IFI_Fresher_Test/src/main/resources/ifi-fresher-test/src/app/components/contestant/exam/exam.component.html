@@ -5,6 +5,9 @@
         <h1 class="examTopic">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
         <h2 class="examName">{{exam?.name}}</h2>
       </div>
+      <div class="col-md-12 examTime">
+        <countdown [config]="{ leftTime: examTime }"></countdown>
+      </div>
       <div id="contestantInfo">
         <div class="col-md-6">
           <div class="form-group">

@@ -1,0 +1,31 @@
+.content-item svg {
+  width: 5%;
+}
+
+.content-item span {
+  width: 90%;
+}
+
+.content-item {
+  height: 40px;
+  font-size: 18px;
+  margin-top: 5px;
+  padding-left: 60px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.content-item:hover {
+  background: rgb(180, 180, 180);
+}
+
+.svg-inline--fa.fa-comment-minus:hover{
+  height: 30px;
+  color: #dc3545;
+}
+
+.svg-inline--fa.fa-comment-edit:hover{
+  height: 30px;
+  color: #007bff;
+}

@@ -47,18 +47,15 @@ export class LoginComponent implements OnInit {
     };
 
     this.accountService.login(this.account).subscribe((account)=>{
-      console.log(account);
       if (account.role === ROLE.CONTESTANT) {
         this.router.navigate(['/contestant/home'])
       } else if (account.role === ROLE.CONTRIBUTOR) {
         this.router.navigate(['/contributor/home'])
-      }
-      else if (JSON.stringify(account) == "WRONG USERNAME") {
+      } else if (JSON.stringify(account) === "WRONG USERNAME") {
         this.forgotInput="Tên người dùng không chính xác";
-      } else if (JSON.stringify(account) == "WRONG PASSWORD") {
+      } else if (JSON.stringify(account) === "WRONG PASSWORD") {
         this.forgotInput="Mật khẩu không chính xác";
       }
-
       this.forgotInput = undefined;
     });
   }

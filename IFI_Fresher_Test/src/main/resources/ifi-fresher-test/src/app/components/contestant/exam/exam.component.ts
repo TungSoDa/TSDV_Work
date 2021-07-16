@@ -12,13 +12,15 @@ export class ContestantExamComponent implements OnInit {
 
   exam?: Exam;
 
+  examTime: number = 1800;
+
   constructor(public router:Router ,private examService: ExamService) { }
 
   ngOnInit(): void {
     this.examService.getExamByID(this.router.url.substring(17)).subscribe((exam) => (this.exam = exam));
   }
 
-  showExamResult(){
+  showExamResult() {
     $('.check-quiz').addClass('hide');
     $('.exam-result').removeClass('hide').addClass('show');
   }

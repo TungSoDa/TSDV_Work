@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CountdownModule } from 'ngx-countdown';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +26,8 @@ import { ContributorExamComponent } from './contributor/exam/exam.component';
 import { ContributorQuestionComponent } from './contributor/question/question.component';
 import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
 import { ContestantAnswerComponent } from './contestant/answer/answer.component';
+import { AnswerComponent } from './contributor/answer/answer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -46,13 +50,17 @@ import { ContestantAnswerComponent } from './contestant/answer/answer.component'
     ContributorNavigationComponent,
     ContributorExamComponent,
     ContributorQuestionComponent,
-    QuestionBankComponent
+    QuestionBankComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CountdownModule,
+    Ng2SearchPipeModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

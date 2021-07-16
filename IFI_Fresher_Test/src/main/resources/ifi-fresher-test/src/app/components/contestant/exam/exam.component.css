@@ -20,6 +20,15 @@
   margin-top: 20px;
 }
 
+#exam .examInfo .examTime {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#exam .examInfo .examTime .count-down {
+  font-size: 20px;
+}
+
 #exam .examInfo #contestantInfo {
   display: flex;
   padding-top: 30px;

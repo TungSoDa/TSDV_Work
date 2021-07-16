@@ -26,7 +26,7 @@ li:hover {
   font-size: 20px;
 }
 
-.dropdown .drop-item svg, .dropdown .content-item svg {
+.dropdown .drop-item svg {
   width: 5%;
 }
 
@@ -34,16 +34,12 @@ li:hover {
   width: 80%;
 }
 
-.dropdown .content-item span {
-  width: 90%;
-}
-
-.svg-inline--fa.fa-trash:hover, .svg-inline--fa.fa-comment-minus:hover{
+.svg-inline--fa.fa-trash:hover {
   height: 30px;
   color: #dc3545;
 }
 
-.svg-inline--fa.fa-pen-square:hover,  .svg-inline--fa.fa-comment-edit:hover{
+.svg-inline--fa.fa-pen-square:hover {
   height: 30px;
   color: #007bff;
 }
@@ -59,18 +55,4 @@ li:hover {
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
-
-.dropdown .dropdown-content .content-item {
-  height: 40px;
-  font-size: 18px;
-  margin-top: 5px;
-  padding-left: 60px;
-  display: flex;
-  align-items: center;
-  transition: 0.3s;
-}
-
-.dropdown .dropdown-content .content-item:hover {
-  background: rgb(180, 180, 180);
 }
