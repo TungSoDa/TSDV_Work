@@ -10,6 +10,8 @@ export class ContestantAnswerComponent implements OnInit {
 
   @Input() answer?: Answer;
 
+  @Input() index?: number;
+
   constructor() { }
 
   ngOnInit(): void {

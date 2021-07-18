@@ -5,7 +5,7 @@
 <div class="quiz-section-content">
   <div class="container">
     <div *ngFor="let Answer of question?.answerList">
-      <app-answer-contestant [answer]="Answer"></app-answer-contestant>
+      <app-answer-contestant [answer]="Answer" [index]="index"></app-answer-contestant>
     </div>
   </div>
 </div>

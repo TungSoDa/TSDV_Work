@@ -1,23 +1,23 @@
 <div id="exam" class="container">
   <form action="">
-    <div class="examInfo">
+    <div class="exam-info">
       <div class="col-md-12">
-        <h1 class="examTopic">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
-        <h2 class="examName">{{exam?.name}}</h2>
+        <h1 class="exam-topic">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
+        <h2 class="exam-name">{{exam?.name}}</h2>
       </div>
-      <div class="col-md-12 examTime">
+      <div class="col-md-12 exam-time">
         <countdown [config]="{ leftTime: examTime }"></countdown>
       </div>
       <div id="contestantInfo">
         <div class="col-md-6">
           <div class="form-group">
-            <label class="label" for="fullName">Tên nhân viên</label>
+            <label class="label" for="fullName">Tên nhân viên <span>*</span> :</label>
             <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Tên đầy đủ">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-          <label class="label" for="employeeID">Mã nhân viên</label>
+          <label class="label" for="employeeID">Mã nhân viên <span>*</span> :</label>
           <input type="text" class="form-control" name="employeeID" id="employeeID" placeholder="Mã nhân viên">
           </div>
         </div>

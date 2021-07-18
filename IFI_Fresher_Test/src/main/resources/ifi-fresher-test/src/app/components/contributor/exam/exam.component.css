@@ -148,6 +148,10 @@ ul li:hover {
   background-color: rgb(100, 100, 100);
 }
 
+.dropdown .question-image img {
+  width: 100%;
+}
+
 .dropdown .drop-item {
   display: flex;
   align-items: center;
@@ -159,7 +163,7 @@ ul li:hover {
   width: 5%;
 }
 
-.dropdown .drop-item span {
+.dropdown .drop-item .question-content {
   width: 90%;
 }
 

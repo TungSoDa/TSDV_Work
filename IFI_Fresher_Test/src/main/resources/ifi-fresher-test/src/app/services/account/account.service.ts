@@ -13,7 +13,6 @@ export class AccountService {
 
   login(account: Account):Observable<any>{
     const apiURL = `${HOSTNAME.backend}/account/login`;
-    console.log(this.httpClient.post<any>(apiURL,account))
     return this.httpClient.post<any>(apiURL,account);
   }
 }

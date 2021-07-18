@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   constructor(public router:Router ,private examService: ExamService) { }
 
   ngOnInit(): void {
-    if(this.router.url.includes('/contestant/list')) {
+    if(this.router.url.includes('/contestant/list') || this.router.url.includes('/contributor/list')) {
       this.examService.getAllExam().subscribe((examList) => (this.examList = examList));
     }
     if(this.router.url.includes('/contestant/topic/')) {

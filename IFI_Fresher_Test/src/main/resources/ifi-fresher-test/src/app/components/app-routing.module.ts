@@ -43,7 +43,8 @@ const routes: Routes = [
 
   {path: 'contributor/home', component: ContributorHomeComponent},
   {path: 'contributor/list', component: ListComponent},
-  {path: 'contributor/exam', component: ContributorExamComponent},
+  {path: 'contributor/addExam', component: ContributorExamComponent},
+  {path: 'contributor/editExam/:examID', component: ContributorExamComponent},
   {path: 'contributor/questionBank', component: QuestionBankComponent},
   {path: 'contributor/unfinished', component: UnfinishedComponent},
 

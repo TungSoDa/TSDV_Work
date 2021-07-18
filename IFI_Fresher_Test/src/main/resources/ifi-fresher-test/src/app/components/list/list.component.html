@@ -1,7 +1,7 @@
 <div class="tests-list">
   <div class="container">
     <div *ngIf="router.url === '/contestant/list'">
-      <h1 class="exam-topic-title">Kho đề thi tất cả các chủ đề</h1>
+      <h1 class="exam-topic-title">Kho đề thi chủ đề tổng hợp</h1>
       <div *ngFor="let Exam of examList">
         <app-list-item [exam]="Exam"></app-list-item>
       </div>
@@ -16,6 +16,13 @@
       </div>
       <div *ngIf="examList?.length === 0">
         <i class="noExam">Chưa có đề thi chủ đề {{topic}}, hãy tạo và làm làm ngay</i>
+      </div>
+    </div>
+
+    <div *ngIf="router.url === '/contributor/list'">
+      <h1 class="exam-topic-title">Kho đề thi</h1>
+      <div *ngFor="let Exam of examList">
+        <app-list-item [exam]="Exam"></app-list-item>
       </div>
     </div>
   </div>

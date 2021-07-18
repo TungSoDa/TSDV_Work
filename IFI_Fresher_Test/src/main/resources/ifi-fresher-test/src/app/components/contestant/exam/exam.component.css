@@ -6,30 +6,30 @@
   display: none !important;
 }
 
-#exam .examInfo {
+#exam .exam-info {
   padding-top: 30px;
   border-bottom: 1px solid #d9d9d9;
 }
 
-#exam .examInfo .examTopic,
-#exam .examInfo .examName {
+#exam .exam-info .examTopic,
+#exam .exam-info .exam-name {
   text-align: center;
 }
 
-#exam .examInfo .examName {
+#exam .exam-info .exam-name {
   margin-top: 20px;
 }
 
-#exam .examInfo .examTime {
+#exam .exam-info .exam-time {
   display: flex;
   justify-content: flex-end;
 }
 
-#exam .examInfo .examTime .count-down {
+#exam .exam-info .exam-time .count-down {
   font-size: 20px;
 }
 
-#exam .examInfo #contestantInfo {
+#exam .exam-info #contestantInfo {
   display: flex;
   padding-top: 30px;
 }
