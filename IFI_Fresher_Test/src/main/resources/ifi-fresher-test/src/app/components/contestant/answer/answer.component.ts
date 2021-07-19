@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer-model';
+import { ContestantExamComponent } from '../exam/exam.component'
 
 @Component({
   selector: 'app-answer-contestant',
@@ -15,6 +16,12 @@ export class ContestantAnswerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  isCorrectedAnswer(element: any) {
+    if(element!.answer.isCorrect === true) {
+
+    }
   }
 
 }

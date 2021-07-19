@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import { EXAM_QUESTION_NUMBER } from 'src/app/models/constant';
 import { Exam } from 'src/app/models/exam-model';
 import { ExamService } from 'src/app/services/exam/exam.service';
 @Component({
@@ -14,6 +15,8 @@ export class ContestantExamComponent implements OnInit {
 
   examTime: number = 1800;
 
+  totalQuestion?: number;
+
   constructor(public router:Router ,private examService: ExamService) { }
 
   ngOnInit(): void {
@@ -23,5 +26,11 @@ export class ContestantExamComponent implements OnInit {
   showExamResult() {
     $('.check-quiz').addClass('hide');
     $('.exam-result').removeClass('hide').addClass('show');
+
+    if (this.exam?.topic === "Synthesis") {
+      this.totalQuestion = EXAM_QUESTION_NUMBER.ALL_TOPIC;
+    } else {
+      this.totalQuestion = EXAM_QUESTION_NUMBER.ONE_TOPIC;
+    }
   }
 }

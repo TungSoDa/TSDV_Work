@@ -8,7 +8,7 @@
       <div class="col-md-12 exam-time">
         <countdown [config]="{ leftTime: examTime }"></countdown>
       </div>
-      <div id="contestantInfo">
+      <div id="contestant-info">
         <div class="col-md-6">
           <div class="form-group">
             <label class="label" for="fullName">Tên nhân viên <span>*</span> :</label>
@@ -34,7 +34,7 @@
     <div class="exam-check">
       <button type="submit" class="btn btn-primary check-quiz" (click)="showExamResult()">Nộp bài</button>
       <div class="exam-result hide">
-        <span>Tổng số câu trả lời đúng: {{"correct"}}/{{"totalQuestion"}}</span>
+        <span>Tổng số câu trả lời đúng: {{"corrected"}}/{{totalQuestion}}</span>
         <span> Số điểm bạn đạt được: {{"mark"}} điểm.</span>
       </div>
     </div>

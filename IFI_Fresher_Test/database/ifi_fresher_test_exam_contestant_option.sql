@@ -24,13 +24,16 @@ DROP TABLE IF EXISTS `exam_contestant_option`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `exam_contestant_option` (
   `option_id` varchar(100) NOT NULL,
-  `selected_answer_id` int NOT NULL,
   `exam_result_id` int NOT NULL,
+  `selected_answer_id` int NOT NULL,
+  `question_id` int NOT NULL,
   PRIMARY KEY (`option_id`),
   KEY `exam_option_exam_result_fk_idx` (`exam_result_id`),
   KEY `exam_option_anwer_fk_idx` (`selected_answer_id`),
+  KEY `exam_option_question_fk_idx` (`question_id`),
   CONSTRAINT `exam_option_anwer_fk` FOREIGN KEY (`selected_answer_id`) REFERENCES `answer` (`answer_id`),
-  CONSTRAINT `exam_option_exam_result_fk` FOREIGN KEY (`exam_result_id`) REFERENCES `exam_result` (`exam_result_id`)
+  CONSTRAINT `exam_option_exam_result_fk` FOREIGN KEY (`exam_result_id`) REFERENCES `exam_result` (`exam_result_id`),
+  CONSTRAINT `exam_option_question_fk` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-01 14:44:09
+-- Dump completed on 2021-07-19 16:38:28

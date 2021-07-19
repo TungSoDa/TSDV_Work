@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/question")
+@CrossOrigin
 public class QuestionController {
     QuestionService questionService;
 
@@ -32,6 +32,11 @@ public class QuestionController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findQuestionByID(@PathVariable Integer id) {
         return questionService.findQuestionByID(id);
+    }
+
+    @GetMapping("/topic/{topic}")
+    public ResponseEntity<?> findQuestionByTopic(@PathVariable String topic) {
+        return questionService.findQuestionDTOByTopic(topic);
     }
 
     @PostMapping("/add")

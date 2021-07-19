@@ -16,4 +16,8 @@ export class QuestionService {
     return this.http.get<Question[]>(this.allQuestion);
   }
 
+  private topicQuestion = `${HOSTNAME.backend}/question/topic/`
+  getQuestionByTopic(topic: any): Observable<Question[]> {
+    return this.http.get<Question[]>(this.topicQuestion + topic.replace(' ', '_'));
+  }
 }

@@ -30,7 +30,11 @@ CREATE TABLE `exam_result` (
   `topic` varchar(50) NOT NULL,
   `test_mark` double NOT NULL,
   `is_deleted` bit(1) NOT NULL,
-  PRIMARY KEY (`exam_result_id`)
+  PRIMARY KEY (`exam_result_id`),
+  KEY `exam_fk_idx` (`exam_id`),
+  KEY `contestant_fk_idx` (`contestant_username`),
+  CONSTRAINT `contestant_fk` FOREIGN KEY (`contestant_username`) REFERENCES `contestant` (`username`),
+  CONSTRAINT `exam_fk` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`exam_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-01 15:09:27
+-- Dump completed on 2021-07-19 16:38:28

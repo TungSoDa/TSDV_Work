@@ -4,17 +4,31 @@
       <div class="col-md-12">
         <h1 class="exam-title">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
       </div>
-      <div id="contributor-info">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label class="label" for="examName">Tên đề thi :</label>
-            <input type="text" class="form-control" name="examName" id="examName" placeholder="Nhập tên đề thi (sẽ được tạo tự đông nếu không nhập)">
+
+      <div *ngIf="this.router.url.includes('addExam')">
+        <div id="contributor-info">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="label" for="examName">Tên đề thi :</label>
+              <input type="text" class="form-control" name="examName" id="examName" placeholder="Nhập tên đề thi (sẽ được tạo tự đông nếu không nhập)">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+            <label class="label" for="topic">Chủ đề <span>*</span> :</label>
+            <input type="text" class="form-control" name="topic" id="topic" placeholder="Nhập chủ đề" (change)="onInputTopicFilled()" required>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-          <label class="label" for="topic">Chủ đề <span>*</span> :</label>
-          <input type="text" class="form-control" name="topic" id="topic" placeholder="Nhập chủ đề" required>
+      </div>
+
+      <div *ngIf="this.router.url.includes('editExam')">
+        <div id="contributor-info">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="label" for="examName">Tên đề thi :</label>
+              <input type="text" class="form-control" name="examName" id="examName" placeholder="Nhập tên đề thi" [value]="exam?.name">
+            </div>
           </div>
         </div>
       </div>
@@ -22,6 +36,7 @@
     <div class="exam-content">
       <div id="searchQuestionBlock" class="header">
         <input type="text" id="searchQuestion" placeholder="Search in question bank">
+        <!-- <ng-select id="searchQuestion" [items]="topicQuestion" bindLabel="name" placeholder="Search in question bank" appendTo="ng-select" [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selected" name="question-search"></ng-select> -->
         <span (click)="addNewQuestion()" class="addBtn">Add question</span>
       </div>
 
@@ -37,7 +52,7 @@
               <svg aria-hidden="true" width="20" height="20" aria-labelledby="deleteQuestion" focusable="false" data-prefix="fas" data-icon="minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-minus fa-w-14 fa-2x">
                 <title id="deleteQuestion">Delete Question</title>
                 <path fill="currentColor" d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" class=""></path>
-              </svg>            
+              </svg>
             </div>
             <div class="dropdown-content">
               <div *ngFor="let Answer of exam!.questionList[i].answerList; let j = index">

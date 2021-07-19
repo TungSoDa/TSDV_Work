@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import { Router } from '@angular/router';
 import { Question } from 'src/app/models/question-model';
 import { QuestionService } from 'src/app/services/question/question.service';
 import { PATH } from '../../../models/constant';
@@ -15,7 +15,7 @@ export class ContestantQuestionComponent implements OnInit {
 
   @Input() index?: number;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(public router: Router, private questionService: QuestionService) { }
 
   imagePath = PATH.questionImage;
 

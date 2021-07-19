@@ -19,7 +19,7 @@ export class ExamService {
   }
 
   private topicExam = `${HOSTNAME.backend}/exam/topic/`;
-  getExamByTopic(topic: string): Observable<Exam[]> {
+  getExamByTopic(topic: any): Observable<Exam[]> {
     return this.http.get<Exam[]>(this.topicExam + topic);
   }
 

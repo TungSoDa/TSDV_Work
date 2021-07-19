@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/account")
+@CrossOrigin
 public class AccountController {
     AccountService accountService;
 

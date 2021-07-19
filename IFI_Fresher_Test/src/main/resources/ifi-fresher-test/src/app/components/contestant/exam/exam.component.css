@@ -29,9 +29,13 @@
   font-size: 20px;
 }
 
-#exam .exam-info #contestantInfo {
+#exam .exam-info #contestant-info {
   display: flex;
   padding-top: 30px;
+}
+
+#exam .exam-info #contestant-info label span {
+  color: crimson;
 }
 
 .separator {

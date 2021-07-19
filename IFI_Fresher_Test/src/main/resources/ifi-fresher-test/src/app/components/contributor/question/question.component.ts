@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Answer } from 'src/app/models/answer-model';
+import { PATH } from 'src/app/models/constant';
 import { Question } from 'src/app/models/question-model';
 
 @Component({
@@ -12,6 +12,8 @@ export class ContributorQuestionComponent implements OnInit {
   @Input() question?: Question;
 
   @Input() index?: number;
+
+  imagePath = PATH.questionImage;
 
   constructor() { }
 

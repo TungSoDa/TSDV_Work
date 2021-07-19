@@ -84,9 +84,19 @@ public class QuestionService {
         return QuestionMapper.arrayEntityToDTO(optionalQuestion.get(), answerService);
     }
 
+    public ResponseEntity<?> findQuestionDTOByTopic(String topic) {
+        Optional<List<Question>> optionalQuestion = questionRepository.findQuestionByTopicAndIsDeletedFalse(topic.replace("_", " "));
+        if (optionalQuestion.isPresent()) {
+            return optionalQuestion.map(question -> new ResponseEntity<>(
+                    QuestionMapper.arrayEntityToDTO(optionalQuestion.get(), answerService), HttpStatus.OK)
+            ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+        }
+    }
+
     public ResponseEntity<?> addQuestion(QuestionDTO questionDTO) {
         questionDTO.setIsDeleted(false);
-        System.out.println(questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()));
         if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else {

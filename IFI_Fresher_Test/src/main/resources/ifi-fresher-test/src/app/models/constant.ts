@@ -11,3 +11,8 @@ export const ROLE = {
 export const PATH = {
   questionImage: "../../../assets/images/question/"
 }
+
+export const EXAM_QUESTION_NUMBER = {
+  ONE_TOPIC: 3,
+  ALL_TOPIC: 18
+}

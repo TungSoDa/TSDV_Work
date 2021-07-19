@@ -19,6 +19,10 @@ li:hover {
   background: #ddd;
 }
 
+.dropdown .question-image img {
+  width: 100%;
+}
+
 .dropdown .drop-item {
   display: flex;
   align-items: center;
