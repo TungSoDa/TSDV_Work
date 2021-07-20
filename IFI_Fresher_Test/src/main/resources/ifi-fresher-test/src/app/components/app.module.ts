@@ -29,6 +29,7 @@ import { QuestionBankComponent } from './contributor/question-bank/question-bank
 import { ContestantAnswerComponent } from './contestant/answer/answer.component';
 import { AnswerComponent } from './contributor/answer/answer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ContestantExamResultComponent } from './contestant/exam-result/exam-result.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContributorExamComponent,
     ContributorQuestionComponent,
     QuestionBankComponent,
-    AnswerComponent
+    AnswerComponent,
+    ContestantExamResultComponent
   ],
   imports: [
     BrowserModule,

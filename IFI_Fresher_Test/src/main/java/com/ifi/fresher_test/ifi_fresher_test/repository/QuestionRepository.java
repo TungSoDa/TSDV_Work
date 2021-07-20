@@ -17,5 +17,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
     public Optional<Question> findQuestionByContentAndTopicAndIsDeletedFalse(String content, String topic);
 
+    public Optional<List<Question>> findQuestionsByTopicAndIsDeletedFalse(String topic);
+
     public Optional<List<Question>> findQuestionsByIsDeletedTrue();
 }

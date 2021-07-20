@@ -137,7 +137,11 @@ public class ExamService {
         if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
             examQuestion = randomQuestionToExam(questionService.findAll(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
         } else {
-            examQuestion = randomQuestionToExam(questionService.findQuestionByTopic(examDTO.getTopic()), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
+            if (questionService.findQuestionByTopic(examDTO.getTopic()).isEmpty()) {
+                return new ResponseEntity<String>(MessageResource.NO_QUESTIONS_WITH_THIS_TOPIC, HttpStatus.NOT_FOUND);
+            } else {
+                examQuestion = randomQuestionToExam(questionService.findQuestionByTopic(examDTO.getTopic()), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
+            }
         }
 
         examDTO.setName(getExamNameByTopicAndIndex(examDTO.getTopic()));

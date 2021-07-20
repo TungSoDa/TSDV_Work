@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Exam } from 'src/app/models/exam-model';
 import { HOSTNAME } from '../../models/constant';
+import { ExamResult } from 'src/app/models/exam-result-model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { HOSTNAME } from '../../models/constant';
 export class ExamService {
 
   questions: Exam[]= [];
+  httpClient!: HttpClient;
 
   constructor(private http:HttpClient) { }
 
@@ -26,5 +28,12 @@ export class ExamService {
   private searchExam = `${HOSTNAME.backend}/exam/`
   getExamByID(examID: any): Observable<Exam> {
     return this.http.get<Exam>(this.searchExam + examID);
+  }
+
+  submitExam(examResult: ExamResult) {
+    let addExamResult = `${HOSTNAME.backend}/examResult/add`;
+    this.httpClient.post<Response>(addExamResult,examResult).subscribe((result)=>(
+      console.log(result)
+      ));
   }
 }

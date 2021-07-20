@@ -15,10 +15,9 @@ public class ExamResultMapper {
         ExamResultDTO examResultDTO = new ExamResultDTO();
         examResultDTO.setExamResultID(examResult.getExamResultID());
         examResultDTO.setExamID(examResult.getExamID());
-        examResultDTO.setExamName(examResult.getExamName());
         examResultDTO.setContestantUsername(examResult.getContestantUsername());
         examResultDTO.setTestMark(examResult.getTestMark());
-        examResultDTO.setTopic(examResult.getTopic());
+        examResultDTO.setSelectedAnswers(examResult.getSelectedAnswers());
         examResultDTO.setIsDeleted(examResult.getIsDeleted());
         examResultDTO.setQuestionList(questionList);
         return examResultDTO;
@@ -31,10 +30,9 @@ public class ExamResultMapper {
                 examResultDTOS.add(new ExamResultDTO(
                         examResult.getExamResultID(),
                         examResult.getExamID(),
-                        examResult.getExamName(),
                         examResult.getContestantUsername(),
                         examResult.getTestMark(),
-                        examResult.getTopic(),
+                        examResult.getSelectedAnswers(),
                         examResult.getIsDeleted(),
                         questionService.stringToListQuestionDTO(examRepository.findExamByExamIDAndIsDeletedFalse(examResult.getExamID()).get().getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER)
                         )
@@ -43,10 +41,9 @@ public class ExamResultMapper {
                 examResultDTOS.add(new ExamResultDTO(
                                 examResult.getExamResultID(),
                                 examResult.getExamID(),
-                                examResult.getExamName(),
                                 examResult.getContestantUsername(),
                                 examResult.getTestMark(),
-                                examResult.getTopic(),
+                                examResult.getSelectedAnswers(),
                                 examResult.getIsDeleted(),
                                 questionService.stringToListQuestionDTO(examRepository.findExamByExamIDAndIsDeletedFalse(examResult.getExamID()).get().getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER)
                         )
@@ -60,9 +57,8 @@ public class ExamResultMapper {
         ExamResult examResult = new ExamResult();
         examResult.setExamResultID(examResultDTO.getExamResultID());
         examResult.setExamID(examResultDTO.getExamID());
-        examResult.setExamName(examResultDTO.getExamName());
         examResult.setContestantUsername(examResultDTO.getContestantUsername());
-        examResult.setTopic(examResultDTO.getTopic());
+        examResult.setSelectedAnswers(examResultDTO.getSelectedAnswers());
         examResult.setTestMark(examResultDTO.getTestMark());
         examResult.setIsDeleted(examResultDTO.getIsDeleted());
         return examResult;

@@ -1,4 +1,4 @@
-package com.ifi.fresher_test.ifi_fresher_test.controller.api;
+package com.ifi.fresher_test.ifi_fresher_test.controller;
 
 import com.ifi.fresher_test.ifi_fresher_test.dto.AccountDTO;
 import com.ifi.fresher_test.ifi_fresher_test.model.Account;

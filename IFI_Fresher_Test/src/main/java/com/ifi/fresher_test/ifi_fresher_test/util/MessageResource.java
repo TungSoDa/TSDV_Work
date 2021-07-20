@@ -32,6 +32,7 @@ public class MessageResource {
      */
     public static final String THIS_QUESTION_CONTENT = "THIS QUESTION CONTENT";
     public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "MAY BE THE SAME CONTENT AS EXISTING QUESTION";
+    public static final String NO_QUESTIONS_WITH_THIS_TOPIC = "NO QUESTIONS WITH THIS TOPIC";
 
     /**
      * For Exam

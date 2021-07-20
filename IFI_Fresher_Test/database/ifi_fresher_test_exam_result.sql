@@ -25,10 +25,9 @@ DROP TABLE IF EXISTS `exam_result`;
 CREATE TABLE `exam_result` (
   `exam_result_id` int NOT NULL AUTO_INCREMENT,
   `exam_id` int NOT NULL,
-  `exam_name` varchar(50) NOT NULL,
   `contestant_username` varchar(100) NOT NULL,
-  `topic` varchar(50) NOT NULL,
   `test_mark` double NOT NULL,
+  `selected_answers` varchar(100) NOT NULL,
   `is_deleted` bit(1) NOT NULL,
   PRIMARY KEY (`exam_result_id`),
   KEY `exam_fk_idx` (`exam_id`),
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-19 16:38:28
+-- Dump completed on 2021-07-20 16:35:47

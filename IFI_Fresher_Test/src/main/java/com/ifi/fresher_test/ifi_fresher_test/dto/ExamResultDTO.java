@@ -17,13 +17,11 @@ public class ExamResultDTO {
 
     private Integer examID;
 
-    private String examName;
-
     private String contestantUsername;
 
     private Double testMark;
 
-    private String topic;
+    private String selectedAnswers;
 
     @JsonIgnore
     private Boolean isDeleted;

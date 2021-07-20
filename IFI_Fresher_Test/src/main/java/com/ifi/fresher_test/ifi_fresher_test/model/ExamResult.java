@@ -22,16 +22,14 @@ public class ExamResult {
     @Column(name = "exam_id")
     private Integer examID;
 
-    @Column(name = "exam_name")
-    private String examName;
-
     @Column(name = "contestant_username")
     private String contestantUsername;
 
     @Column(name = "test_mark")
     private Double testMark;
 
-    private String topic;
+    @Column(name = "selected_answers")
+    private String selectedAnswers;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;

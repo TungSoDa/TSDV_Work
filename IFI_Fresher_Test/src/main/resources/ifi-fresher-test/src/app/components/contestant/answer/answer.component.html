@@ -1,4 +1,4 @@
 <label>
-  <input type="radio" class="option-input radio" [name]="index" (click)="isCorrectedAnswer(this)"/>
+  <input type="radio" class="option-input radio" [name]="index" [id]="answer?.answerID"/>
   <span>{{answer?.content}}</span>
 </label>

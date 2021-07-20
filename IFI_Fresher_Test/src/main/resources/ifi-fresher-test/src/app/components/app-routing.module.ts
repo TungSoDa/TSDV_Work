@@ -12,6 +12,7 @@ import { ContestantExamComponent } from './contestant/exam/exam.component';
 import { ContributorHomeComponent } from './contributor/home/home.component';
 import { ContributorExamComponent } from './contributor/exam/exam.component';
 import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
+import { ContestantExamResultComponent } from './contestant/exam-result/exam-result.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'contestant/home', component: ContestantHomeComponent},
   {path: 'contestant/list', component: ListComponent},
   {path: 'contestant/exam/:examID', component: ContestantExamComponent},
+  {path: 'contestant/exam/result/:examResultID', component: ContestantExamResultComponent},
   {path: 'contestant/unfinished', component: UnfinishedComponent},
 
   {path: 'contestant/topic/HTML', component: ListComponent},
