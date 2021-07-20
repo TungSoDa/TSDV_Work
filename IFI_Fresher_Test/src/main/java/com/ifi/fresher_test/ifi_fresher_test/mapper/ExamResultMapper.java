@@ -26,7 +26,7 @@ public class ExamResultMapper {
     public static List<ExamResultDTO> arrayEntityToDTO(List<ExamResult> examResults, ExamRepository examRepository, QuestionService questionService) {
         List<ExamResultDTO> examResultDTOS = new ArrayList<>();
         for (ExamResult examResult : examResults) {
-            if (examResult.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+            if (examRepository.findExamByExamIDAndIsDeletedFalse(examResult.getExamID()).get().equals(MessageResource.SYNTHESIS_TOPIC)) {
                 examResultDTOS.add(new ExamResultDTO(
                         examResult.getExamResultID(),
                         examResult.getExamID(),

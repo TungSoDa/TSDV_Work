@@ -27,6 +27,4 @@ public class ExamResultDTO {
     private Boolean isDeleted;
 
     private List<QuestionDTO> questionList;
-
-//    private List<ExamOptionDTO> optionList;
 }

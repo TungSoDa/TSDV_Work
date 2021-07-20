@@ -34,6 +34,7 @@ export class ContestantExamComponent implements OnInit {
         this.selected_answer += $('input:radio[name='+(i+1)+']:checked').attr('id') + ",";
       }
     }
+    console.log(this.selected_answer);
     
     this.examService.submitExam(this.examResult!)
   }

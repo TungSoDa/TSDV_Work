@@ -97,6 +97,19 @@ public class ExamService {
         return count.equals(examListQuestionID.length);
     }
 
+    public ExamDTO findExamDTOByID(Integer id) {
+        Optional<Exam> optionalExam = examRepository.findExamByExamIDAndIsDeletedFalse(id);
+        List<QuestionDTO> questionDTOList = null;
+        if (optionalExam.isPresent()) {
+            if (optionalExam.get().getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+                questionDTOList = questionService.stringToListQuestionDTO(optionalExam.get().getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
+            } else {
+                questionDTOList = questionService.stringToListQuestionDTO(optionalExam.get().getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
+            }
+        }
+        return ExamMapper.entityToDTO(optionalExam.get(), questionDTOList);
+    }
+
     public List<ExamDTO> findAll() {
         List<Exam> examList = examRepository.findAllByIsDeletedFalse().get();
         List<ExamDTO> examDTOList = ExamMapper.arrayEntityToDTO(examList, questionService);

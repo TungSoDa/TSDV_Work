@@ -47,7 +47,7 @@ public class ExamResultService {
         Optional<ExamResult> optionalExamResult = examResultRepository.findExamResultByExamResultIDAndIsDeletedFalse(id);
         List<QuestionDTO> questionDTOList;
         if (optionalExamResult.isPresent()) {
-            if (optionalExamResult.get().getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+            if (examService.findExamDTOByID(optionalExamResult.get().getExamID()).getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
                 questionDTOList = questionService.stringToListQuestionDTO(examService.examRepository.findExamByExamIDAndIsDeletedFalse(optionalExamResult.get().getExamID()).get().getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
             } else {
                 questionDTOList = questionService.stringToListQuestionDTO(examService.examRepository.findExamByExamIDAndIsDeletedFalse(optionalExamResult.get().getExamID()).get().getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
@@ -62,12 +62,10 @@ public class ExamResultService {
 
     public ResponseEntity<?> addExamResult(ExamResultDTO examResultDTO) {
         Exam exam = examService.examRepository.findExamByExamIDAndIsDeletedFalse(examResultDTO.getExamID()).get();
-        examResultDTO.setExamName(exam.getName());
-        examResultDTO.setTopic(exam.getTopic());
         examResultDTO.setIsDeleted(false);
 
         List<QuestionDTO> examQuestion;
-        if (examResultDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+        if (examService.findExamDTOByID(examResultDTO.getExamID()).getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
             examQuestion = examService.questionService.stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
         } else {
             examQuestion = examService.questionService.stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
@@ -79,10 +77,9 @@ public class ExamResultService {
                 new ExamResultDTO(
                         examResult.getExamResultID(),
                         examResult.getExamID(),
-                        examResult.getExamName(),
                         examResult.getContestantUsername(),
                         examResult.getTestMark(),
-                        examResult.getTopic(),
+                        examResult.getSelectedAnswers(),
                         examResult.getIsDeleted(),
                         examQuestion
                 ), HttpStatus.CREATED
@@ -96,14 +93,13 @@ public class ExamResultService {
                 examResult.setIsDeleted(true);
                 examResultRepository.save(examResult);
                 Exam exam = examService.examRepository.findExamByExamIDAndIsDeletedFalse(optionalExamResult.get().getExamID()).get();
-                if (optionalExamResult.get().getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+                if (examService.findExamDTOByID(optionalExamResult.get().getExamID()).equals(MessageResource.SYNTHESIS_TOPIC)) {
                     return new ResponseEntity<ExamResultDTO>(new ExamResultDTO(
                             examResult.getExamResultID(),
                             examResult.getExamID(),
-                            examResult.getExamName(),
                             examResult.getContestantUsername(),
                             examResult.getTestMark(),
-                            examResult.getTopic(),
+                            examResult.getSelectedAnswers(),
                             examResult.getIsDeleted(),
                             questionService.stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER)
                     ), HttpStatus.OK);
@@ -111,10 +107,9 @@ public class ExamResultService {
                     return new ResponseEntity<ExamResultDTO>(new ExamResultDTO(
                             examResult.getExamResultID(),
                             examResult.getExamID(),
-                            examResult.getExamName(),
                             examResult.getContestantUsername(),
                             examResult.getTestMark(),
-                            examResult.getTopic(),
+                            examResult.getSelectedAnswers(),
                             examResult.getIsDeleted(),
                             questionService.stringToListQuestionDTO(exam.getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER)
                     ), HttpStatus.OK);
