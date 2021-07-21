@@ -6,35 +6,35 @@
   display: none !important;
 }
 
-#exam .exam-info {
+#exam-result .exam-info {
   padding-top: 30px;
   border-bottom: 1px solid #d9d9d9;
 }
 
-#exam .exam-info .exam-topic,
-#exam .exam-info .exam-name {
+#exam-result .exam-info .exam-topic,
+#exam-result .exam-info .exam-name {
   text-align: center;
 }
 
-#exam .exam-info .exam-name {
+#exam-result .exam-info .exam-name {
   margin-top: 20px;
 }
 
-#exam .exam-info .exam-time {
+#exam-result .exam-info .exam-time {
   display: flex;
   justify-content: flex-end;
 }
 
-#exam .exam-info .exam-time .count-down {
+#exam-result .exam-info .exam-time .count-down {
   font-size: 20px;
 }
 
-#exam .exam-info #contestant-info {
+#exam-result .exam-info #contestant-info {
   display: flex;
   padding-top: 30px;
 }
 
-#exam .exam-info #contestant-info label span {
+#exam-result .exam-info #contestant-info label span {
   color: crimson;
 }
 

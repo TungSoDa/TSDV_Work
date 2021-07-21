@@ -46,6 +46,7 @@ public class MessageResource {
     public static final String SYNTHESIS_TOPIC = "Synthesis";
 
     public static final String INCORRECT_QUESTION_LIST_WITH_TOPIC = "INCORRECT QUESTION LIST WITH TOPIC";
+    public static final String USER_ALREADY_TESTED_THIS_EXAM = "USER ALREADY TESTED THIS EXAM";
 
     /**
      * For Notice

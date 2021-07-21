@@ -30,6 +30,11 @@ export class ExamService {
     return this.http.get<Exam>(this.searchExam + examID);
   }
 
+  private IDExamResult= `${HOSTNAME.backend}/examResult/`
+  getExamResultByID(examResultID: any): Observable<ExamResult> {
+    return this.http.get<ExamResult>(this.IDExamResult + examResultID);
+  }
+
   submitExam(examResult: ExamResult) {
     let addExamResult = `${HOSTNAME.backend}/examResult/add`;
     this.httpClient.post<Response>(addExamResult,examResult).subscribe((result)=>(

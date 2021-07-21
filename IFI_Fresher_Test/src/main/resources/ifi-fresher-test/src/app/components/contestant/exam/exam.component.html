@@ -10,22 +10,28 @@
       </div>
       <div id="contestant-info">
         <div class="form-group col-md-12" style="display: flex; align-items: center;">
-          <label class="label col-md-2" for="fullName">Tên người dùng <span>*</span> :</label>
-          <input type="text" class="form-control col-md-10" name="username" id="username" placeholder="Nhập tên người dùng">
+          <label class="label col-md-2" for="fullName" style="margin-bottom: 0px;">Tên người dùng <span>*</span> :</label>
+          <input type="text" class="form-control col-md-6" name="username" placeholder="Nhập tên người dùng" [(ngModel)]="inputUsername" required>
+          <div *ngIf="forgotInput" class="alert alert-danger text-center" role="alert">
+            {{forgotInput}}
+          </div>
         </div>
       </div>
     </div>
-    <div class="examContent">
+    <div class="exam-content">
       <ul>
         <div *ngFor="let Question of exam?.questionList; let i = index">
           <app-question-contestant [question]="Question" [index]="i+1"></app-question-contestant>
+          <div class="alert alert-danger text-center hide" role="alert" [id]="'question'+i">
+            {{forgotChooseAnswer}}
+          </div>
           <div class="separator"></div>
         </div>
       </ul>
     </div>
     <div class="exam-check">
       <div *ngIf="!this.router.url.includes('exam/result/')">
-        <button type="submit" class="btn btn-primary check-quiz" (click)="showExamResult()" routerLink="/contestant/exam/result/{{exam?.examID}}">Nộp bài</button>
+        <button type="submit" class="btn btn-primary check-quiz" (click)="showExamResult()">Nộp bài</button>
       </div>
 
     </div>

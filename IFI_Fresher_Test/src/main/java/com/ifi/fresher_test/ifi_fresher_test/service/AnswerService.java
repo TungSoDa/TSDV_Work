@@ -32,6 +32,11 @@ public class AnswerService {
         return AnswerMapper.arrayEntityToDTO(answerRepository.findAllByIsDeletedFalse().get());
     }
 
+    public AnswerDTO findAnswerDTOByID(Integer id) {
+        Optional<Answer> optionalAnswer = answerRepository.findAnswersByAnswerIDAndIsDeletedFalse(id);
+        return AnswerMapper.entityToDTO(optionalAnswer.get());
+    }
+
     public ResponseEntity<?> findAnswerByID(Integer id) {
         Optional<Answer> optionalAnswer = answerRepository.findAnswersByAnswerIDAndIsDeletedFalse(id);
         if (optionalAnswer.isPresent()) {

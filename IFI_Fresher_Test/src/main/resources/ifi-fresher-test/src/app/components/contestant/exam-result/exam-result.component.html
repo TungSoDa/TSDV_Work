@@ -1,4 +1,4 @@
-<div id="exam" class="container">
+<div id="exam-result" class="container">
   <form action="">
     <div class="exam-info">
       <div class="col-md-12">
@@ -7,13 +7,12 @@
       </div>
       <div id="contestant-info">
         <div class="form-group col-md-12" style="display: flex; align-items: center;">
-          <label class="label col-md-2" for="fullName">Tên người dùng <span>*</span> :</label>
-          <input type="text" class="form-control col-md-10" name="username" id="username" placeholder="Nhập tên người dùng">
-          <div class="form-control col-md-10" name="username" id="username">{{examResult?.contestantUsername}}</div>
+          <label class="label col-md-2" for="username" style="margin-bottom: 0px;">Tên người dùng <span>*</span> :</label>
+          <div class="col-md-10" name="username" id="username">{{examResult?.contestantUsername}}</div>
         </div>
       </div>
     </div>
-    <div class="examContent">
+    <div class="exam-content">
       <ul>
         <div *ngFor="let Question of exam?.questionList; let i = index">
           <app-question-contestant [question]="Question" [index]="i+1"></app-question-contestant>
@@ -22,8 +21,8 @@
       </ul>
     </div>
     <div class="exam-check">
-      <div>Tổng số câu trả lời đúng: {{"corrected"}}/{{totalQuestion}}</div>
-      <div> Số điểm bạn đạt được: {{"mark"}} điểm.</div>
+      <div>Tổng số câu trả lời đúng: {{corrected}}/{{totalQuestion}}</div>
+      <div> Số điểm bạn đạt được: {{examResult?.testMark}} điểm.</div>
     </div>
   </form>
 </div>

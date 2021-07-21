@@ -19,15 +19,19 @@ export class ContestantExamResultComponent implements OnInit {
 
   totalQuestion?: number;
 
+  corrected?: number;
+
   constructor(public router: Router, private examService: ExamService) { }
 
   ngOnInit(): void {
-    this.examService.getExamByID(this.router.url.substring(24)).subscribe((exam) => (this.exam = exam));
-    if (this.exam?.topic === "Synthesis") {
-      this.totalQuestion = EXAM_QUESTION_NUMBER.ALL_TOPIC;
-    } else {
-      this.totalQuestion = EXAM_QUESTION_NUMBER.ONE_TOPIC;
-    }
+    this.examService.getExamResultByID(this.router.url.substring(24)).subscribe((examResult) => (
+      this.examResult = examResult,
+      this.examService.getExamByID(this.examResult?.examID).subscribe((exam) => (
+        this.exam = exam,
+        this.exam?.topic === "Synthesis" ? this.totalQuestion = EXAM_QUESTION_NUMBER.ALL_TOPIC : this.totalQuestion = EXAM_QUESTION_NUMBER.ONE_TOPIC,
+        this.examResult?.testMark == 0.00 ? this.corrected = 0 : this.corrected = Math.round(this.totalQuestion/this.examResult!.testMark)
+        ))
+      ));
   }
 
 }

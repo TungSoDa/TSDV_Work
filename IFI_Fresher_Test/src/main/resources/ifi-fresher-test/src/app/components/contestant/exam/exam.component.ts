@@ -18,7 +18,13 @@ export class ContestantExamComponent implements OnInit {
 
   examTime: number = 1800;
 
-  selected_answer: string = "";
+  selectedAnswer: string = "";
+
+  inputUsername?: string;
+
+  forgotInput?: string;
+
+  forgotChooseAnswer?: string;
 
   constructor(public router:Router ,private examService: ExamService) { }
 
@@ -27,15 +33,38 @@ export class ContestantExamComponent implements OnInit {
   }
 
   showExamResult() {
+    if (this.inputUsername == null || this.inputUsername.length <= 0) {
+      this.forgotInput="Vui lòng nhập tên người dùng";
+      return;
+    }
+    this.forgotInput = undefined;
+
     for (let i = 0; i < this.exam!.questionList.length; i++) {
-      if (i === this.exam!.questionList.length-1) {
-        this.selected_answer += $('input:radio[name='+(i+1)+']:checked').attr('id');
-      } else {
-        this.selected_answer += $('input:radio[name='+(i+1)+']:checked').attr('id') + ",";
+      if($('input:radio[name='+(i+1)+']:checked').val() == undefined) {
+        this.forgotChooseAnswer = "Bạn chưa chọn đáp án cho đâu hỏi này";
+        $('.alert-danger#question'+i).removeClass('hide');
+        return;
+      }
+      if($('input:radio[name='+(i+1)+']:checked').val() == 'on') {
+        this.forgotChooseAnswer = undefined;
+        $('.alert-danger#question'+i).addClass('hide');
       }
     }
-    console.log(this.selected_answer);
-    
-    this.examService.submitExam(this.examResult!)
+
+    for (let i = 0; i < this.exam!.questionList.length; i++) {
+      if (i === this.exam!.questionList.length-1) {
+        this.selectedAnswer += $('input:radio[name='+(i+1)+']:checked').attr('id');
+      } else {
+        this.selectedAnswer += $('input:radio[name='+(i+1)+']:checked').attr('id') + ",";
+      }
+    }
+
+    // assign value to post
+    this.examResult!.examID = this.exam!.examID;
+    this.examResult!.contestantUsername = this.inputUsername;
+    this.examResult!.selectedAnswers = this.selectedAnswer;
+
+    // this.examService.submitExam(this.examResult!)
+    // this.router.navigate(['/contestant/exam/result/'+this.exam?.examID])
   }
 }

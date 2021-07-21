@@ -1,5 +1,6 @@
 package com.ifi.fresher_test.ifi_fresher_test.controller;
 
+import com.ifi.fresher_test.ifi_fresher_test.dto.AnswerDTO;
 import com.ifi.fresher_test.ifi_fresher_test.dto.ExamResultDTO;
 import com.ifi.fresher_test.ifi_fresher_test.service.ExamResultService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class ExamResultController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findExamByID(@PathVariable Integer id) {
         return examResultService.findExamResultByID(id);
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> findExamByExamIDAndContestantUsername(@RequestBody ExamResultDTO examResultDTO) {
+        return examResultService.findExamResultByExamIDAndContestantUsername(examResultDTO);
     }
 
     @PostMapping("/add")

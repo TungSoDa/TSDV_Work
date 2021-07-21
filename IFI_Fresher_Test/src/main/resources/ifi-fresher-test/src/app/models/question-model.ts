@@ -1,7 +1,7 @@
 import { Answer } from "./answer-model";
 
 export interface Question {
-  questionId: number;
+  questionID: number;
   content: string;
   image: string;
   topic: string;

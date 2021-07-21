@@ -12,4 +12,6 @@ public interface ExamResultRepository extends JpaRepository<ExamResult, Integer>
     Optional<List<ExamResult>> findAllByIsDeletedFalse();
 
     Optional<ExamResult> findExamResultByExamResultIDAndIsDeletedFalse(Integer id);
+
+    Optional<ExamResult> findExamResultByExamIDAndContestantUsernameAndIsDeletedFalse(Integer examID, String contestantUsername);
 }
