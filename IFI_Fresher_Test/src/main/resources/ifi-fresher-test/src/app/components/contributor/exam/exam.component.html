@@ -15,8 +15,25 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-            <label class="label" for="topic">Chủ đề <span>*</span> :</label>
-            <input type="text" class="form-control" name="topic" id="topic" placeholder="Nhập chủ đề" (change)="onInputTopicFilled()" required>
+              <label class="label" for="topic">Chủ đề <span>*</span> :</label>
+              <select class="form-control" name="topic" id="topic" (change)="onInputTopicFilled()" required>
+                <option value="None">Chọn chủ đề</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Bootstrap">Bootstrap</option>
+                <option value="Angular">Angular</option>
+                <option value="Java Basic">Java Basic</option>
+                <option value="Java Advanced">Java Advanced</option>
+                <option value="Java OOP">Java OOP</option>
+                <option value="Java Spring">Java Spring</option>
+                <option value="Database">Database</option>
+                <option value="IELTS">IELTS</option>
+                <option value="TOEIC">TOEIC</option>
+                <option value="TOEFL">TOEFL</option>
+                <option value="SAT">SAT</option>
+                <option value="CEFR">CEFR</option>
+              </select>
             </div>
           </div>
         </div>
@@ -35,8 +52,8 @@
     </div>
     <div class="exam-content">
       <div id="searchQuestionBlock" class="header">
-        <input type="text" id="searchQuestion" placeholder="Search in question bank">
-        <!-- <ng-select id="searchQuestion" [items]="topicQuestion" bindLabel="name" placeholder="Search in question bank" appendTo="ng-select" [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selected" name="question-search"></ng-select> -->
+        <!-- <input type="text" id="searchQuestion" placeholder="Search in question bank"> -->
+        <ng-select id="searchQuestion" [items]="topicQuestion" bindLabel="name" placeholder="Search in question bank" appendTo="ng-select" [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selected" name="question-search"></ng-select>
         <span (click)="addNewQuestion()" class="addBtn">Add question</span>
       </div>
 

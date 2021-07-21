@@ -27,8 +27,9 @@ export class ContributorExamComponent implements OnInit {
   }
 
   onInputTopicFilled() :void {
-    console.log(this.questionService.getQuestionByTopic($('input#topic').val()));
-    this.questionService.getQuestionByTopic($('input#topic').val()).subscribe((topicQuestion) => (this.topicQuestion = topicQuestion));
+    console.log($('select#topic option:selected').val());
+    this.questionService.getQuestionByTopic($('select#topic option:selected').val()).subscribe((topicQuestion) => (this.topicQuestion = topicQuestion));
+    console.log(this.topicQuestion);
   }
 
   addNewQuestion() {

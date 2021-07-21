@@ -14,7 +14,7 @@ export class ContestantExamComponent implements OnInit {
 
   exam?: Exam;
 
-  examResult?: ExamResult;
+  examResult!: ExamResult;
 
   examTime: number = 1800;
 
@@ -60,10 +60,11 @@ export class ContestantExamComponent implements OnInit {
     }
 
     // assign value to post
-    this.examResult!.examID = this.exam!.examID;
-    this.examResult!.contestantUsername = this.inputUsername;
-    this.examResult!.selectedAnswers = this.selectedAnswer;
+    this.examResult.examID = this.exam!.examID;
+    this.examResult.contestantUsername = this.inputUsername;
+    this.examResult.selectedAnswers = this.selectedAnswer;
 
+    console.log(this.examResult)
     // this.examService.submitExam(this.examResult!)
     // this.router.navigate(['/contestant/exam/result/'+this.exam?.examID])
   }
