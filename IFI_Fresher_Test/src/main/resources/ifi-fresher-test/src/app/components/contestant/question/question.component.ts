@@ -15,6 +15,8 @@ export class ContestantQuestionComponent implements OnInit {
 
   @Input() index?: number;
 
+  @Input() listOption?: number[] = [];
+
   constructor(public router: Router, private questionService: QuestionService) { }
 
   imagePath = PATH.questionImage;

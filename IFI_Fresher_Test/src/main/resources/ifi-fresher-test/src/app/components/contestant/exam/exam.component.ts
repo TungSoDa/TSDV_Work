@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
 import { Exam } from 'src/app/models/exam-model';
-import { ExamResult } from 'src/app/models/exam-result-model';
+import { ExamResult, ExamResultImpl } from 'src/app/models/exam-result-model';
 import { ExamService } from 'src/app/services/exam/exam.service';
 @Component({
   selector: 'app-exam-contestant',
@@ -14,7 +14,7 @@ export class ContestantExamComponent implements OnInit {
 
   exam?: Exam;
 
-  examResult!: ExamResult;
+  examResult: ExamResultImpl = new ExamResultImpl();
 
   examTime: number = 1800;
 
@@ -59,13 +59,17 @@ export class ContestantExamComponent implements OnInit {
       }
     }
 
-    // assign value to post
-    this.examResult.examID = this.exam!.examID;
-    this.examResult.contestantUsername = this.inputUsername;
-    this.examResult.selectedAnswers = this.selectedAnswer;
+    this.examResult!.examID = this.exam!.examID;
+    this.examResult!.contestantUsername = this.inputUsername;
+    this.examResult!.selectedAnswers = this.selectedAnswer;
 
-    console.log(this.examResult)
-    // this.examService.submitExam(this.examResult!)
-    // this.router.navigate(['/contestant/exam/result/'+this.exam?.examID])
+    this.examService.submitExam(this.examResult)
+
+    this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).subscribe(
+      (examResult) => (
+        this.examResult = examResult,
+        this.router.navigate(['/contestant/exam/result/'+this.examResult?.examResultID])
+      )
+    );
   }
 }

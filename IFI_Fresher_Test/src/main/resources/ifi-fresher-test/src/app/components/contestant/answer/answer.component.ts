@@ -12,8 +12,13 @@ export class ContestantAnswerComponent implements OnInit {
 
   @Input() index?: number;
 
+  @Input() listOption?: number[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    if (this.listOption?.includes(this.answer!.answerID)) {
+      console.log(this.answer);
+    }
   }
 }

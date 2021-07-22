@@ -30,7 +30,7 @@ public class ExamResultController {
         return examResultService.findExamResultByID(id);
     }
 
-    @GetMapping("/test")
+    @PostMapping ("/result")
     public ResponseEntity<?> findExamByExamIDAndContestantUsername(@RequestBody ExamResultDTO examResultDTO) {
         return examResultService.findExamResultByExamIDAndContestantUsername(examResultDTO);
     }

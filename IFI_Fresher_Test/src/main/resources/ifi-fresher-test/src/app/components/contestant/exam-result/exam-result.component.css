@@ -81,6 +81,30 @@
   border-color: #ccc;
 }
 
+.exitExamResult {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.exitExamResult .btn.orange {
+  height: 42px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 42px;
+  font-weight: 700;
+  color: #fff;
+  padding: 0 55px;
+  min-width: 172px;
+  margin: 0 auto;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -khtml-border-radius: 5px;
+  background: #ffb83c;
+}
+
 .btn-primary {
   color: #fff !important;
   background-color: #0275d8;

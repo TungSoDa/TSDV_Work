@@ -43,6 +43,7 @@ public class ExamResultService {
 
     ContestantService contestantService;
 
+    @Autowired
     public void setContestantService(ContestantService contestantService) {
         this.contestantService = contestantService;
     }

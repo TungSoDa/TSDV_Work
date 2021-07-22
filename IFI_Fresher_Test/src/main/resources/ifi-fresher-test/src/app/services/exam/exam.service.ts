@@ -3,15 +3,16 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Exam } from 'src/app/models/exam-model';
 import { HOSTNAME } from '../../models/constant';
-import { ExamResult } from 'src/app/models/exam-result-model';
+import { ExamResult, ExamResultImpl } from 'src/app/models/exam-result-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExamService {
 
-  questions: Exam[]= [];
   httpClient!: HttpClient;
+
+  examResult: ExamResultImpl = new ExamResultImpl();
 
   constructor(private http:HttpClient) { }
 
@@ -37,8 +38,15 @@ export class ExamService {
 
   submitExam(examResult: ExamResult) {
     let addExamResult = `${HOSTNAME.backend}/examResult/add`;
-    this.httpClient.post<Response>(addExamResult,examResult).subscribe((result)=>(
+    this.http.post<Response>(addExamResult,examResult).subscribe((result)=>(
       console.log(result)
       ));
+  }
+
+  private ContestantUsernameExamIDExamResult= `${HOSTNAME.backend}/examResult/result`
+  getExamResultByContestantUsernameAndExamID(examID: any, contestantUsername: any): Observable<ExamResult> {
+    this.examResult.examID = examID;
+    this.examResult.contestantUsername = contestantUsername;
+    return this.http.post<ExamResult>(this.ContestantUsernameExamIDExamResult, this.examResult);
   }
 }

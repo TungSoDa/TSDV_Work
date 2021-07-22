@@ -5,6 +5,9 @@
         <h1 class="exam-topic">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
         <h2 class="exam-name">{{exam?.name}}</h2>
       </div>
+      <div class="alert alert-danger text-center hide" role="alert">
+        {{testedExam}}
+      </div>
       <div id="contestant-info">
         <div class="form-group col-md-12" style="display: flex; align-items: center;">
           <label class="label col-md-2" for="username" style="margin-bottom: 0px;">Tên người dùng <span>*</span> :</label>
@@ -15,7 +18,7 @@
     <div class="exam-content">
       <ul>
         <div *ngFor="let Question of exam?.questionList; let i = index">
-          <app-question-contestant [question]="Question" [index]="i+1"></app-question-contestant>
+          <app-question-contestant [question]="Question" [index]="i+1" [listOption]="listOption"></app-question-contestant>
           <div class="separator"></div>
         </div>
       </ul>
@@ -23,6 +26,9 @@
     <div class="exam-check">
       <div>Tổng số câu trả lời đúng: {{corrected}}/{{totalQuestion}}</div>
       <div> Số điểm bạn đạt được: {{examResult?.testMark}} điểm.</div>
+    </div>
+    <div class="exitExamResult">
+      <a href="/contestant/list" class="btn orange" id="allTopic">Làm đề thi khác</a>
     </div>
   </form>
 </div>
