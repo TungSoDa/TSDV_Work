@@ -38,9 +38,7 @@ export class ExamService {
 
   submitExam(examResult: ExamResult) {
     let addExamResult = `${HOSTNAME.backend}/examResult/add`;
-    this.http.post<Response>(addExamResult,examResult).subscribe((result)=>(
-      console.log(result)
-      ));
+    this.http.post<Response>(addExamResult,examResult).subscribe((result)=>(result));
   }
 
   private ContestantUsernameExamIDExamResult= `${HOSTNAME.backend}/examResult/result`

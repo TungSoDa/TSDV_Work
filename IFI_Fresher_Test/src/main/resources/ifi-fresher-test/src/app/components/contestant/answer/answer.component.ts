@@ -18,7 +18,13 @@ export class ContestantAnswerComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.listOption?.includes(this.answer!.answerID)) {
-      console.log(this.answer);
+      if (this.answer!.isCorrect == true) {
+        $('app-answer-contestant span#'+this.answer!.answerID).addClass('text-success');
+        $('input.option-input#'+this.answer!.answerID).prop('checked', true).css('content', '✔');
+      } else {
+        $('app-answer-contestant span#'+this.answer!.answerID).addClass('text-danger');
+        $('input.option-input#'+this.answer!.answerID).prop('checked', true).css('content', 'X');
+      }
     }
   }
 }
