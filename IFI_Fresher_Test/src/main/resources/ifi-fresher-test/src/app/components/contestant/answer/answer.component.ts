@@ -20,17 +20,9 @@ export class ContestantAnswerComponent implements OnInit {
 
   isSelected?: boolean;
 
-  constructor(public router: Router, private answerService: AnswerService) { }
+  constructor(public router: Router) { }
 
-  async ngOnInit() {
-    if (this.answer!.isCorrect == true) {
-      this.textColor = "text-success";
-    }
-    if (this.listOption?.includes(this.answer!.answerID)) {
-      this.isSelected = true;
-      if (this.answer!.isCorrect ==  false) {
-        this.textColor = "text-danger";
-      }
-    }
+   ngOnInit(): void {
+    
   }
 }

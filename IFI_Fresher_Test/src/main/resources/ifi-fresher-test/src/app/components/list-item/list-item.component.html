@@ -9,7 +9,7 @@
                 <a href="/contestant/exam"><h2 class="title20Bold">{{exam?.name}}</h2></a>
                 <p>Mô tả đề thi: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti, fuga officia est earum et. Nisi ipsam praesentium dolore blanditiis corrupti culpa neque ad veritatis sapiente? Maiores necessitatibus cum nihil.</p>
                 <div class="view-detail">
-                    <a *ngIf="router.url.includes('/contestant/list')" href="/contestant/exam/{{exam?.examID}}" class="btn orange h28 f400 float-right">Làm bài</a>
+                    <a *ngIf="router.url === '/contestant/list' || router.url.includes('/contestant/topic')" href="/contestant/exam/{{exam?.examID}}" class="btn orange h28 f400 float-right">Làm bài</a>
                     <a *ngIf="router.url.includes('/contributor/list')" href="/contributor/editExam/{{exam?.examID}}" class="btn btn-info h28 f400 float-right">Chỉnh sửa</a>
                 </div>
             </div>

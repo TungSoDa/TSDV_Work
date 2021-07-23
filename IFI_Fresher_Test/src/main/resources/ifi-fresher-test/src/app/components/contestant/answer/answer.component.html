@@ -1,10 +1,22 @@
-<label>
-  <div *ngIf="!this.router.url.includes('/contestant/exam/result')">
-    <input type="radio" class="option-input radio" [name]="index" [id]="answer?.answerID" required/>
-    <span [id]="answer?.answerID">{{answer?.content}}</span>
-  </div>
-  <div *ngIf="this.router.url.includes('/contestant/exam/result')">
-    <input type="radio" class="option-input radio" [name]="index" [id]="answer?.answerID" [checked]="isSelected" required/>
-    <span [class]="textColor">{{answer?.content}}</span>
-  </div>
+<label class="col-md-12" style="display: flex;">
+  <input 
+    type="radio" 
+    class="option-input radio col--md-1" 
+    [name]="index" 
+    [id]="answer?.answerID" 
+    [checked]="listOption?.includes(answer!.answerID)" 
+    required
+    [disabled]="this.router.url.includes('result')"
+    [ngClass]="{
+      'option-input-success': answer?.isCorrect === true, 
+      'option-input-danger': answer?.isCorrect === false && listOption?.includes(answer!.answerID)
+    }"/>
+  <span
+    class="col-md-11"
+    [ngClass]="{
+      'span-success': answer?.isCorrect === true && router.url.includes('/result'), 
+      'span-danger': answer?.isCorrect === false && listOption?.includes(answer!.answerID)
+    }">
+    {{answer?.content}}
+  </span>
 </label>

@@ -46,6 +46,22 @@
   background: #9faab7;
 }
 
+.option-input-success:checked {
+  background: #28a745!important;
+}
+
+.option-input-success:checked::before {
+  content: '✔';
+}
+
+.option-input-danger:checked {
+  background: #dc3545!important;
+}
+
+.option-input-danger:checked::before {
+  content: 'X';
+}
+
 .option-input:checked {
   background: #f68a3c;
 }
@@ -54,7 +70,6 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  /* content: '✔'; */
   display: inline-block;
   font-size: 26.66667px;
   text-align: center;
@@ -82,5 +97,15 @@
 
 span {
   font-size: 18px;
-  padding-left: 10px;
+  margin-left: 10px;
+  margin-top: 20px; 
+  display: flex;
+}
+
+.span-success {
+  background: #28a745!important;
+}
+
+.span-danger {
+  background: #dc3545!important;
 }

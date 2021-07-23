@@ -17,9 +17,4 @@ export class AnswerService {
   getAnswerByID(answerID: any): Observable<Answer> {
     return this.http.get<Answer>(this.searchAnswer + answerID);
   }
-
-  // private getCorrectAnswer = `${HOSTNAME.backend}/answer/correct/`
-  // getCorrectAnswerOfQuestion(questionID: any): Observable<Answer> {
-  //   return this.http.get<Answer>(this.getCorrectAnswer + questionID);
-  // }
 }
