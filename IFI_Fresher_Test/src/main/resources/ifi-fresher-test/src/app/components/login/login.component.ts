@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginSubmit() {
+  async loginSubmit() {
     if(this.username==null||this.username.length<=0){
       this.forgotInput="Vui lòng nhập tên người dùng";
       return;
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       role: ""
     };
 
-    this.accountService.login(this.account).subscribe((account)=>{
+    await this.accountService.login(this.account).toPromise().then(async (account)=>{
       if (account.role === ROLE.CONTESTANT) {
         this.router.navigate(['/contestant/home'])
       } else if (account.role === ROLE.CONTRIBUTOR) {

@@ -17,13 +17,13 @@ export class ListComponent implements OnInit {
 
   constructor(public router:Router ,private examService: ExamService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     if(this.router.url.includes('/contestant/list') || this.router.url.includes('/contributor/list')) {
-      this.examService.getAllExam().subscribe((examList) => (this.examList = examList));
+      await this.examService.getAllExam().toPromise().then(async (examList) => (this.examList = examList));
     }
     if(this.router.url.includes('/contestant/topic/')) {
       this.topic = this.router.url.substring(18).replace('_', ' ');
-      this.examService.getExamByTopic(this.router.url.substring(18)).subscribe((examList) => (this.examList = examList));
+      await this.examService.getExamByTopic(this.router.url.substring(18)).toPromise().then(async (examList) => (this.examList = examList));
     }
   }
 }

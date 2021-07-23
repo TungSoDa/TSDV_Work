@@ -34,10 +34,16 @@
   color: crimson;
 }
 
+#exam .exam-info #contestant-info label {
+  margin-bottom: 0px;
+  text-align: center;
+}
+
 #exam .exam-info #contestant-info .alert-danger {
   height: 38px;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 16px;
 }
 

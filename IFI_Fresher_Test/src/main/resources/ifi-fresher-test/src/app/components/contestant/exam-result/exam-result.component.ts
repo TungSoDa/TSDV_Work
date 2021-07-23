@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { EXAM_QUESTION_NUMBER } from 'src/app/models/constant';
 import { Exam } from 'src/app/models/exam-model';
 import { ExamResult, ExamResultImpl } from 'src/app/models/exam-result-model';
-import { AnswerService } from 'src/app/services/answer/answer.service';
 import { ExamService } from 'src/app/services/exam/exam.service';
 
 @Component({
@@ -26,7 +25,7 @@ export class ContestantExamResultComponent implements OnInit {
 
   testedExam: string = "Bạn đã làm bài kiểm tra này, hãy làm bài kiểm tra khác";
 
-  constructor(public router: Router, private examService: ExamService, private answerService: AnswerService) { }
+  constructor(public router: Router, private examService: ExamService) { }
 
   async ngOnInit() {
     await this.examService.getExamResultByID(this.router.url.substring(24)).toPromise().then(async (examResult) => (

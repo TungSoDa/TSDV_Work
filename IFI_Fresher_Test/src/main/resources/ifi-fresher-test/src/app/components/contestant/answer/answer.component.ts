@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer-model';
+import { AnswerService } from 'src/app/services/answer/answer.service';
 
 @Component({
   selector: 'app-answer-contestant',
@@ -14,16 +16,20 @@ export class ContestantAnswerComponent implements OnInit {
 
   @Input() listOption?: number[] = [];
 
-  constructor() { }
+  textColor?: string;
 
-  ngOnInit(): void {
+  isSelected?: boolean;
+
+  constructor(public router: Router, private answerService: AnswerService) { }
+
+  async ngOnInit() {
+    if (this.answer!.isCorrect == true) {
+      this.textColor = "text-success";
+    }
     if (this.listOption?.includes(this.answer!.answerID)) {
-      if (this.answer!.isCorrect == true) {
-        $('app-answer-contestant span#'+this.answer!.answerID).addClass('text-success');
-        $('input.option-input#'+this.answer!.answerID).prop('checked', true).css('content', '✔');
-      } else {
-        $('app-answer-contestant span#'+this.answer!.answerID).addClass('text-danger');
-        $('input.option-input#'+this.answer!.answerID).prop('checked', true).css('content', 'X');
+      this.isSelected = true;
+      if (this.answer!.isCorrect ==  false) {
+        this.textColor = "text-danger";
       }
     }
   }

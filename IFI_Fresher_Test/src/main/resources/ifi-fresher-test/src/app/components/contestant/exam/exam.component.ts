@@ -28,11 +28,11 @@ export class ContestantExamComponent implements OnInit {
 
   constructor(public router:Router ,private examService: ExamService) { }
 
-  ngOnInit(): void {
-    this.examService.getExamByID(this.router.url.substring(17)).subscribe((exam) => (this.exam = exam));
+  async ngOnInit() {
+    await this.examService.getExamByID(this.router.url.substring(17)).toPromise().then(async (exam) => (this.exam = exam));
   }
 
-  showExamResult() {
+  async showExamResult() {
     if (this.inputUsername == null || this.inputUsername.length <= 0) {
       this.forgotInput="Vui lòng nhập tên người dùng";
       return;
@@ -63,10 +63,14 @@ export class ContestantExamComponent implements OnInit {
     this.examResult!.contestantUsername = this.inputUsername;
     this.examResult!.selectedAnswers = this.selectedAnswer;
 
-    this.examService.submitExam(this.examResult)
+    await this.examService.submitExam(this.examResult)
 
-    this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).subscribe(
-      (examResult) => (
+    this.navigateToExamResult();
+  }
+
+  async navigateToExamResult() {
+    await this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).toPromise().then(
+      async (examResult) => (
         this.examResult = examResult,
         this.router.navigate(['/contestant/exam/result/'+this.examResult?.examResultID])
       )

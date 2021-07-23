@@ -1,4 +1,10 @@
 <label>
-  <input type="radio" class="option-input radio" [name]="index" [id]="answer?.answerID" required/>
-  <span [id]="answer?.answerID">{{answer?.content}}</span>
+  <div *ngIf="!this.router.url.includes('/contestant/exam/result')">
+    <input type="radio" class="option-input radio" [name]="index" [id]="answer?.answerID" required/>
+    <span [id]="answer?.answerID">{{answer?.content}}</span>
+  </div>
+  <div *ngIf="this.router.url.includes('/contestant/exam/result')">
+    <input type="radio" class="option-input radio" [name]="index" [id]="answer?.answerID" [checked]="isSelected" required/>
+    <span [class]="textColor">{{answer?.content}}</span>
+  </div>
 </label>

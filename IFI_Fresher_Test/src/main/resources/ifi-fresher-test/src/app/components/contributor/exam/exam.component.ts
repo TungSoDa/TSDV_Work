@@ -22,13 +22,13 @@ export class ContributorExamComponent implements OnInit {
 
   imagePath = PATH.questionImage;
 
-  ngOnInit(): void {
-    this.examService.getExamByID(this.router.url.substring(22)).subscribe((exam) => (this.exam = exam));
+  async ngOnInit() {
+    await this.examService.getExamByID(this.router.url.substring(22)).toPromise().then(async (exam) => (this.exam = exam));
   }
 
-  onInputTopicFilled() :void {
+  async onInputTopicFilled() {
     console.log($('select#topic option:selected').val());
-    this.questionService.getQuestionByTopic($('select#topic option:selected').val()).subscribe((topicQuestion) => (this.topicQuestion = topicQuestion));
+    await this.questionService.getQuestionByTopic($('select#topic option:selected').val()).toPromise().then(async (topicQuestion) => (this.topicQuestion = topicQuestion));
     console.log(this.topicQuestion);
   }
 
