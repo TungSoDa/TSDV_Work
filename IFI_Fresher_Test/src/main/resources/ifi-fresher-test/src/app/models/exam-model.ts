@@ -6,3 +6,12 @@ export interface Exam {
   topic: string,
   questionList: Question[]
 }
+
+export class ExamImpl implements Exam {
+  examID!: number;
+  name!: string;
+  topic!: string;
+  questionList!: Question[]
+
+  constructor() {}
+}

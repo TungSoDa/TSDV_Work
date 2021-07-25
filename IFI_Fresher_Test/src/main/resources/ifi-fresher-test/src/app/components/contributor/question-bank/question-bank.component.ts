@@ -15,7 +15,7 @@ export class QuestionBankComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   async ngOnInit() {
-    await this.questionService.getAllExam().toPromise().then(async (questionList) => (this.questionList = questionList));
+    await this.questionService.getAllQuestion().toPromise().then(async (questionList) => (this.questionList = questionList));
   }
 
 }

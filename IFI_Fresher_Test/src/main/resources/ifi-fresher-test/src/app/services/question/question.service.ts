@@ -12,8 +12,13 @@ export class QuestionService {
   constructor(private http:HttpClient) { }
 
   private allQuestion = `${HOSTNAME.backend}/question/all`
-  getAllExam(): Observable<Question[]> {
+  getAllQuestion(): Observable<Question[]> {
     return this.http.get<Question[]>(this.allQuestion);
+  }
+
+  private idQuestion = `${HOSTNAME.backend}/question/`
+  getQuestionByID(questionID: any): Observable<Question> {
+    return this.http.get<Question>(this.idQuestion + questionID);
   }
 
   private topicQuestion = `${HOSTNAME.backend}/question/topic/`

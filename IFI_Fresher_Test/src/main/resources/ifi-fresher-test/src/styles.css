@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+app-header {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    height: 116px; 
+    right: 0px;
+    overflow: hidden;
+}
+
+app-login, app-registration, app-list, app-unfinished,
+app-home-contestant, app-exam-contestant, app-exam-result-contestant, 
+app-home-contributor, app-exam-contributor, app-question-bank{
+    position: absolute; 
+    top: 118px; 
+    bottom: 200px; 
+    left: 0px; 
+    right: 0px; 
+    overflow: auto;
+}
+
+app-footer {
+    position: absolute; 
+    bottom: 0px; 
+    height: 200px; 
+    left: 0px;  
+    right: 0px;  
+    overflow: hidden;
+}

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CountdownModule } from 'ngx-countdown';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { NgSelectModule } from '@ng-select/ng-select'
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +30,9 @@ import { ContestantAnswerComponent } from './contestant/answer/answer.component'
 import { AnswerComponent } from './contributor/answer/answer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContestantExamResultComponent } from './contestant/exam-result/exam-result.component';
+import { AddQuestionModalComponent } from './contributor/question/add-modal/add-modal.component';
+import { EditQuestionModalComponent } from './contributor/question/edit-modal/edit-modal.component';
+import { DeleteQuestionModalComponent } from './contributor/question/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { ContestantExamResultComponent } from './contestant/exam-result/exam-res
     ContributorQuestionComponent,
     QuestionBankComponent,
     AnswerComponent,
-    ContestantExamResultComponent
+    ContestantExamResultComponent,
+    AddQuestionModalComponent,
+    EditQuestionModalComponent,
+    DeleteQuestionModalComponent
   ],
   imports: [
     BrowserModule,

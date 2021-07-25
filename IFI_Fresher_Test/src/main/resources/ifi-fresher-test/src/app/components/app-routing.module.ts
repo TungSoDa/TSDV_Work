@@ -15,8 +15,6 @@ import { QuestionBankComponent } from './contributor/question-bank/question-bank
 import { ContestantExamResultComponent } from './contestant/exam-result/exam-result.component';
 
 const routes: Routes = [
-
-
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},

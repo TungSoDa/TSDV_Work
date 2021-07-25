@@ -1,11 +1,10 @@
 <div id="exam" class="container">
   <form action="">
     <div class="exam-info">
-      <div class="col-md-12">
-        <h1 class="exam-title">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
-      </div>
-
       <div *ngIf="this.router.url.includes('addExam')">
+        <div class="col-md-12">
+          <h1 class="exam-title">Tạo đề thi mới</h1>
+        </div>
         <div id="contributor-info">
           <div class="col-md-6">
             <div class="form-group">
@@ -40,6 +39,9 @@
       </div>
 
       <div *ngIf="this.router.url.includes('editExam')">
+        <div class="col-md-12">
+          <h1 class="exam-title">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
+        </div>
         <div id="contributor-info">
           <div class="col-md-12">
             <div class="form-group">
@@ -52,8 +54,14 @@
     </div>
     <div class="exam-content">
       <div id="searchQuestionBlock" class="header">
-        <!-- <input type="text" id="searchQuestion" placeholder="Search in question bank"> -->
-        <ng-select id="searchQuestion" [items]="topicQuestion" bindLabel="name" placeholder="Search in question bank" appendTo="ng-select" [multiple]="true" [closeOnSelect]="false" [(ngModel)]="selected" name="question-search"></ng-select>
+        <ng-select
+          name="topic-question"
+          bindLabel="content"
+          placeholder="Tìm trong ngân hàng câu hỏi" 
+          [items]="topicQuestion" 
+          [(ngModel)]="selected"
+          (change)="getSelectedQuestion()">
+        </ng-select>
         <span (click)="addNewQuestion()" class="addBtn">Add question</span>
       </div>
 
@@ -81,7 +89,10 @@
       </ul>
     </div>
     <div class="exam-check">
-      <button type="submit" class="btn btn-primary check-quiz">Lưu</button>
+      <button type="submit" class="btn btn-primary check-quiz">
+        <div *ngIf="this.router.url.includes('addExam')">Tạo</div>
+        <div *ngIf="this.router.url.includes('editExam')">Lưu</div>
+      </button>
     </div>
   </form>
 </div>
