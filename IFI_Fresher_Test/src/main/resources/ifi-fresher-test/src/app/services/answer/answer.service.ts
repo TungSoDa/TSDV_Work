@@ -13,8 +13,8 @@ export class AnswerService {
 
   constructor(private http:HttpClient) { }
 
-  private searchAnswer = `${HOSTNAME.backend}/answer/`
+  private getByID = `${HOSTNAME.backend}/answer/`
   getAnswerByID(answerID: any): Observable<Answer> {
-    return this.http.get<Answer>(this.searchAnswer + answerID);
+    return this.http.get<Answer>(this.getByID + answerID);
   }
 }

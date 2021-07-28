@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import { MESSAGE_RESOURCE } from 'src/app/models/constant';
 
 import { Exam } from 'src/app/models/exam-model';
 import { ExamResult, ExamResultImpl } from 'src/app/models/exam-result-model';
@@ -25,6 +26,8 @@ export class ContestantExamComponent implements OnInit {
   forgotInput?: string;
 
   forgotChooseAnswer?: string;
+
+  examTested?: string;
 
   constructor(public router:Router ,private examService: ExamService) { }
 
@@ -64,16 +67,24 @@ export class ContestantExamComponent implements OnInit {
     this.examResult!.selectedAnswers = this.selectedAnswer;
 
     await this.examService.submitExam(this.examResult)
-
-    this.navigateToExamResult();
-  }
-
-  async navigateToExamResult() {
-    await this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).toPromise().then(
-      async (examResult) => (
-        this.examResult = examResult,
-        this.router.navigate(['/contestant/exam/result/'+this.examResult?.examResultID])
+    .then(async (navigateToExamResult) => (
+      await this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).toPromise().then(
+        async (examResult) => (
+          this.examResult = examResult,
+          this.router.navigate(['/contestant/exam/result/'+this.examResult?.examResultID])
+        )
       )
+    ))
+    .catch(async (err) => (
+      err.error === MESSAGE_RESOURCE.USER_ALREADY_TESTED_THIS_EXAM ? this.examTested = err.error : this.examTested =  undefined,
+      $('.exam-check .btn-primary.check-quiz').addClass('hide') ,
+      await this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).toPromise().then(
+        async (examResult) => (
+          this.examResult = examResult
+        )
+      )
+    ), 
     );
   }
 }
+

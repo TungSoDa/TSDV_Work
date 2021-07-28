@@ -12,7 +12,9 @@ import { ROLE } from '../../models/constant';
 export class LoginComponent implements OnInit {
 
   username!: string;
+
   password!: string;
+  
   role!: string;
 
   forgotInput?: string;

@@ -16,7 +16,6 @@ public class QuestionMapper {
         questionDTO.setImage(question.getImage());
         questionDTO.setTopic(question.getTopic());
         questionDTO.setIsDeleted(question.getIsDeleted());
-        questionDTO.setContributorID(question.getContributorID());
         questionDTO.setAnswerList(answerList);
         return questionDTO;
     }
@@ -30,7 +29,6 @@ public class QuestionMapper {
                             question.getImage(),
                             question.getTopic(),
                             question.getIsDeleted(),
-                            question.getContributorID(),
                             answerService.findListAnswerByQuestionID(question.getQuestionId())
                     )
             );
@@ -44,7 +42,6 @@ public class QuestionMapper {
         question.setImage(questionDTO.getImage());
         question.setTopic(questionDTO.getTopic());
         question.setIsDeleted(questionDTO.getIsDeleted());
-        question.setContributorID(questionDTO.getContributorID());
         return question;
     }
 }

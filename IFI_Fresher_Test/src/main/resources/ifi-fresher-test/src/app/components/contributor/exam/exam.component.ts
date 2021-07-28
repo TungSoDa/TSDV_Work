@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgSelectConfig } from '@ng-select/ng-select';
 
-import { PATH } from 'src/app/models/constant';
+import { PATH, TOPIC } from 'src/app/models/constant';
 import { Exam, ExamImpl } from 'src/app/models/exam-model';
 import { Question, QuestionImpl } from 'src/app/models/question-model';
 import { ExamService } from 'src/app/services/exam/exam.service';
@@ -21,6 +21,8 @@ export class ContributorExamComponent implements OnInit {
   selected?: number;
 
   selectedQuestion: QuestionImpl = new QuestionImpl();
+
+  topicList = TOPIC;
 
   constructor(public router:Router, private config: NgSelectConfig, private examService: ExamService, private questionService: QuestionService) {
     this.config.notFoundText = 'Không tìm thấy câu hỏi';

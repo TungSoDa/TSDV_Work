@@ -32,6 +32,16 @@ public class QuestionService {
         this.answerService = answerService;
     }
 
+    public List<QuestionDTO> stringToListQuestionDTO(String listQuestionID, Integer questionNumber) {
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        String[] questionIDs = listQuestionID.split(",");
+        for (int i = 0; i < questionNumber; i++) {
+            questionDTOList.add(findQuestionDTOByID(Integer.parseInt(questionIDs[i])));
+        }
+        Collections.shuffle(questionDTOList);
+        return questionDTOList;
+    }
+
     public List<QuestionDTO> findAll() {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         List<Question> questionList = questionRepository.findAllByIsDeletedFalse().get();
@@ -43,7 +53,6 @@ public class QuestionService {
                             question.getImage(),
                             question.getTopic(),
                             question.getIsDeleted(),
-                            question.getContributorID(),
                             answerService.findListAnswerByQuestionID(question.getQuestionId())
                     )
             );
@@ -61,16 +70,6 @@ public class QuestionService {
         } else {
             return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
-    }
-
-    public List<QuestionDTO> stringToListQuestionDTO(String listQuestionID, Integer questionNumber) {
-        List<QuestionDTO> questionDTOList = new ArrayList<>();
-        String[] questionIDs = listQuestionID.split(",");
-        for (int i = 0; i < questionNumber; i++) {
-            questionDTOList.add(findQuestionDTOByID(Integer.parseInt(questionIDs[i])));
-        }
-        Collections.shuffle(questionDTOList);
-        return questionDTOList;
     }
 
     public QuestionDTO findQuestionDTOByID(Integer id) {
@@ -108,8 +107,7 @@ public class QuestionService {
                             question.getContent(),
                             question.getImage(),
                             question.getTopic(),
-                            question.getIsDeleted(),
-                            question.getContributorID()
+                            question.getIsDeleted()
                     ), HttpStatus.CREATED
             );
         }
@@ -122,8 +120,7 @@ public class QuestionService {
         } else if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else if (questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
-                questionDTO.getContent().toLowerCase().contains(questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase())
-        ) {
+                questionDTO.getContent().toLowerCase().contains(questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase())) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + "  " + MessageResource.MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION, HttpStatus.ALREADY_REPORTED);
         } else {
             return optionalQuestion.map(question -> {
@@ -136,8 +133,7 @@ public class QuestionService {
                         question.getContent(),
                         question.getImage(),
                         question.getTopic(),
-                        question.getIsDeleted(),
-                        question.getContributorID()
+                        question.getIsDeleted()
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         }
@@ -155,12 +151,31 @@ public class QuestionService {
                         question.getImage(),
                         question.getTopic(),
                         question.getIsDeleted(),
-                        question.getContributorID(),
                         answerService.findListAnswerByQuestionID(question.getQuestionId())
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
             return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> undeleteQuestion(Integer id) {
+        Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedTrue(id);
+        if (optionalQuestion.isPresent()) {
+            return optionalQuestion.map(question -> {
+                question.setIsDeleted(false);
+                questionRepository.save(question);
+                return new ResponseEntity<QuestionDTO>(new QuestionDTO(
+                        question.getQuestionId(),
+                        question.getContent(),
+                        question.getImage(),
+                        question.getTopic(),
+                        question.getIsDeleted(),
+                        answerService.findListAnswerByQuestionID(question.getQuestionId())
+                ), HttpStatus.OK);
+            }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } else {
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_NOT_DELETED_YET, HttpStatus.NOT_FOUND);
         }
     }
 

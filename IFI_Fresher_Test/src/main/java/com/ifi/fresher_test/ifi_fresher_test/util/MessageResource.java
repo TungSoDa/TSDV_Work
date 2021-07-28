@@ -55,6 +55,7 @@ public class MessageResource {
     public static final String NOT_CREATED_YET = "NOT CREATED YET";
     public static final String IS_EMPTY = "IS EMPTY";
     public static final String OR_IS_DELETED = "OR IS DELETED";
+    public static final String OR_IS_NOT_DELETED_YET = "OR IS NOT DELETED YET";
     public static final String UNTESTED = "UNTESTED";
 
     /**

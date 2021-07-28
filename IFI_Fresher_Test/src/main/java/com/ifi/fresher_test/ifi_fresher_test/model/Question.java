@@ -30,9 +30,6 @@ public class Question {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
-    @Column(name = "contributor_id")
-    private String contributorID;
-
 //    @ManyToOne
 //    @JoinColumn
 //    private Contributor contributor;
@@ -42,12 +39,11 @@ public class Question {
 //    private List<Answer> answerList = new ArrayList<>();
 
 
-    public Question(Integer questionId, String content, String topic, Boolean isDeleted, String contributorID) {
+    public Question(Integer questionId, String content, String topic, Boolean isDeleted) {
         this.questionId = questionId;
         this.content = content;
         this.image = null;
         this.topic = topic;
         this.isDeleted = isDeleted;
-        this.contributorID = contributorID;
     }
 }

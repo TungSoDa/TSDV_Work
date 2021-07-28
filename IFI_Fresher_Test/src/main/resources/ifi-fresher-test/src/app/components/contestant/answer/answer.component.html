@@ -8,7 +8,7 @@
     required
     [disabled]="this.router.url.includes('result')"
     [ngClass]="{
-      'option-input-success': answer?.isCorrect === true, 
+      'option-input-success': answer?.isCorrect === true && this.router.url.includes('result'),
       'option-input-danger': answer?.isCorrect === false && listOption?.includes(answer!.answerID)
     }"/>
   <span

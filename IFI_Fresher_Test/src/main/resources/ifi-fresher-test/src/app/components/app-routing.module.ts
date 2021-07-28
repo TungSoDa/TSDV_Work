@@ -46,6 +46,7 @@ const routes: Routes = [
   {path: 'contributor/addExam', component: ContributorExamComponent},
   {path: 'contributor/editExam/:examID', component: ContributorExamComponent},
   {path: 'contributor/questionBank', component: QuestionBankComponent},
+  {path: 'contributor/deletedQuestion', component: QuestionBankComponent},
   {path: 'contributor/unfinished', component: UnfinishedComponent},
 
 ];

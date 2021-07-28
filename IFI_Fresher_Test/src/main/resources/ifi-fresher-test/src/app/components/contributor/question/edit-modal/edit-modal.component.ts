@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TOPIC } from 'src/app/models/constant';
+import { QuestionImpl } from 'src/app/models/question-model';
+import { QuestionService } from 'src/app/services/question/question.service';
 
 @Component({
   selector: 'app-edit-question-modal',
@@ -8,11 +11,25 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditQuestionModalComponent implements OnInit {
 
-  @Input() name: any;
+  @Input() questionID!: number;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  editQuestion: QuestionImpl = new QuestionImpl();
 
-  ngOnInit(): void {
+  inputContent!: string;
+  
+  selectedTopic!: string;
+
+  importImage!: string;
+
+  topicList = TOPIC;
+
+  constructor(private questionService: QuestionService,public activeModal: NgbActiveModal) {}
+
+  async ngOnInit() {
+    await this.questionService.getQuestionByID(this.questionID).toPromise().then(async (editQuestion) => (this.editQuestion = editQuestion));
+    this.inputContent = this.editQuestion.content;
+    this.selectedTopic = this.editQuestion.topic;
+    this.importImage = this.editQuestion.image;
   }
 
 }

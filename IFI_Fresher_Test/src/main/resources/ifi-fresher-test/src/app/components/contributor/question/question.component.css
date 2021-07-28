@@ -34,10 +34,6 @@ li:hover {
   width: 5%;
 }
 
-.dropdown .drop-item span {
-  width: 80%;
-}
-
 .svg-inline--fa.fa-trash:hover {
   height: 30px;
   color: #dc3545;
@@ -48,7 +44,7 @@ li:hover {
   color: #007bff;
 }
 
-.svg-inline--fa.fa-plus-square:hover {
+.svg-inline--fa.fa-plus-square:hover,  .svg-inline--fa.fa-recycle:hover{
   height: 30px;
   color: #28a745;
 }
@@ -59,4 +55,8 @@ li:hover {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.modal-content {
+  width: 800px;
 }

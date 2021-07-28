@@ -5,8 +5,11 @@
         <h1 class="exam-topic">Câu hỏi trắc nghiệm chủ đề {{exam?.topic}}</h1>
         <h2 class="exam-name">{{exam?.name}}</h2>
       </div>
-      <div class="col-md-12 exam-time">
+      <div *ngIf="!examTested" class="col-md-12 exam-time">
         <countdown [config]="{ leftTime: examTime }"></countdown>
+      </div>
+      <div *ngIf="examTested" class="alert alert-danger text-center col-md-12" role="alert">
+        {{examTested}}
       </div>
       <div id="contestant-info">
         <div class="form-group col-md-12" style="display: flex; align-items: center;">
@@ -32,6 +35,9 @@
     <div class="exam-check">
       <div *ngIf="!this.router.url.includes('exam/result/')">
         <button type="submit" class="btn btn-primary check-quiz" (click)="showExamResult()">Nộp bài</button>
+      </div>
+      <div *ngIf="examTested" class="exitExamResult">
+        <a [href]="'/contestant/exam/result/'+examResult.examResultID" class="btn orange">Xem bài đã làm</a>
       </div>
     </div>
   </form>

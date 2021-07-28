@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer-model';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-answer-contributor',
@@ -13,7 +14,7 @@ export class AnswerComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(public router: Router, private modalService: NgbModal) {}
 
   ngOnInit(): void {
   }

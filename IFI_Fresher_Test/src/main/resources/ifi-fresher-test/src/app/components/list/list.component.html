@@ -1,7 +1,7 @@
 <div class="tests-list">
   <div class="container">
     <div *ngIf="router.url === '/contestant/list'">
-      <h1 class="exam-topic-title">Kho đề thi chủ đề tổng hợp</h1>
+      <h1 class="exam-topic-title">Kho đề thi tổng hợp các chủ đề</h1>
       <div *ngFor="let Exam of examList">
         <app-list-item [exam]="Exam"></app-list-item>
       </div>

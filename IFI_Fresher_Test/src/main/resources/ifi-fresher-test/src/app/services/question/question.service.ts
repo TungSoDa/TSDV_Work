@@ -11,18 +11,38 @@ export class QuestionService {
 
   constructor(private http:HttpClient) { }
 
-  private allQuestion = `${HOSTNAME.backend}/question/all`
+  private getAll = `${HOSTNAME.backend}/question/all`;
   getAllQuestion(): Observable<Question[]> {
-    return this.http.get<Question[]>(this.allQuestion);
+    return this.http.get<Question[]>(this.getAll);
   }
 
-  private idQuestion = `${HOSTNAME.backend}/question/`
+  private getByID = `${HOSTNAME.backend}/question/`;
   getQuestionByID(questionID: any): Observable<Question> {
-    return this.http.get<Question>(this.idQuestion + questionID);
+    return this.http.get<Question>(this.getByID + questionID);
   }
 
-  private topicQuestion = `${HOSTNAME.backend}/question/topic/`
+  private getByTopic = `${HOSTNAME.backend}/question/topic/`;
   getQuestionByTopic(topic: any): Observable<Question[]> {
-    return this.http.get<Question[]>(this.topicQuestion + topic.replace(' ', '_'));
+    return this.http.get<Question[]>(this.getByTopic + topic.replace(' ', '_'));
   }
+
+  private addQuestion  = `${HOSTNAME.backend}/question/add/`;
+  addNewQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(this.addQuestion, question);
+  }
+
+  private deleteByID  = `${HOSTNAME.backend}/question/delete/`;
+  deleteQuestionByID(questionID: any) {
+    return this.http.delete<Question>(this.deleteByID + questionID);
+  }
+
+  private getDeletedQuestion  = `${HOSTNAME.backend}/question/deletedList`;
+  getDeletedQuestionList(): Observable<Question[]>  {
+    return this.http.get<Question[]>(this.getDeletedQuestion);
+  }
+
+  private undeleteByID  = `${HOSTNAME.backend}/question/undelete/`;
+  undeleteQuestionByID(questionID: any) {
+    return this.http.put<Question>(this.undeleteByID + questionID, {});
+  }  
 }

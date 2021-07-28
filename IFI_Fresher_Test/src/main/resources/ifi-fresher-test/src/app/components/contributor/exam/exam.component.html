@@ -17,21 +17,7 @@
               <label class="label" for="topic">Chủ đề <span>*</span> :</label>
               <select class="form-control" name="topic" id="topic" (change)="onInputTopicFilled()" required>
                 <option value="None">Chọn chủ đề</option>
-                <option value="HTML">HTML</option>
-                <option value="CSS">CSS</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="Bootstrap">Bootstrap</option>
-                <option value="Angular">Angular</option>
-                <option value="Java Basic">Java Basic</option>
-                <option value="Java Advanced">Java Advanced</option>
-                <option value="Java OOP">Java OOP</option>
-                <option value="Java Spring">Java Spring</option>
-                <option value="Database">Database</option>
-                <option value="IELTS">IELTS</option>
-                <option value="TOEIC">TOEIC</option>
-                <option value="TOEFL">TOEFL</option>
-                <option value="SAT">SAT</option>
-                <option value="CEFR">CEFR</option>
+                <option *ngFor="let topic of topicList" [ngValue]="topic.content">{{topic.content}}</option>
               </select>
             </div>
           </div>

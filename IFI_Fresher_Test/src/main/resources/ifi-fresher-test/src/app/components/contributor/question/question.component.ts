@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PATH } from 'src/app/models/constant';
 import { Question } from 'src/app/models/question-model';
-import { AddQuestionModalComponent } from './add-modal/add-modal.component';
 import { EditQuestionModalComponent } from './edit-modal/edit-modal.component';
 import { DeleteQuestionModalComponent } from './delete-modal/delete-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-contributor',
@@ -19,21 +19,21 @@ export class ContributorQuestionComponent implements OnInit {
 
   imagePath = PATH.questionImage;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(public router: Router, private modalService: NgbModal) {}
 
-  openAddModal() {
-    const modalRef = this.modalService.open(AddQuestionModalComponent);
-    modalRef.componentInstance.name = 'Add Modal';
-  }
-
-  openEditModal() {
+  openEditModal(questionID :any) {
     const modalRef = this.modalService.open(EditQuestionModalComponent);
-    modalRef.componentInstance.name = 'Edit Modal';
+    modalRef.componentInstance.questionID = questionID;
   }
 
-  openDeleteModal() {
+  openDeleteModal(questionID :any) {
     const modalRef = this.modalService.open(DeleteQuestionModalComponent);
-    modalRef.componentInstance.name = 'Delete Modal';
+    modalRef.componentInstance.questionID = questionID;
+  }
+
+  openUndeleteModal(questionID :any) {
+    const modalRef = this.modalService.open(DeleteQuestionModalComponent);
+    modalRef.componentInstance.questionID = questionID;
   }
 
   ngOnInit(): void {

@@ -1,14 +1,33 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
+    <h4 class="modal-title">Thêm câu hỏi</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
 <div class="modal-body">
-  <p>Hello, {{name}}!</p>
+  <form action="">
+    <div class="form-group">
+      <label for="questionContent" class="col-md-12">Nội dung câu hỏi <span>*</span></label>
+      <input type="text" id="questionContent" class="col-md-12" placeholder="Nhập nội dung của câu hỏi" name="questionContent" [(ngModel)]="inputContent" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="topicQuestion" class="col-md-12">Chủ đề <span>*</span></label>
+      <select class="form-control col-md-12" name="topicQuestion" id="topicQuestion" [(ngModel)]="selectedTopic" required>
+        <!-- <option value="None">Chọn chủ đề</option> -->
+        <option *ngFor="let topic of topicList" [ngValue]="topic.content">{{topic.content}}</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="questionImage" class="col-md-12">Hình ảnh</label>
+      <input type="file" id="questionImage" class="col-md-12" name="questionImage" [(ngModel)]="importImage">
+    </div>
+  </form>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Đóng</button>
+  <button type="button" class="btn btn-success" (click)="onAddQuestion()">Thêm</button>
 </div>

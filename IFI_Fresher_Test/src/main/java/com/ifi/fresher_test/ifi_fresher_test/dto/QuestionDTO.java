@@ -24,16 +24,13 @@ public class QuestionDTO {
     @JsonIgnore
     private Boolean isDeleted;
 
-    private String contributorID;
-
     private List<AnswerDTO> answerList;
 
-    public QuestionDTO(Integer questionID, String content, String image, String topic, Boolean isDeleted, String contributorID) {
+    public QuestionDTO(Integer questionID, String content, String image, String topic, Boolean isDeleted) {
         this.questionID = questionID;
         this.content = content;
         this.image = image;
         this.topic = topic;
         this.isDeleted = isDeleted;
-        this.contributorID = contributorID;
     }
 }
