@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Sửa câu hỏi {{questionID}}</h4>
+    <h4 class="modal-title">Sửa câu hỏi</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -22,6 +22,9 @@
   
     <div class="form-group">
       <label for="questionImage" class="col-md-12">Hình ảnh</label>
+      <div *ngIf="editQuestion.image != null" class="question-image">
+        <img [src]="imagePath + editQuestion.image" alt="">
+      </div>
       <input type="file" id="questionImage" class="col-md-12" name="questionImage" [(ngModel)]="importImage">
     </div>
   </form>

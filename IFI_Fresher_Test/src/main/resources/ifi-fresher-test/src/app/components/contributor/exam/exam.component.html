@@ -1,6 +1,7 @@
 <div id="exam" class="container">
   <form action="">
     <div class="exam-info">
+      
       <div *ngIf="this.router.url.includes('addExam')">
         <div class="col-md-12">
           <h1 class="exam-title">Tạo đề thi mới</h1>
@@ -38,6 +39,7 @@
         </div>
       </div>
     </div>
+
     <div class="exam-content">
       <div id="searchQuestionBlock" class="header">
         <ng-select
@@ -74,6 +76,7 @@
         </div>
       </ul>
     </div>
+
     <div class="exam-check">
       <button type="submit" class="btn btn-primary check-quiz">
         <div *ngIf="this.router.url.includes('addExam')">Tạo</div>

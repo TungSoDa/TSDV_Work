@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionImpl } from 'src/app/models/question-model';
 import { QuestionService } from 'src/app/services/question/question.service';
-import { QuestionBankComponent } from '../../question-bank/question-bank.component';
 
 @Component({
   selector: 'app-delete-question-modal',

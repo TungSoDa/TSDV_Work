@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TOPIC } from 'src/app/models/constant';
 import { QuestionImpl } from 'src/app/models/question-model';
-import { QuestionService } from 'src/app/services/question/question.service';
 
 @Component({
   selector: 'app-add-question-modal',
@@ -21,7 +20,7 @@ export class AddQuestionModalComponent implements OnInit {
 
   newQuestion: QuestionImpl = new QuestionImpl();
 
-  constructor(private questionService: QuestionService ,public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
   }

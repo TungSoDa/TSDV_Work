@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TOPIC } from 'src/app/models/constant';
+import { PATH, TOPIC } from 'src/app/models/constant';
 import { QuestionImpl } from 'src/app/models/question-model';
 import { QuestionService } from 'src/app/services/question/question.service';
 
@@ -14,6 +14,8 @@ export class EditQuestionModalComponent implements OnInit {
   @Input() questionID!: number;
 
   editQuestion: QuestionImpl = new QuestionImpl();
+  
+  imagePath = PATH.questionImage;
 
   inputContent!: string;
   

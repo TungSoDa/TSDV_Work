@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+
 import { PATH } from 'src/app/models/constant';
 import { Question } from 'src/app/models/question-model';
 import { EditQuestionModalComponent } from './edit-modal/edit-modal.component';
 import { DeleteQuestionModalComponent } from './delete-modal/delete-modal.component';
-import { Router } from '@angular/router';
+import { AddAnswerModalComponent } from '../answer/add-modal/add-modal.component';
 
 @Component({
   selector: 'app-question-contributor',
@@ -20,6 +22,11 @@ export class ContributorQuestionComponent implements OnInit {
   imagePath = PATH.questionImage;
 
   constructor(public router: Router, private modalService: NgbModal) {}
+
+  openAddModal(questionID :any) {
+    const modalRef = this.modalService.open(AddAnswerModalComponent);
+    modalRef.componentInstance.questionID = questionID;
+  }
 
   openEditModal(questionID :any) {
     const modalRef = this.modalService.open(EditQuestionModalComponent);

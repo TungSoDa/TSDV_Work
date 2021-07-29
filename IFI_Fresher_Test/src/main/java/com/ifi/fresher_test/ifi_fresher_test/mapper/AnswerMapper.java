@@ -32,13 +32,13 @@ public class AnswerMapper {
         return answerDTOS;
     }
 
-    public static Answer dtoToEntity(AnswerDTO contestantDTO) {
+    public static Answer dtoToEntity(AnswerDTO answerDTO) {
         Answer answer = new Answer();
-        answer.setAnswerID(contestantDTO.getAnswerID());
-        answer.setContent(contestantDTO.getContent());
-        answer.setIsCorrect(contestantDTO.getIsCorrect());
-        answer.setIsDeleted(contestantDTO.getIsDeleted());
-        answer.setQuestionID(contestantDTO.getQuestionID());
+        answer.setAnswerID(answerDTO.getAnswerID());
+        answer.setContent(answerDTO.getContent());
+        answer.setIsCorrect(answerDTO.getIsCorrect());
+        answer.setIsDeleted(answerDTO.getIsDeleted());
+        answer.setQuestionID(answerDTO.getQuestionID());
         return answer;
     }
 }

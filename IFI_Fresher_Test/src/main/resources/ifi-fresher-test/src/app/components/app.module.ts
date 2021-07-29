@@ -33,6 +33,9 @@ import { ContestantExamResultComponent } from './contestant/exam-result/exam-res
 import { AddQuestionModalComponent } from './contributor/question/add-modal/add-modal.component';
 import { EditQuestionModalComponent } from './contributor/question/edit-modal/edit-modal.component';
 import { DeleteQuestionModalComponent } from './contributor/question/delete-modal/delete-modal.component';
+import { AddAnswerModalComponent } from './contributor/answer/add-modal/add-modal.component';
+import { EditAnswerModalComponent } from './contributor/answer/edit-modal/edit-modal.component';
+import { DeleteAnswerModalComponent } from './contributor/answer/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { DeleteQuestionModalComponent } from './contributor/question/delete-moda
     ContestantExamResultComponent,
     AddQuestionModalComponent,
     EditQuestionModalComponent,
-    DeleteQuestionModalComponent
+    DeleteQuestionModalComponent,
+    AddAnswerModalComponent,
+    EditAnswerModalComponent,
+    DeleteAnswerModalComponent
   ],
   imports: [
     BrowserModule,

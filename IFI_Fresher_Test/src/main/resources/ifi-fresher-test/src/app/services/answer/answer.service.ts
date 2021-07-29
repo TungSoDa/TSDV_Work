@@ -17,4 +17,9 @@ export class AnswerService {
   getAnswerByID(answerID: any): Observable<Answer> {
     return this.http.get<Answer>(this.getByID + answerID);
   }
+
+  private addNewAnswer = `${HOSTNAME.backend}/answer/add`
+  async addAsnwerToQuestion(answer: Answer) {
+    await this.http.post<Response>(this.addNewAnswer ,answer).toPromise().then(async (result)=>(result));
+  }
 }
