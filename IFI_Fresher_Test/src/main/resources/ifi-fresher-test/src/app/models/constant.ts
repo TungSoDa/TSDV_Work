@@ -39,55 +39,55 @@ export const MESSAGE_RESOURCE = {
   /**
     * For Entity
     */
-  ACCOUNT: "ACCOUNT",
-  CONTESTANT: "CONTESTANT",
-  CONTRIBUTOR: "CONTRIBUTOR",
-  EXAM: "EXAM",
-  QUESTION: "QUESTION",
-  ANSWER: "ANSWER",
+  ACCOUNT : "Tài khoản",
+  CONTESTANT : "Người dùng",
+  CONTRIBUTOR : "Quản trị viên",
+  EXAM : "Đề thi",
+  QUESTION : "Câu hỏi",
+  ANSWER : "Câu trả lời",
 
   /**
-    * For Answer
-    */
-   QUESTION_HAS_NO_CORRECT_ANSWER_YET: "QUESTION HAS NO CORRECT ANSWER YET",
-   ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION: "ANSWER CONTENT ALREADY EXISTS IN THIS QUESTION",
-   ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION: "ONLY ONE CORRECT ANSWER IN THIS QUESTION",
+   * For Answer
+   */
+  QUESTION_HAS_NO_CORRECT_ANSWER_YET : "Câu hỏi này chưa có câu đáp án",
+  ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION : "Nội dung của câu trả lời này đã có ở đáp án khác trong câu hỏi",
+  ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION : "Chỉ có thể có 1 đán án cho câu hỏi này",
 
-   /**
-    * For Question
-    */
-   THIS_QUESTION_CONTENT: "THIS QUESTION CONTENT",
-   MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION: "MAY BE THE SAME CONTENT AS EXISTING QUESTION",
-   NO_QUESTIONS_WITH_THIS_TOPIC: "NO QUESTIONS WITH THIS TOPIC",
+  /**
+   * For Question
+   */
+  THIS_QUESTION_CONTENT : "Nội dung câu hỏi này",
+  MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION : "có thể có nội dung tương tự với những câu hỏi đã có trong Ngân hàng câu hỏi",
+  NO_QUESTIONS_WITH_THIS_TOPIC : "Không có câu hỏi nào với chủ đề này",
 
-   /**
-    * For Exam
-    */
-   HTML: "HTML",
-   JAVA_SCRIPT: "JavaScript",
-   ANGULAR: "Angular",
-   JAVA_BASIC: "Java Basic",
-   JAVA_OOP: "Java OOP",
-   JAVA_SPRING: "Java Spring",
-   SYNTHESIS_TOPIC: "Synthesis",
+  /**
+   * For Exam
+   */
+  HTML : "HTML",
+  JAVA_SCRIPT : "JavaScript",
+  ANGULAR : "Angular",
+  JAVA_BASIC : "Java Basic",
+  JAVA_OOP : "Java OOP",
+  JAVA_SPRING : "Java Spring",
+  SYNTHESIS_TOPIC : "Synthesis",
 
-   INCORRECT_QUESTION_LIST_WITH_TOPIC: "INCORRECT QUESTION LIST WITH TOPIC",
-   USER_ALREADY_TESTED_THIS_EXAM: "USER ALREADY TESTED THIS EXAM",
+  INCORRECT_QUESTION_LIST_WITH_TOPIC : "Danh sách câu hỏi được chọn không đúng với chủ đề của Đề thi",
+  USER_ALREADY_TESTED_THIS_EXAM : "Người dùng đã làm đề thi này rồi",
 
-   /**
+  /**
     * For Notice
     */
-   ALREADY_EXISTS: "ALREADY EXISTS",
-   NOT_CREATED_YET: "NOT CREATED YET",
-   IS_EMPTY: "IS EMPTY",
-   OR_IS_DELETED: "OR IS DELETED",
-   OR_IS_NOT_DELETED_YET: "OR IS NOT DELETED YET",
-   UNTESTED: "UNTESTED",
+  ALREADY_EXISTS : "đã tồn tại",
+  NOT_CREATED_YET : "chưa được tạo",
+  IS_EMPTY : "trống",
+  OR_IS_DELETED : "hoặc đã bị xóa",
+  OR_IS_NOT_DELETED_YET : "hoặc chưa bị xóa",
+  UNTESTED : "chưa được kiểm tra",
 
-   /**
+  /**
     * For Account
     */
-   LOGIN_SUCCESS: "LOGIN SUCCESS",
-   WRONG_USERNAME: "WRONG USERNAME",
-   WRONG_PASSWORD: "WRONG PASSWORD",
+  LOGIN_SUCCESS : "Đăng nhập thành công",
+  WRONG_USERNAME : "Sai tên đăng nhập",
+  WRONG_PASSWORD : "Sai mật khẩu",
 }

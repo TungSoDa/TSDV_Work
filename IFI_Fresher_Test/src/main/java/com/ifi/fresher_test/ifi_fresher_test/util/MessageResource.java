@@ -13,26 +13,26 @@ public class MessageResource {
     /**
      * For Entity
      */
-    public static final String ACCOUNT = "ACCOUNT";
-    public static final String CONTESTANT = "CONTESTANT";
-    public static final String CONTRIBUTOR = "CONTRIBUTOR";
-    public static final String EXAM = "EXAM";
-    public static final String QUESTION = "QUESTION";
-    public static final String ANSWER = "ANSWER";
+    public static final String ACCOUNT = "Tài khoản";
+    public static final String CONTESTANT = "Người dùng";
+    public static final String CONTRIBUTOR = "Quản trị viên";
+    public static final String EXAM = "Đề thi";
+    public static final String QUESTION = "Câu hỏi";
+    public static final String ANSWER = "Câu trả lời";
 
     /**
      * For Answer
      */
-    public static final String QUESTION_HAS_NO_CORRECT_ANSWER_YET = "QUESTION HAS NO CORRECT ANSWER YET";
-    public static final String ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION = "ANSWER CONTENT ALREADY EXISTS IN THIS QUESTION";
-    public static final String ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION = "ONLY ONE CORRECT ANSWER IN THIS QUESTION";
+    public static final String QUESTION_HAS_NO_CORRECT_ANSWER_YET = "Câu hỏi này chưa có câu đáp án";
+    public static final String ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION = "Nội dung của câu trả lời này đã có ở đáp án khác trong câu hỏi";
+    public static final String ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION = "Chỉ có thể có 1 đán án cho câu hỏi này";
 
     /**
      * For Question
      */
-    public static final String THIS_QUESTION_CONTENT = "THIS QUESTION CONTENT";
-    public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "MAY BE THE SAME CONTENT AS EXISTING QUESTION";
-    public static final String NO_QUESTIONS_WITH_THIS_TOPIC = "NO QUESTIONS WITH THIS TOPIC";
+    public static final String THIS_QUESTION_CONTENT = "Nội dung câu hỏi này";
+    public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "có thể có nội dung tương tự với những câu hỏi đã có trong Ngân hàng câu hỏi";
+    public static final String NO_QUESTIONS_WITH_THIS_TOPIC = "Không có câu hỏi nào với chủ đề này";
 
     /**
      * For Exam
@@ -45,23 +45,23 @@ public class MessageResource {
     public static final String JAVA_SPRING = "Java Spring";
     public static final String SYNTHESIS_TOPIC = "Synthesis";
 
-    public static final String INCORRECT_QUESTION_LIST_WITH_TOPIC = "INCORRECT QUESTION LIST WITH TOPIC";
-    public static final String USER_ALREADY_TESTED_THIS_EXAM = "USER ALREADY TESTED THIS EXAM";
+    public static final String INCORRECT_QUESTION_LIST_WITH_TOPIC = "Danh sách câu hỏi được chọn không đúng với chủ đề của Đề thi";
+    public static final String USER_ALREADY_TESTED_THIS_EXAM = "Người dùng đã làm đề thi này rồi";
 
     /**
      * For Notice
      */
-    public static final String ALREADY_EXISTS = "ALREADY EXISTS";
-    public static final String NOT_CREATED_YET = "NOT CREATED YET";
-    public static final String IS_EMPTY = "IS EMPTY";
-    public static final String OR_IS_DELETED = "OR IS DELETED";
-    public static final String OR_IS_NOT_DELETED_YET = "OR IS NOT DELETED YET";
-    public static final String UNTESTED = "UNTESTED";
+    public static final String ALREADY_EXISTS = "đã tồn tại";
+    public static final String NOT_CREATED_YET = "chưa được tạo";
+    public static final String IS_EMPTY = "trống";
+    public static final String OR_IS_DELETED = "hoặc đã bị xóa";
+    public static final String OR_IS_NOT_DELETED_YET = "hoặc chưa bị xóa";
+    public static final String UNTESTED = "chưa được kiểm tra";
 
     /**
      * For Account
      */
-    public static final String LOGIN_SUCCESS = "LOGIN SUCCESS";
-    public static final String WRONG_USERNAME = "WRONG USERNAME";
-    public static final String WRONG_PASSWORD = "WRONG PASSWORD";
+    public static final String LOGIN_SUCCESS = "Đăng nhập thành công";
+    public static final String WRONG_USERNAME = "Sai tên đăng nhập";
+    public static final String WRONG_PASSWORD = "Sai mật khẩu";
 }

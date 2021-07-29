@@ -8,9 +8,10 @@
 <div class="modal-body">
     <form action="">
       <div class="form-group">
-        <label for="inputAnswerContent" class="col-md-12">Nội dung câu trả lời cho Câu hỏi {{questionID}}</label>
+        <label for="inputAnswerContent" id="inputContentLabel" class="col-md-12">Nội dung câu trả lời cho Câu hỏi {{questionID}} <span>*</span></label>
         <input type="text" id="answerContent" class="col-md-12" placeholder="Nhập nội dung" name="answerContent" [(ngModel)]="inputContent" required>
       </div>
+
       <div class="form-group">
         <label for="inputAnswerContent" id="isCorrectLabel">Đây có phải đáp án của câu hỏi không</label>
         <div class="toggle-radio">
@@ -24,13 +25,12 @@
         </div>
       </div>
     </form>
-
-    <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
-      {{errorMessage}}
-    </div>
 </div>
 
 <div class="modal-footer">
+  <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
+    {{errorMessage}}
+  </div>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Đóng</button>
   <button type="button" class="btn btn-success" (click)="onAddAnswer()">Thêm</button>
 </div>

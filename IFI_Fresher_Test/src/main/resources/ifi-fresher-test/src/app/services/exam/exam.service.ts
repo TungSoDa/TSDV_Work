@@ -36,15 +36,15 @@ export class ExamService {
     return this.http.get<ExamResult>(this.getResultByID + examResultID);
   }
 
-  private addExamResult = `${HOSTNAME.backend}/examResult/add`;
+  private addResult = `${HOSTNAME.backend}/examResult/add`;
   async submitExam(examResult: ExamResult) {
-    await this.http.post<Response>(this.addExamResult,examResult).toPromise().then(async (result) => (result));
+    await this.http.post<Response>(this.addResult, examResult).toPromise().then(async (result) => (result));
   }
 
-  private getResultContestantUsernameExamID= `${HOSTNAME.backend}/examResult/result`
+  private getResultByContestantUsernameExamID= `${HOSTNAME.backend}/examResult/result`
   getExamResultByContestantUsernameAndExamID(examID: any, contestantUsername: any): Observable<ExamResult> {
     this.examResult.examID = examID;
     this.examResult.contestantUsername = contestantUsername;
-    return this.http.post<ExamResult>(this.getResultContestantUsernameExamID, this.examResult);
+    return this.http.post<ExamResult>(this.getResultByContestantUsernameExamID, this.examResult);
   }
 }

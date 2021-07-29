@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { HOSTNAME } from 'src/app/models/constant';
 import { Question } from 'src/app/models/question-model';
 
@@ -26,9 +27,9 @@ export class QuestionService {
     return this.http.get<Question[]>(this.getByTopic + topic.replace(' ', '_'));
   }
 
-  private addQuestion  = `${HOSTNAME.backend}/question/add/`;
+  private add  = `${HOSTNAME.backend}/question/add/`;
   addNewQuestion(question: Question): Observable<Question> {
-    return this.http.post<Question>(this.addQuestion, question);
+    return this.http.post<Question>(this.add, question);
   }
 
   private deleteByID  = `${HOSTNAME.backend}/question/delete/`;
@@ -36,13 +37,13 @@ export class QuestionService {
     return this.http.delete<Question>(this.deleteByID + questionID);
   }
 
-  private getDeletedQuestion  = `${HOSTNAME.backend}/question/deletedList`;
-  getDeletedQuestionList(): Observable<Question[]>  {
-    return this.http.get<Question[]>(this.getDeletedQuestion);
-  }
-
   private undeleteByID  = `${HOSTNAME.backend}/question/undelete/`;
   undeleteQuestionByID(questionID: any) {
     return this.http.put<Question>(this.undeleteByID + questionID, {});
   }  
+
+  private getDeleted  = `${HOSTNAME.backend}/question/deletedList`;
+  getDeletedQuestionList(): Observable<Question[]>  {
+    return this.http.get<Question[]>(this.getDeleted);
+  }
 }

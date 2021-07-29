@@ -25,10 +25,16 @@ export class AddAnswerModalComponent implements OnInit {
   }
 
   async onAddAnswer() {
-    this.answer.content = this.inputContent;
+    if(this.inputContent == null || this.inputContent == "") {
+      this.errorMessage = "Nội dung câu hỏi không được để trống";
+      return;
+    } else {
+      this.answer.content = this.inputContent;
+      this.errorMessage = undefined
+    }
 
     this.answer.questionID = this.questionID;
-    
+
     if ($('.toggle-radio input#yes:checked').val() == 'on') {
       this.answer.isCorrect = true;
     }
@@ -41,10 +47,22 @@ export class AddAnswerModalComponent implements OnInit {
         window.location.reload()
       ))
       .catch(async (err) => (
-        err.error === MESSAGE_RESOURCE.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION ? console.log(err) : this.errorMessage =  undefined,
-        err.error === MESSAGE_RESOURCE.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION ? console.log(err) : this.errorMessage =  undefined,
-        err.error === MESSAGE_RESOURCE.ANSWER + " " + MESSAGE_RESOURCE.ALREADY_EXISTS + "IN QUESTION" ? console.log(err) : this.errorMessage =  undefined,
-        err.error === MESSAGE_RESOURCE.QUESTION + " " + MESSAGE_RESOURCE.NOT_CREATED_YET + " " + MESSAGE_RESOURCE.OR_IS_DELETED ? console.log(err) : this.errorMessage =  undefined
-      ));
+        err.error.text === MESSAGE_RESOURCE.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION ? 
+          this.errorMessage = err.error.text : 
+          (
+            err.error.text === MESSAGE_RESOURCE.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION ? 
+            this.errorMessage = err.error.text : 
+            (
+              err.error.text === MESSAGE_RESOURCE.ANSWER + " " + MESSAGE_RESOURCE.ALREADY_EXISTS + " IN QUESTION" ? 
+              this.errorMessage = err.error.text :
+              (
+                err.error.text === MESSAGE_RESOURCE.QUESTION + " " + MESSAGE_RESOURCE.NOT_CREATED_YET + " " + MESSAGE_RESOURCE.OR_IS_DELETED ? 
+                this.errorMessage = err.error.text : 
+                this.errorMessage =  undefined
+              )
+            )  
+          )
+        )
+      );
   }
 }

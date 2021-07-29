@@ -85,8 +85,7 @@ public class AnswerService {
                 }
                 else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
                     return new ResponseEntity<String>(MessageResource.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
-                }
-                else {
+                } else {
                     Answer answer = AnswerMapper.dtoToEntity(answerDTO);
                     answerRepository.save(answer);
                     return new ResponseEntity<AnswerDTO>(
@@ -100,7 +99,7 @@ public class AnswerService {
                     );
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION", HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.ALREADY_EXISTS + " IN QUESTION", HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
             return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
@@ -110,13 +109,12 @@ public class AnswerService {
     public ResponseEntity<?> updateAnswer(Integer id, AnswerDTO answerDTO) {
         Optional<Answer> optionalAnswer = answerRepository.findAnswersByAnswerIDAndIsDeletedFalse(id);
         if (optionalAnswer.isPresent()) {
-            if (answerRepository.findAnswersByContentAndQuestionIDAndIsDeletedFalse(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent()) {
+            if (answerRepository.findAnswersByContentAndQuestionIDAndIsDeletedFalse(answerDTO.getContent(), answerDTO.getQuestionID()).isPresent() &&
+                    answerRepository.findAnswersByContentAndQuestionIDAndIsDeletedFalse(answerDTO.getContent(), answerDTO.getQuestionID()).get().getIsCorrect().equals(answerDTO.getIsCorrect())) {
                 return new ResponseEntity<String>(MessageResource.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
-            }
-            else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
+            } else if(answerRepository.findAnswersByQuestionIDAndIsCorrectTrueAndIsDeletedFalse(answerDTO.getQuestionID()).isPresent() && answerDTO.getIsCorrect().equals(true)) {
                 return new ResponseEntity<String>(MessageResource.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION, HttpStatus.ALREADY_REPORTED);
-            }
-            else {
+            } else {
                 return optionalAnswer.map(answer -> {
                     answer.setContent(answerDTO.getContent());
                     answer.setIsCorrect(answerDTO.getIsCorrect());

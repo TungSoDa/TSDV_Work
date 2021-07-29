@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Answer } from 'src/app/models/answer-model';
 import { HOSTNAME } from 'src/app/models/constant';
 
@@ -18,8 +19,18 @@ export class AnswerService {
     return this.http.get<Answer>(this.getByID + answerID);
   }
 
-  private addNewAnswer = `${HOSTNAME.backend}/answer/add`
+  private add = `${HOSTNAME.backend}/answer/add`
   async addAnswerToQuestion(answer: Answer) {
-    await this.http.post<Response>(this.addNewAnswer ,answer).toPromise().then(async (result)=>(result));
+    await this.http.post<Response>(this.add ,answer).toPromise().then(async (result)=>(result));
+  }
+
+  private updateByID = `${HOSTNAME.backend}/answer/update/`
+  async updateAnswerOfQuestion(answer: Answer) {
+    return this.http.put<Answer>(this.updateByID + answer.answerID ,answer).toPromise().then(async (result)=>(result));
+  }
+
+  private deleteByID  = `${HOSTNAME.backend}/answer/delete/`;
+  deleteAnswerByID(answerID: any) {
+    return this.http.delete<Answer>(this.deleteByID + answerID);
   }
 }

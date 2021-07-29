@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Answer } from 'src/app/models/answer-model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+
+import { Answer } from 'src/app/models/answer-model';
+import { EditAnswerModalComponent } from './edit-modal/edit-modal.component';
+import { DeleteAnswerModalComponent } from './delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-answer-contributor',
@@ -19,22 +22,14 @@ export class AnswerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // open(confirmDeleteAnswer) {
-  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
+  openEditModal(answerID :any) {
+    const modalRef = this.modalService.open(EditAnswerModalComponent);
+    modalRef.componentInstance.answerID = answerID;
+  }
 
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
+  openDeleteModal(answerID :any) {
+    const modalRef = this.modalService.open(DeleteAnswerModalComponent);
+    modalRef.componentInstance.answerID = answerID;
+  }
 
 }

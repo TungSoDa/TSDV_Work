@@ -1,1 +1,37 @@
-<p>edit-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Sửa câu trả lời</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form action="">
+      <div class="form-group">
+        <label for="inputAnswerContent" id="inputContentLabel" class="col-md-12">Nội dung câu trả lời cho Câu hỏi {{answerID}} <span>*</span></label>
+        <input type="text" id="answerContent" class="col-md-12" placeholder="Nhập nội dung" name="answerContent" [(ngModel)]="inputContent" required>
+      </div>
+
+      <div class="form-group">
+        <label for="inputAnswerContent" id="isCorrectLabel">Đây có phải đáp án của câu hỏi không</label>
+        <div class="toggle-radio">
+          <input type="radio" name="rdo" id="yes">
+          <input type="radio" name="rdo" id="no">
+          <div class="switch">
+            <label for="yes">Đúng</label>
+            <label for="no">Sai</label>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+  <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
+    {{errorMessage}}
+  </div>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Đóng</button>
+  <button type="button" class="btn btn-success" (click)="onUpdateAnswer()">Cập nhật</button>
+</div>
+
