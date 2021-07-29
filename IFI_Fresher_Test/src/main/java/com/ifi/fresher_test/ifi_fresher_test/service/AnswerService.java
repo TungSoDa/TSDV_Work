@@ -100,7 +100,7 @@ public class AnswerService {
                     );
                 }
             } else {
-                return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION ", HttpStatus.ALREADY_REPORTED);
+                return new ResponseEntity<String>(MessageResource.ANSWER + " " + MessageResource.ALREADY_EXISTS + "IN QUESTION", HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
             return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);

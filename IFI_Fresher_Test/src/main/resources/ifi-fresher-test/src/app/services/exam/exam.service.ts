@@ -36,9 +36,9 @@ export class ExamService {
     return this.http.get<ExamResult>(this.getResultByID + examResultID);
   }
 
+  private addExamResult = `${HOSTNAME.backend}/examResult/add`;
   async submitExam(examResult: ExamResult) {
-    let addExamResult = `${HOSTNAME.backend}/examResult/add`;
-    await this.http.post<Response>(addExamResult,examResult).toPromise().then(async (result)=>(result));
+    await this.http.post<Response>(this.addExamResult,examResult).toPromise().then(async (result) => (result));
   }
 
   private getResultContestantUsernameExamID= `${HOSTNAME.backend}/examResult/result`

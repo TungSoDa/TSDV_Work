@@ -27,7 +27,7 @@ export class ContestantExamComponent implements OnInit {
 
   forgotChooseAnswer?: string;
 
-  examTested?: string;
+  errorMessage?: string;
 
   constructor(public router:Router ,private examService: ExamService) { }
 
@@ -76,15 +76,14 @@ export class ContestantExamComponent implements OnInit {
       )
     ))
     .catch(async (err) => (
-      err.error === MESSAGE_RESOURCE.USER_ALREADY_TESTED_THIS_EXAM ? this.examTested = err.error : this.examTested =  undefined,
+      err.error === MESSAGE_RESOURCE.USER_ALREADY_TESTED_THIS_EXAM ? this.errorMessage = err.error : this.errorMessage =  undefined,
       $('.exam-check .btn-primary.check-quiz').addClass('hide') ,
       await this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).toPromise().then(
         async (examResult) => (
           this.examResult = examResult
         )
       )
-    ), 
-    );
+    ));
   }
 }
 

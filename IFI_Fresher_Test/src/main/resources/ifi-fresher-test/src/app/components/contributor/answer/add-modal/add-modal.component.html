@@ -24,6 +24,10 @@
         </div>
       </div>
     </form>
+
+    <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
+      {{errorMessage}}
+    </div>
 </div>
 
 <div class="modal-footer">

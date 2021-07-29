@@ -19,7 +19,7 @@ export class AnswerService {
   }
 
   private addNewAnswer = `${HOSTNAME.backend}/answer/add`
-  async addAsnwerToQuestion(answer: Answer) {
+  async addAnswerToQuestion(answer: Answer) {
     await this.http.post<Response>(this.addNewAnswer ,answer).toPromise().then(async (result)=>(result));
   }
 }
