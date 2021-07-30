@@ -56,7 +56,7 @@
       <ul id="listQuestion">
         <div *ngFor="let Question of exam?.questionList; let i = index">
           <li class="dropdown">
-            <div *ngIf="!(exam!.questionList[i].image.includes('null'))" class="question-image">
+            <div *ngIf="!exam.questionList[i].image?.includes('null')" class="question-image">
               <img [src]="imagePath + exam!.questionList[i].image" alt="">
             </div>
             <div class="drop-item">

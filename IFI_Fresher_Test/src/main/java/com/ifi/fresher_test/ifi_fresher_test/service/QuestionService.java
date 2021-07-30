@@ -116,7 +116,7 @@ public class QuestionService {
     public ResponseEntity<?> updateQuestion(Integer id, QuestionDTO questionDTO) {
         Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id);
         if (!optionalQuestion.isPresent()) {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.ALREADY_REPORTED);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         } else if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else if (questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||

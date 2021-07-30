@@ -46,10 +46,10 @@ public class AccountService {
                         optionalAccount.get().getRole()
                 ), HttpStatus.OK);
             } else {
-                return new ResponseEntity<String>(MessageResource.WRONG_PASSWORD, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<String>(MessageResource.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
             }
         } else {
-            return new ResponseEntity<String>(MessageResource.WRONG_USERNAME, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.WRONG_USERNAME, HttpStatus.BAD_REQUEST);
         }
     }
 

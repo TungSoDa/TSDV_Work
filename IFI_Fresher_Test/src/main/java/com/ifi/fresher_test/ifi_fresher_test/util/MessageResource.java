@@ -47,6 +47,7 @@ public class MessageResource {
 
     public static final String INCORRECT_QUESTION_LIST_WITH_TOPIC = "Danh sách câu hỏi được chọn không đúng với chủ đề của Đề thi";
     public static final String USER_ALREADY_TESTED_THIS_EXAM = "Người dùng đã làm đề thi này rồi";
+    public static final String WITH_QUESTION_LIST_IS_CREATED = "với danh sách câu hỏi đã được tạo";
 
     /**
      * For Notice

@@ -46,9 +46,7 @@ export class ContributorExamComponent implements OnInit {
   }
 
   async getSelectedQuestion() {
-    if (this.router.url.includes('contributor/addExam')) {
-      await this.questionService.getQuestionByID(this.selected).toPromise().then(async (selectedQuestion) => (this.selectedQuestion = selectedQuestion));
-    }
+    await this.questionService.getQuestionByID(this.selected).toPromise().then(async (selectedQuestion) => (this.selectedQuestion = selectedQuestion));
   }
 
   addNewQuestion() {

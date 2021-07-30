@@ -99,7 +99,7 @@ public class ExamResultService {
     public ResponseEntity<?> addExamResult(ExamResultDTO examResultDTO) {
         Optional<ExamResult> optionalExamResult = examResultRepository.findExamResultByExamIDAndContestantUsernameAndIsDeletedFalse(examResultDTO.getExamID(), examResultDTO.getContestantUsername());
         if (optionalExamResult.isPresent()) {
-            return new ResponseEntity<String>(MessageResource.USER_ALREADY_TESTED_THIS_EXAM, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.USER_ALREADY_TESTED_THIS_EXAM, HttpStatus.ALREADY_REPORTED);
         } else if (!contestantService.contestantRepository.findById(examResultDTO.getContestantUsername()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.CONTESTANT + MessageResource.NOT_CREATED_YET + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         } else {
