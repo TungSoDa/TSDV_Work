@@ -15,21 +15,21 @@
     <div class="form-group">
       <label for="topicQuestion" class="col-md-12">Chủ đề <span>*</span></label>
       <select class="form-control col-md-12" id="topicQuestion" name="topicQuestion" [(ngModel)]="selectedTopic" required>
-        <!-- <option value="None">Chọn chủ đề</option> -->
         <option *ngFor="let topic of topicList" [ngValue]="topic.content">{{topic.content}}</option>
       </select>
     </div>
   
     <div class="form-group">
       <label for="questionImage" class="col-md-12">Hình ảnh</label>
-      <div *ngIf="editQuestion.image != null" class="question-image">
+      <div *ngIf="!editQuestion.image?.includes('null')" class="question-image">
         <img [src]="imagePath + editQuestion.image" alt="">
       </div>
-      <input type="file" id="questionImage" class="col-md-12" name="questionImage" [(ngModel)]="importImage">
+      <input type="file" id="questionImage" class="col-md-12" name="questionImage">
     </div>
   </form>
 </div>
 
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-primary" (click)="onUpdateQuestion()">Cập nhật</button>
 </div>

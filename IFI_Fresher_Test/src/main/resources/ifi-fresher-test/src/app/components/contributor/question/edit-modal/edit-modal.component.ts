@@ -21,17 +21,23 @@ export class EditQuestionModalComponent implements OnInit {
   
   selectedTopic!: string;
 
-  importImage!: string;
+  importImage!: File;
 
   topicList = TOPIC;
 
-  constructor(private questionService: QuestionService,public activeModal: NgbActiveModal) {}
+  constructor(private questionService: QuestionService, public activeModal: NgbActiveModal) {}
 
   async ngOnInit() {
     await this.questionService.getQuestionByID(this.questionID).toPromise().then(async (editQuestion) => (this.editQuestion = editQuestion));
+
     this.inputContent = this.editQuestion.content;
     this.selectedTopic = this.editQuestion.topic;
-    this.importImage = this.editQuestion.image;
+    // this.importImage = this.editQuestion.image;
+  }
+
+  onUpdateQuestion() {
+    
   }
 
 }
+ 
