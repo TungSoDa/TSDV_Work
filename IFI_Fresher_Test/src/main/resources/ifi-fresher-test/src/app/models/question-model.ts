@@ -1,11 +1,11 @@
-import { Answer } from "./answer-model";
+import { AnswerImpl } from "./answer-model";
 
 export interface Question {
   questionID: number,
   content: string,
   image: string,
   topic: string,
-  answerList: Answer[]
+  answerList: AnswerImpl[]
 }
 
 export class QuestionImpl implements Question {
@@ -13,7 +13,7 @@ export class QuestionImpl implements Question {
   content!: string;
   image!: string;
   topic!: string;
-  answerList!: Answer[]
+  answerList!: AnswerImpl[];
 
   constructor() {}
 }

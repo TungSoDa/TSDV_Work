@@ -5,12 +5,19 @@
                 <img width="150px" [src]="imageTopicSource + removeSpace(exam?.topic) + imageTopicExtension">
             </div>
 
-            <div class="col-9 col-lg-9 col-sm-9 no-padding-left">
-                <a href="/contestant/exam"><h2 class="title20Bold">{{exam?.name}}</h2></a>
+            <div *ngIf="router.url === '/contestant/list' || router.url.includes('/contestant/topic')" class="col-9 col-lg-9 col-sm-9 no-padding-left">
+                <a href="/contestant/exam/{{exam?.examID}}"><h2 class="title20Bold">{{exam?.name}}</h2></a>
                 <p>Mô tả đề thi: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti, fuga officia est earum et. Nisi ipsam praesentium dolore blanditiis corrupti culpa neque ad veritatis sapiente? Maiores necessitatibus cum nihil.</p>
                 <div class="view-detail">
-                    <a *ngIf="router.url === '/contestant/list' || router.url.includes('/contestant/topic')" href="/contestant/exam/{{exam?.examID}}" class="btn orange h28 f400 float-right">Làm bài</a>
-                    <a *ngIf="router.url.includes('/contributor/list')" href="/contributor/editExam/{{exam?.examID}}" class="btn btn-info h28 f400 float-right">Chỉnh sửa</a>
+                    <a href="/contestant/exam/{{exam?.examID}}" class="btn orange h28 f400 float-right">Làm bài</a>
+                </div>
+            </div>
+
+            <div *ngIf="router.url.includes('/contributor/list')" class="col-9 col-lg-9 col-sm-9 no-padding-left">
+                <a href="/contributor/editExam/{{exam?.examID}}"><h2 class="title20Bold">{{exam?.name}}</h2></a>
+                <p>Mô tả đề thi: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti, fuga officia est earum et. Nisi ipsam praesentium dolore blanditiis corrupti culpa neque ad veritatis sapiente? Maiores necessitatibus cum nihil.</p>
+                <div class="view-detail">
+                    <a href="/contributor/editExam/{{exam?.examID}}" class="btn btn-info h28 f400 float-right">Chỉnh sửa</a>
                 </div>
             </div>
         </div>

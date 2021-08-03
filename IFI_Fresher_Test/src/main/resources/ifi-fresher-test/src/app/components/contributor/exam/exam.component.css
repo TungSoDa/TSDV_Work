@@ -75,11 +75,20 @@
   border-color: #0275d8;
 }
 
-.check-quiz.disabled {
-  pointer-events: none;
-  color: rgba(0,0,0,.54) !important;
-  background-color: #eee;
-  border-color: #eee;
+.btn-info {
+  color: #fff !important;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-secondary {
+  color: #fff !important;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.check-quiz {
+  margin-right: 20px;
 }
 
 ul {
@@ -176,6 +185,7 @@ ng-select {
 .dropdown .dropdown-content {
   display: none;
   transition: 0.5s;
+
 }
 
 .dropdown:hover .dropdown-content {

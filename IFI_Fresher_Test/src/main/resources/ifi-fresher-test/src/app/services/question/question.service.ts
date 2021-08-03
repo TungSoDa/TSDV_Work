@@ -27,7 +27,7 @@ export class QuestionService {
     return this.http.get<Question[]>(this.getByTopic + topic.replace(' ', '_'));
   }
 
-  private add  = `${HOSTNAME.backend}/question/add/`;
+  private add = `${HOSTNAME.backend}/question/add/`;
   addNewQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.add, question);
   }

@@ -17,7 +17,8 @@ export class ContestantExamComponent implements OnInit {
 
   examResult: ExamResultImpl = new ExamResultImpl();
 
-  examTime: number = 1800;
+  // set time 60 second
+  examTimeLeft: number = 60;
 
   selectedAnswer: string = "";
 
@@ -33,6 +34,14 @@ export class ContestantExamComponent implements OnInit {
 
   async ngOnInit() {
     await this.examService.getExamByID(this.router.url.substring(17)).toPromise().then(async (exam) => (this.exam = exam));
+
+    // auto submit exam
+    setInterval(() => {
+      let timeLeft = $('countdown span').text();
+      if(timeLeft === '00:00:00') {
+        this.showExamResult();
+      }
+    }, 1000)
   }
 
   async showExamResult() {

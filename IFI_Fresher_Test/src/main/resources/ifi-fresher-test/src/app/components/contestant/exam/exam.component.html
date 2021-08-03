@@ -6,7 +6,7 @@
         <h2 class="exam-name">{{exam?.name}}</h2>
       </div>
       <div *ngIf="!errorMessage" class="col-md-12 exam-time">
-        <countdown [config]="{ leftTime: examTime }"></countdown>
+        <countdown [config]="{ leftTime: examTimeLeft }"></countdown>
       </div>
       <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
         {{errorMessage}}

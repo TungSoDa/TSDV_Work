@@ -9,6 +9,8 @@ public class MessageResource {
      */
     public static final Integer ONE_TOPIC_EXAM_QUESTION_NUMBER = 3;
     public static final Integer ALL_TOPIC_EXAM_QUESTION_NUMBER = 18;
+    public static final String ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE = "Số câu hỏi của đề thi 1 chủ đề phải là";
+    public static final String ALL_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE = "Số câu hỏi của đề thi tổng hợp phải là";
 
     /**
      * For Entity
@@ -32,7 +34,7 @@ public class MessageResource {
      */
     public static final String THIS_QUESTION_CONTENT = "Nội dung câu hỏi này";
     public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "có thể có nội dung tương tự với những câu hỏi đã có trong Ngân hàng câu hỏi";
-    public static final String NO_QUESTIONS_WITH_THIS_TOPIC = "Không có câu hỏi nào với chủ đề này";
+    public static final String NO_QUESTIONS_WITH_THIS_TOPIC = "Không có câu hỏi nào với chủ đề ";
 
     /**
      * For Exam
@@ -47,7 +49,8 @@ public class MessageResource {
 
     public static final String INCORRECT_QUESTION_LIST_WITH_TOPIC = "Danh sách câu hỏi được chọn không đúng với chủ đề của Đề thi";
     public static final String USER_ALREADY_TESTED_THIS_EXAM = "Người dùng đã làm đề thi này rồi";
-    public static final String WITH_QUESTION_LIST_IS_CREATED = "với danh sách câu hỏi đã được tạo";
+    public static final String WITH_QUESTION_LIST_IS_CREATED = "với danh sách câu hỏi trên đã được tạo";
+    public static final String WITH_THE_SAME_NAME = "với tên tương tự";
 
     /**
      * For Notice

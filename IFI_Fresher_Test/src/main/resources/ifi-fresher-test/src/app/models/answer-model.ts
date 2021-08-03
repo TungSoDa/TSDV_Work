@@ -9,7 +9,7 @@ export class AnswerImpl implements Answer {
   answerID!: number;
   content!: string;
   isCorrect!: boolean;
-  questionID!: number
+  questionID!: number;
 
   constructor() {}
 }

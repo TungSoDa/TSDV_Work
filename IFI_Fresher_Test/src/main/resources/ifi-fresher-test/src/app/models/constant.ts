@@ -36,6 +36,9 @@ export const TOPIC = [
 ]
 
 export const MESSAGE_RESOURCE = {
+
+  ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE: "Số câu hỏi của đề thi 1 chủ đề phải là",
+  ALL_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE: "Số câu hỏi của đề thi tổng hợp phải là",
   /**
     * For Entity
     */
@@ -58,7 +61,8 @@ export const MESSAGE_RESOURCE = {
    */
   THIS_QUESTION_CONTENT : "Nội dung câu hỏi này",
   MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION : "có thể có nội dung tương tự với những câu hỏi đã có trong Ngân hàng câu hỏi",
-  NO_QUESTIONS_WITH_THIS_TOPIC : "Không có câu hỏi nào với chủ đề này",
+  NO_QUESTIONS_WITH_THIS_TOPIC : "Không có câu hỏi nào với chủ đề ",
+  QUESTION_EXISTED_IN_EXAM : "Câu hỏi này đã có trong đề thi, hãy chọn câu hỏi khác",
 
   /**
    * For Exam
@@ -73,6 +77,8 @@ export const MESSAGE_RESOURCE = {
 
   INCORRECT_QUESTION_LIST_WITH_TOPIC : "Danh sách câu hỏi được chọn không đúng với chủ đề của Đề thi",
   USER_ALREADY_TESTED_THIS_EXAM : "Người dùng đã làm đề thi này rồi",
+  WITH_QUESTION_LIST_IS_CREATED: "với danh sách câu hỏi trên đã được tạo",
+  WITH_THE_SAME_NAME: "với tên tương tự",
 
   /**
     * For Notice
@@ -90,4 +96,5 @@ export const MESSAGE_RESOURCE = {
   LOGIN_SUCCESS : "Đăng nhập thành công",
   WRONG_USERNAME : "Sai tên đăng nhập",
   WRONG_PASSWORD : "Sai mật khẩu",
+  
 }

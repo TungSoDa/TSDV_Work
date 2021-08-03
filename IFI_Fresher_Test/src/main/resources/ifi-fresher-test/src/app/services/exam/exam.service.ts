@@ -36,6 +36,16 @@ export class ExamService {
     return this.http.get<ExamResult>(this.getResultByID + examResultID);
   }
 
+  private add = `${HOSTNAME.backend}/exam/add`;
+  async addExam(exam: Exam) {
+    await this.http.post<Response>(this.add, exam).toPromise().then(async (result) => (result));
+  }
+
+  private updateByID = `${HOSTNAME.backend}/exam/update/`;
+  updateExamByID(examID: number, exam: Exam) {
+    return this.http.put<Exam>(this.updateByID + examID, exam).toPromise().then(async (result) => (result));
+  }
+
   private addResult = `${HOSTNAME.backend}/examResult/add`;
   async submitExam(examResult: ExamResult) {
     await this.http.post<Response>(this.addResult, examResult).toPromise().then(async (result) => (result));
