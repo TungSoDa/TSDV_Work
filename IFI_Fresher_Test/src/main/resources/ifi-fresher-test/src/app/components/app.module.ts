@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CountdownModule } from 'ngx-countdown';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -76,7 +77,8 @@ import { DeleteAnswerModalComponent } from './contributor/answer/delete-modal/de
     CountdownModule,
     Ng2SearchPipeModule,
     NgbModule,
-    NgSelectModule
+    NgSelectModule,
+    AngularFileUploaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

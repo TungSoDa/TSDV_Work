@@ -9,12 +9,12 @@
   <form action="">
     <div class="form-group">
       <label for="questionContent" class="col-md-12">Nội dung câu hỏi <span>*</span></label>
-      <input type="text" id="questionContent" class="col-md-12" placeholder="Nhập nội dung của câu hỏi" name="questionContent" [(ngModel)]="inputContent" required>
+      <input type="text" id="questionContent" class="col-md-12" placeholder="Nhập nội dung của câu hỏi" name="questionContent" [(ngModel)]="editQuestion.content" required>
     </div>
   
     <div class="form-group">
       <label for="topicQuestion" class="col-md-12">Chủ đề <span>*</span></label>
-      <select class="form-control col-md-12" id="topicQuestion" name="topicQuestion" [(ngModel)]="selectedTopic" required>
+      <select class="form-control col-md-12" id="topicQuestion" name="topicQuestion" [(ngModel)]="editQuestion.topic" required>
         <option *ngFor="let topic of topicList" [ngValue]="topic.content">{{topic.content}}</option>
       </select>
     </div>
@@ -30,6 +30,9 @@
 </div>
 
 <div class="modal-footer">
+  <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
+    {{errorMessage}}
+  </div>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
   <button type="button" class="btn btn-primary" (click)="onUpdateQuestion()">Cập nhật</button>
 </div>

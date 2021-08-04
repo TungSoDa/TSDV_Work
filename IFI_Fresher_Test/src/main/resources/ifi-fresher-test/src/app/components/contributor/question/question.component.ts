@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
 import { PATH } from 'src/app/models/constant';
-import { Question } from 'src/app/models/question-model';
+import { Question, QuestionImpl } from 'src/app/models/question-model';
 import { EditQuestionModalComponent } from './edit-modal/edit-modal.component';
 import { DeleteQuestionModalComponent } from './delete-modal/delete-modal.component';
 import { AddAnswerModalComponent } from '../answer/add-modal/add-modal.component';
@@ -15,7 +15,7 @@ import { AddAnswerModalComponent } from '../answer/add-modal/add-modal.component
 })
 export class ContributorQuestionComponent implements OnInit {
 
-  @Input() question?: Question;
+  @Input() question?: QuestionImpl;
 
   @Input() index?: number;
 

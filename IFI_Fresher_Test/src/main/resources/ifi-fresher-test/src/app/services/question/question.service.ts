@@ -28,8 +28,13 @@ export class QuestionService {
   }
 
   private add = `${HOSTNAME.backend}/question/add/`;
-  addNewQuestion(question: Question): Observable<Question> {
-    return this.http.post<Question>(this.add, question);
+  async addNewQuestion(question: Question) {
+    return this.http.post<Question>(this.add, question).toPromise().then(async (result)=>(result));
+  }
+
+  private updateByID = `${HOSTNAME.backend}/question/update/`
+  async updateQuestionByID(question: Question) {
+    return this.http.put<Question>(this.updateByID + question.questionID, question).toPromise().then(async (result)=>(result));
   }
 
   private deleteByID  = `${HOSTNAME.backend}/question/delete/`;

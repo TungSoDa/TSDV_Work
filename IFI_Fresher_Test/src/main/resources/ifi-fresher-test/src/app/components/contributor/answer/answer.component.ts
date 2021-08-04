@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
-import { Answer } from 'src/app/models/answer-model';
+import { Answer, AnswerImpl } from 'src/app/models/answer-model';
 import { EditAnswerModalComponent } from './edit-modal/edit-modal.component';
 import { DeleteAnswerModalComponent } from './delete-modal/delete-modal.component';
 
@@ -13,7 +13,7 @@ import { DeleteAnswerModalComponent } from './delete-modal/delete-modal.componen
 })
 export class AnswerComponent implements OnInit {
 
-  @Input() answer?: Answer;
+  @Input() answer?: AnswerImpl;
 
   closeResult = '';
 

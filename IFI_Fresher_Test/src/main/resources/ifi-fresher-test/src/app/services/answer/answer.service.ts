@@ -21,12 +21,12 @@ export class AnswerService {
 
   private add = `${HOSTNAME.backend}/answer/add`
   async addAnswerToQuestion(answer: Answer) {
-    await this.http.post<Response>(this.add ,answer).toPromise().then(async (result)=>(result));
+    await this.http.post<Response>(this.add, answer).toPromise().then(async (result)=>(result));
   }
 
   private updateByID = `${HOSTNAME.backend}/answer/update/`
   async updateAnswerOfQuestion(answer: Answer) {
-    return this.http.put<Answer>(this.updateByID + answer.answerID ,answer).toPromise().then(async (result)=>(result));
+    return this.http.put<Answer>(this.updateByID + answer.answerID, answer).toPromise().then(async (result)=>(result));
   }
 
   private deleteByID  = `${HOSTNAME.backend}/answer/delete/`;

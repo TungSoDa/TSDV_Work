@@ -10,7 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -41,6 +48,8 @@ public class QuestionService {
         Collections.shuffle(questionDTOList);
         return questionDTOList;
     }
+
+
 
     public List<QuestionDTO> findAll() {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
@@ -96,6 +105,7 @@ public class QuestionService {
 
     public ResponseEntity<?> addQuestion(QuestionDTO questionDTO) {
         questionDTO.setIsDeleted(false);
+        System.out.println(questionDTO.getImage());
         if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else {
@@ -116,12 +126,9 @@ public class QuestionService {
     public ResponseEntity<?> updateQuestion(Integer id, QuestionDTO questionDTO) {
         Optional<Question> optionalQuestion = questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id);
         if (!optionalQuestion.isPresent()) {
-            return new ResponseEntity<String>(MessageResource.QUESTION + " " + id + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>(MessageResource.QUESTION + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         } else if (questionRepository.findQuestionByContentAndTopicAndIsDeletedFalse(questionDTO.getContent(), questionDTO.getTopic()).isPresent()) {
             return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
-        } else if (questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase().contains(questionDTO.getContent().toLowerCase()) ||
-                questionDTO.getContent().toLowerCase().contains(questionRepository.findQuestionByQuestionIdAndIsDeletedFalse(id).get().getContent().toLowerCase())) {
-            return new ResponseEntity<String>(MessageResource.THIS_QUESTION_CONTENT + "  " + MessageResource.MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION, HttpStatus.ALREADY_REPORTED);
         } else {
             return optionalQuestion.map(question -> {
                 question.setContent(questionDTO.getContent());

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Answer } from 'src/app/models/answer-model';
-import { AnswerService } from 'src/app/services/answer/answer.service';
+
+import { Answer, AnswerImpl } from 'src/app/models/answer-model';
 
 @Component({
   selector: 'app-answer-contestant',
@@ -10,7 +10,7 @@ import { AnswerService } from 'src/app/services/answer/answer.service';
 })
 export class ContestantAnswerComponent implements OnInit {
 
-  @Input() answer?: Answer;
+  @Input() answer?: AnswerImpl;
 
   @Input() index?: number;
 

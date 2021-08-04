@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Question } from 'src/app/models/question-model';
+
+import { Question, QuestionImpl } from 'src/app/models/question-model';
 import { QuestionService } from 'src/app/services/question/question.service';
 import { PATH } from '../../../models/constant';
 
@@ -11,7 +12,7 @@ import { PATH } from '../../../models/constant';
 })
 export class ContestantQuestionComponent implements OnInit {
 
-  @Input() question?: Question;
+  @Input() question?: QuestionImpl;
 
   @Input() index?: number;
 

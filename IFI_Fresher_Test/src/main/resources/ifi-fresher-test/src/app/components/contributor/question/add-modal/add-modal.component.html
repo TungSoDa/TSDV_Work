@@ -22,12 +22,16 @@
   
     <div class="form-group">
       <label for="questionImage" class="col-md-12">Hình ảnh</label>
-      <input type="file" id="questionImage" class="col-md-12" name="questionImage" [(ngModel)]="importImage">
+      <angular-file-uploader [config]="afuConfig"></angular-file-uploader>
+      <!-- <input type="file" id="questionImage" class="col-md-12" name="questionImage" placeholder="Tải hình ảnh lên" accept=".png,.jpg" (change)="handleUpload($event)"> -->
     </div>
   </form>
 </div>
 
 <div class="modal-footer">
+  <div *ngIf="errorMessage" class="alert alert-danger text-center col-md-12" role="alert">
+    {{errorMessage}}
+  </div>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Đóng</button>
   <button type="button" class="btn btn-success" (click)="onAddQuestion()">Thêm</button>
 </div>

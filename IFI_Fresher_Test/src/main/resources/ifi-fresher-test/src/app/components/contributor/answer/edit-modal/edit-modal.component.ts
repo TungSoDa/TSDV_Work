@@ -63,7 +63,7 @@ export class EditAnswerModalComponent implements OnInit {
         err.error.text === MESSAGE_RESOURCE.ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION ? 
           this.errorMessage = err.error.text : 
           (
-            err.error.text === MESSAGE_RESOURCE.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION ? 
+            err.error.text === MESSAGE_RESOURCE.ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION + " " +  MESSAGE_RESOURCE.OR_NOT_CHANGE_CONTENT_QUESTION? 
             this.errorMessage = err.error.text : 
             (
               err.error.text === MESSAGE_RESOURCE.ANSWER + " " + MESSAGE_RESOURCE.ALREADY_EXISTS + " trong câu hỏi" ? 

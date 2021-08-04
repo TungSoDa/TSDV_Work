@@ -7,6 +7,7 @@ public class MessageResource {
     /**
      * For Const
      */
+    public static final String questionImage = "../resources/ifi-fresher-test/src/assets/images/question/";
     public static final Integer ONE_TOPIC_EXAM_QUESTION_NUMBER = 3;
     public static final Integer ALL_TOPIC_EXAM_QUESTION_NUMBER = 18;
     public static final String ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE = "Số câu hỏi của đề thi 1 chủ đề phải là";
@@ -27,13 +28,13 @@ public class MessageResource {
      */
     public static final String QUESTION_HAS_NO_CORRECT_ANSWER_YET = "Câu hỏi này chưa có câu đáp án";
     public static final String ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION = "Nội dung của câu trả lời này đã có ở đáp án khác trong câu hỏi";
+    public static final String OR_NOT_CHANGE_CONTENT_QUESTION = "hoặc nội dung câu hỏi chưa được thay đổi khi cập nhật";
     public static final String ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION = "Chỉ có thể có 1 đán án cho câu hỏi này";
 
     /**
      * For Question
      */
     public static final String THIS_QUESTION_CONTENT = "Nội dung câu hỏi này";
-    public static final String MAY_BE_THE_SAME_CONTENT_AS_EXISTING_QUESTION = "có thể có nội dung tương tự với những câu hỏi đã có trong Ngân hàng câu hỏi";
     public static final String NO_QUESTIONS_WITH_THIS_TOPIC = "Không có câu hỏi nào với chủ đề ";
 
     /**

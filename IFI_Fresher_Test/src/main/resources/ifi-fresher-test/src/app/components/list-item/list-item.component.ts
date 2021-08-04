@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Exam } from 'src/app/models/exam-model';
+import { Exam, ExamImpl } from 'src/app/models/exam-model';
 
 @Component({
   selector: 'app-list-item',
@@ -8,7 +8,7 @@ import { Exam } from 'src/app/models/exam-model';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent implements OnInit {
-  @Input() exam?: Exam;
+  @Input() exam?: ExamImpl;
   
   constructor(public router: Router) {}
 

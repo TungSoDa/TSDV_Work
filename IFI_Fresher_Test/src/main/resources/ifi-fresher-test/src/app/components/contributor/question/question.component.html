@@ -1,5 +1,5 @@
 <li class="dropdown">
-  <div *ngIf="!(question!.image.includes('null'))" class="question-image">
+  <div *ngIf="!question!.image?.includes('null')" class="question-image">
     <img [src]="imagePath + question!.image" alt="">
   </div>
   <div class="drop-item" *ngIf="this.router.url.includes('/contributor/questionBank')">

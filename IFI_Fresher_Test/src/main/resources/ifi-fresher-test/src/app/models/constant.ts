@@ -54,6 +54,7 @@ export const MESSAGE_RESOURCE = {
    */
   QUESTION_HAS_NO_CORRECT_ANSWER_YET : "Câu hỏi này chưa có câu đáp án",
   ANSWER_CONTENT_ALREADY_EXISTS_IN_THIS_QUESTION : "Nội dung của câu trả lời này đã có ở đáp án khác trong câu hỏi",
+  OR_NOT_CHANGE_CONTENT_QUESTION: "hoặc nội dung câu hỏi chưa được thay đổi khi cập nhật",
   ONLY_ONE_CORRECT_ANSWER_IN_THIS_QUESTION : "Chỉ có thể có 1 đán án cho câu hỏi này",
 
   /**
