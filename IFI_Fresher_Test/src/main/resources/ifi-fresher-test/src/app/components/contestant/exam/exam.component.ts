@@ -18,7 +18,7 @@ export class ContestantExamComponent implements OnInit {
   examResult: ExamResultImpl = new ExamResultImpl();
 
   // set time 60 second
-  examTimeLeft: number = 60;
+  examTimeLeft: number = 180;
 
   selectedAnswer: string = "";
 
@@ -85,7 +85,7 @@ export class ContestantExamComponent implements OnInit {
       )
     ))
     .catch(async (err) => (
-      err.error === MESSAGE_RESOURCE.USER_ALREADY_TESTED_THIS_EXAM ? this.errorMessage = err.error : this.errorMessage =  undefined,
+      err.error.text === MESSAGE_RESOURCE.USER_ALREADY_TESTED_THIS_EXAM ? this.errorMessage = err.error.text : this.errorMessage =  undefined,
       $('.exam-check .btn-primary.check-quiz').addClass('hide') ,
       await this.examService.getExamResultByContestantUsernameAndExamID(this.examResult.examID, this.examResult.contestantUsername).toPromise().then(
         async (examResult) => (

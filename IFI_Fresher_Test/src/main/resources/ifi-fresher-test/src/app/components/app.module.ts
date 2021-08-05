@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CountdownModule } from 'ngx-countdown';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -29,7 +30,6 @@ import { ContributorQuestionComponent } from './contributor/question/question.co
 import { QuestionBankComponent } from './contributor/question-bank/question-bank.component';
 import { ContestantAnswerComponent } from './contestant/answer/answer.component';
 import { AnswerComponent } from './contributor/answer/answer.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContestantExamResultComponent } from './contestant/exam-result/exam-result.component';
 import { AddQuestionModalComponent } from './contributor/question/add-modal/add-modal.component';
 import { EditQuestionModalComponent } from './contributor/question/edit-modal/edit-modal.component';
