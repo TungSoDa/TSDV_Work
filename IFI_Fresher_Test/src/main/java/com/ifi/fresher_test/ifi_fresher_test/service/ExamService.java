@@ -6,6 +6,8 @@ import com.ifi.fresher_test.ifi_fresher_test.mapper.ExamMapper;
 import com.ifi.fresher_test.ifi_fresher_test.model.Exam;
 import com.ifi.fresher_test.ifi_fresher_test.repository.ExamRepository;
 import com.ifi.fresher_test.ifi_fresher_test.util.MessageResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +40,8 @@ public class ExamService {
     public void setAnswerService(AnswerService answerService) {
         this.answerService = answerService;
     }
+
+    public static final Logger logger = LoggerFactory.getLogger(ExamService.class);
 
     public List<QuestionDTO> randomQuestionToExam(List<QuestionDTO> questionList, Integer questionNumber) {
         List<QuestionDTO> examQuestion = new ArrayList();
@@ -142,6 +146,7 @@ public class ExamService {
 
     public List<ExamDTO> findAll() {
         List<Exam> examList = examRepository.findAllByIsDeletedFalse().get();
+        logger.info(MessageResource.SHOW_ALL_EXAM);
         return ExamMapper.arrayEntityToDTO(examList, questionService);
     }
 
@@ -154,10 +159,12 @@ public class ExamService {
             } else {
                 questionDTOList = questionService.stringToListQuestionDTO(optionalExam.get().getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
             }
+            logger.info(MessageResource.SHOW_EXAM_BY_ID + " " + id);
             return optionalExam.map(exam -> new ResponseEntity<>(
                     ExamMapper.entityToDTO(exam, questionDTOList), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
+            logger.error(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }
@@ -166,10 +173,12 @@ public class ExamService {
         String topicData = topic.replace('_', ' ');
         Optional<List<Exam>> optionalExamList = examRepository.findExamByTopicAndIsDeletedFalse(topicData);
         if (optionalExamList.isPresent()) {
+            logger.info(MessageResource.SHOW_LIST_EXAM_BY_TOPIC + " " + topic);
             return optionalExamList.map(examList -> new ResponseEntity<>(
                     ExamMapper.arrayEntityToDTO(examList, questionService), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
+            logger.error(MessageResource.EXAM + " " + MessageResource.IS_EMPTY);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.IS_EMPTY, HttpStatus.NOT_FOUND);
         }
     }
@@ -181,6 +190,7 @@ public class ExamService {
                 examQuestion = randomQuestionToExam(questionService.findAll(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
             } else {
                 if (questionService.findQuestionByTopic(examDTO.getTopic()).isEmpty()) {
+                    logger.error(MessageResource.NO_QUESTIONS_WITH_THIS_TOPIC);
                     return new ResponseEntity<String>(MessageResource.NO_QUESTIONS_WITH_THIS_TOPIC, HttpStatus.NOT_FOUND);
                 } else {
                     examQuestion = randomQuestionToExam(questionService.findQuestionByTopic(examDTO.getTopic()), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
@@ -189,12 +199,14 @@ public class ExamService {
         } else {
             if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
                 if (examDTO.getListQuestionID().split(",").length != MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER) {
+                    logger.error(MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
                     return new ResponseEntity<String>(MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.BAD_REQUEST);
                 } else {
                     examQuestion = questionService.stringToListQuestionDTO(examDTO.getListQuestionID(), MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
                 }
             } else {
                 if (examDTO.getListQuestionID().split(",").length != MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER) {
+                    logger.error(MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
                     return new ResponseEntity<String>(MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.BAD_REQUEST);
                 } else {
                     examQuestion = questionService.stringToListQuestionDTO(examDTO.getListQuestionID(), MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
@@ -209,12 +221,15 @@ public class ExamService {
         examDTO.setIsDeleted(false);
 
         if (isSameQuestionList(examDTO, examRepository.findExamByTopicAndIsDeletedFalse(examDTO.getTopic()).get(), 0)) {
+            logger.error(MessageResource.EXAM + " " + MessageResource.WITH_QUESTION_LIST_IS_CREATED);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.WITH_QUESTION_LIST_IS_CREATED, HttpStatus.NOT_FOUND);
         } else if (!isAllTopicQuestionContainListQuestionID(getRandomListQuestionID(questionService.findQuestionByTopic(examDTO.getTopic())), examDTO.getListQuestionID()) && !examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
+            logger.error(MessageResource.INCORRECT_QUESTION_LIST_WITH_TOPIC);
             return new ResponseEntity<String>(MessageResource.INCORRECT_QUESTION_LIST_WITH_TOPIC, HttpStatus.NOT_FOUND);
         } else {
             Exam exam = ExamMapper.dtoToEntity(examDTO);
             examRepository.save(exam);
+            logger.info(MessageResource.ADD_EXAM_SUCCESSFUL);
             return new ResponseEntity<ExamDTO>(
                     new ExamDTO(
                             exam.getExamID(),
@@ -231,13 +246,17 @@ public class ExamService {
     public ResponseEntity<?> updateExam(Integer id, ExamDTO examDTO) {
         Optional<Exam> optionalExam = examRepository.findExamByExamIDAndIsDeletedFalse(id);
         if (!optionalExam.isPresent()) {
+            logger.error(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         } else if (examRepository.findExamByNameAndIsDeletedFalse(examDTO.getName()).isPresent() && !examRepository.findExamByExamIDAndIsDeletedFalse(id).get().getName().equals(examDTO.getName())) {
+            logger.error(MessageResource.EXAM + " " + MessageResource.WITH_THE_SAME_NAME + " " + MessageResource.ALREADY_EXISTS);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.WITH_THE_SAME_NAME + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         } else if (isSameQuestionList(examDTO, examRepository.findExamByTopicAndIsDeletedFalse(examDTO.getTopic()).get(), id)) {
+            logger.error(MessageResource.EXAM + " " + MessageResource.WITH_QUESTION_LIST_IS_CREATED);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.WITH_QUESTION_LIST_IS_CREATED, HttpStatus.NOT_FOUND);
         } else if (examDTO.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
             if (examDTO.getListQuestionID().split(",").length != MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER) {
+                logger.error(MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER);
                 return new ResponseEntity<String>(MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ALL_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.BAD_REQUEST);
             } else {
                 return optionalExam.map(exam -> {
@@ -245,6 +264,7 @@ public class ExamService {
                     exam.setTopic(examDTO.getTopic());
                     exam.setListQuestionID(examDTO.getListQuestionID());
                     examRepository.save(exam);
+                    logger.info(MessageResource.EDIT_EXAM_SUCCESSFUL);
                     return new ResponseEntity<ExamDTO>(new ExamDTO(
                             exam.getExamID(),
                             exam.getName(),
@@ -257,8 +277,10 @@ public class ExamService {
             }
         } else {
             if (examDTO.getListQuestionID().split(",").length != MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER) {
+                logger.error(MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER);
                 return new ResponseEntity<String>(MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE + " " + MessageResource.ONE_TOPIC_EXAM_QUESTION_NUMBER, HttpStatus.BAD_REQUEST);
             } else if (!isAllTopicQuestionContainListQuestionID(getRandomListQuestionID(questionService.findQuestionByTopic(examDTO.getTopic())), examDTO.getListQuestionID())) {
+                logger.error(MessageResource.INCORRECT_QUESTION_LIST_WITH_TOPIC);
                 return new ResponseEntity<String>(MessageResource.INCORRECT_QUESTION_LIST_WITH_TOPIC, HttpStatus.NOT_FOUND);
             } else {
                 return optionalExam.map(exam -> {
@@ -266,6 +288,7 @@ public class ExamService {
                     exam.setTopic(examDTO.getTopic());
                     exam.setListQuestionID(examDTO.getListQuestionID());
                     examRepository.save(exam);
+                    logger.info(MessageResource.EDIT_EXAM_SUCCESSFUL);
                     return new ResponseEntity<ExamDTO>(new ExamDTO(
                             exam.getExamID(),
                             exam.getName(),
@@ -285,6 +308,7 @@ public class ExamService {
             return optionalExam.map(exam -> {
                 exam.setIsDeleted(true);
                 examRepository.save(exam);
+                logger.info(MessageResource.DELETE_EXAM_SUCCESSFUL);
                 if (exam.getTopic().equals(MessageResource.SYNTHESIS_TOPIC)) {
                     return new ResponseEntity<ExamDTO>(new ExamDTO(
                             exam.getExamID(),
@@ -306,6 +330,7 @@ public class ExamService {
                 }
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
+            logger.error(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED);
             return new ResponseEntity<String>(MessageResource.EXAM + " " + MessageResource.NOT_CREATED_YET + " " + MessageResource.OR_IS_DELETED, HttpStatus.NOT_FOUND);
         }
     }

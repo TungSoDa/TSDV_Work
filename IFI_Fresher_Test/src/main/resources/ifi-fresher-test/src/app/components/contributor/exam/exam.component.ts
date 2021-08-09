@@ -68,6 +68,9 @@ export class ContributorExamComponent implements OnInit {
 
     await this.examService.addExam(this.exam)
     .then(async (reloadAfterUpdateExam) => (
+      setTimeout(function() { 
+        window.location.reload(); 
+      }, 3000),
       this.successMessage = "Đã thêm đề thi " + this.exam.topic +" mới thành công, xem ngay ở Danh sách đề thi",
       this.errorMessage =  undefined
     ))

@@ -5,6 +5,8 @@ import com.ifi.fresher_test.ifi_fresher_test.mapper.AccountMapper;
 import com.ifi.fresher_test.ifi_fresher_test.model.Account;
 import com.ifi.fresher_test.ifi_fresher_test.repository.AccountRepository;
 import com.ifi.fresher_test.ifi_fresher_test.util.MessageResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +24,22 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
+    public static final Logger logger = LoggerFactory.getLogger(AccountService.class);
+
     public List<AccountDTO> findAll() {
+        logger.info(MessageResource.SHOW_ALL_ACCOUNT);
         return AccountMapper.arrayEntityToDTO(accountRepository.findAll());
     }
 
     public ResponseEntity<?> findAccountByUsername(String username) {
         Optional<Account> optionalAccount = accountRepository.findById(username);
         if (optionalAccount.isPresent()) {
+            logger.info(MessageResource.SHOW_ACCOUNT_BY_USERNAME + " " + username);
             return optionalAccount.map(account -> new ResponseEntity<AccountDTO>(
                     AccountMapper.entityToDTO(account), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET);
             return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
@@ -41,22 +48,27 @@ public class AccountService {
         Optional<Account> optionalAccount = accountRepository.findById(account.getUsername());
         if (optionalAccount.isPresent()) {
             if (optionalAccount.get().getPassword().equals(account.getPassword())) {
+                logger.info(MessageResource.LOGIN_SUCCESS);
                 return new ResponseEntity<AccountDTO>(new AccountDTO(
                         optionalAccount.get().getUsername(),
                         optionalAccount.get().getRole()
                 ), HttpStatus.OK);
             } else {
+                logger.error(MessageResource.WRONG_PASSWORD);
                 return new ResponseEntity<String>(MessageResource.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
             }
         } else {
+            logger.error(MessageResource.WRONG_USERNAME);
             return new ResponseEntity<String>(MessageResource.WRONG_USERNAME, HttpStatus.BAD_REQUEST);
         }
     }
 
     public ResponseEntity<?> addAccount(Account account) {
         if (!accountRepository.existsById(account.getUsername())) {
+            logger.info(MessageResource.ADD_ACCOUNT_SUCCESSFUL);
             return new ResponseEntity<Account>(accountRepository.save(account), HttpStatus.CREATED);
         } else {
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.ALREADY_EXISTS);
             return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
         }
     }
@@ -64,16 +76,17 @@ public class AccountService {
     public ResponseEntity<?> updateAccount(String username, AccountDTO accountDTO) {
         Optional<Account> optionalAccount = accountRepository.findById(username);
         if (optionalAccount.isPresent()) {
-            System.out.println("Run here" + accountDTO.getRole());
             return optionalAccount.map(account -> {
                 account.setRole(accountDTO.getRole());
                 accountRepository.save(account);
+                logger.info(MessageResource.EDIT_ACCOUNT_SUCCESSFUL);
                 return new ResponseEntity<AccountDTO>(new AccountDTO(
                         account.getUsername(),
                         account.getRole()
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET);
             return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
@@ -83,9 +96,11 @@ public class AccountService {
         if (optionalAccount.isPresent()) {
             return optionalAccount.map(account -> {
                 accountRepository.delete(account);
+                logger.info(MessageResource.DELETE_ACCOUNT_SUCCESSFUL);
                 return new ResponseEntity<Account>(account, HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET);
             return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }

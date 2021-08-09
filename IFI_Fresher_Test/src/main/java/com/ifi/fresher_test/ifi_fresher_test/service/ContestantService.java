@@ -5,6 +5,8 @@ import com.ifi.fresher_test.ifi_fresher_test.mapper.ContestantMapper;
 import com.ifi.fresher_test.ifi_fresher_test.model.Contestant;
 import com.ifi.fresher_test.ifi_fresher_test.repository.ContestantRepository;
 import com.ifi.fresher_test.ifi_fresher_test.util.MessageResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -30,18 +32,23 @@ public class ContestantService {
         this.accountService = accountService;
     }
 
+    public static final Logger logger = LoggerFactory.getLogger(ContestantService.class);
+
     public List<ContestantDTO> findAll() {
+        logger.info(MessageResource.SHOW_ALL_CONTESTANT);
         return ContestantMapper.arrayEntityToDTO(contestantRepository.findAll());
     }
 
     public ResponseEntity<?> findContestantByUsername(String username) {
         Optional<Contestant> optionalContestant = contestantRepository.findById(username);
         if (optionalContestant.isPresent()) {
+            logger.info(MessageResource.SHOW_CONTESTANT_BY_USERNAME + " " + username);
             return optionalContestant.map(contestant -> new ResponseEntity<ContestantDTO>(
                     ContestantMapper.entityToDTO(contestant), HttpStatus.OK)
             ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " hoặc " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " hoặc " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -51,6 +58,7 @@ public class ContestantService {
                 if (accountService.accountRepository.findById(contestantDTO.getUsername()).get().getRole().equals(MessageResource.CONTESTANT)) {
                     Contestant contestant = ContestantMapper.dtoToEntity(contestantDTO);
                     contestantRepository.save(contestant);
+                    logger.info(MessageResource.ADD_CONTESTANT_SUCCESSFUL);
                     return new ResponseEntity<ContestantDTO>(
                             new ContestantDTO(
                                     contestant.getUsername(),
@@ -58,12 +66,15 @@ public class ContestantService {
                             ), HttpStatus.CREATED
                     );
                 } else {
+                    logger.error(MessageResource.CONTRIBUTOR + " " + MessageResource.ALREADY_EXISTS);
                     return new ResponseEntity<String>(MessageResource.CONTRIBUTOR + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
                 }
             } else {
+                logger.error(MessageResource.CONTESTANT + " " + MessageResource.ALREADY_EXISTS);
                 return new ResponseEntity<String>(MessageResource.CONTESTANT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
             }
         } catch (DataIntegrityViolationException e) {
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET);
             return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
@@ -74,13 +85,15 @@ public class ContestantService {
             return optionalContestant.map(contestant -> {
                 contestant.setFullName(contestantDTO.getFullName());
                 contestantRepository.save(contestant);
+                logger.info(MessageResource.EDIT_CONTESTANT_SUCCESSFUL);
                 return new ResponseEntity<ContestantDTO>(new ContestantDTO(
                         contestant.getUsername(),
                         contestant.getFullName()
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " hoặc " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " hoặc " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -89,6 +102,7 @@ public class ContestantService {
         if (optionalContestant.isPresent()) {
             return optionalContestant.map(contestant -> {
                 contestantRepository.delete(contestant);
+                logger.info(MessageResource.DELETE_CONTESTANT_SUCCESSFUL);
                 accountService.deleteAccount(contestant.getUsername());
                 return new ResponseEntity<ContestantDTO>(new ContestantDTO(
                         contestant.getUsername(),
@@ -96,7 +110,8 @@ public class ContestantService {
                 ), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
-            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " OR " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
+            logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " hoặc " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET);
+            return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET + " hoặc " + MessageResource.CONTESTANT + " " + MessageResource.NOT_CREATED_YET, HttpStatus.NOT_FOUND);
         }
     }
 }
