@@ -19,6 +19,8 @@ public class Account {
 
     private String password;
 
+    private boolean active;
+
     private String role;
 
 //    @OneToOne
@@ -29,9 +31,15 @@ public class Account {
 //    @JoinColumn
 //    private Contributor contributor;
 
-    public Account(String username, String roles) {
+
+    public Account(String username) {
         this.username = username;
-        this.password = username;
-        this.role = roles;
+    }
+
+    public Account(String username, String password, Boolean active) {
+        this.username = username;
+        this.password = password;
+        this.active = active;
+        this.role = null;
     }
 }

@@ -7,7 +7,6 @@ public class MessageResource {
     /**
      * For Const
      */
-    public static final String questionImage = "../resources/ifi-fresher-test/src/assets/images/question/";
     public static final Integer ONE_TOPIC_EXAM_QUESTION_NUMBER = 3;
     public static final Integer ALL_TOPIC_EXAM_QUESTION_NUMBER = 18;
     public static final String ONE_TOPIC_EXAM_QUESTION_NUMBER_MUST_BE = "Số câu hỏi của đề thi 1 chủ đề phải là";

@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +25,17 @@ public class AccountService {
 
     @Autowired
     public void setAccountRepository(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
+    public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
@@ -44,29 +59,37 @@ public class AccountService {
         }
     }
 
+//    public ResponseEntity<?> login(Account account) {
+//        Optional<Account> optionalAccount = accountRepository.findById(account.getUsername());
+//        if (optionalAccount.isPresent()) {
+//            if (optionalAccount.get().getPassword().equals(account.getPassword())) {
+//                logger.info(MessageResource.LOGIN_SUCCESS);
+//                return optionalAccount.map(accountDto -> new ResponseEntity<AccountDTO>(
+//                        AccountMapper.entityToDTO(accountDto), HttpStatus.OK)
+//                ).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//            } else {
+//                logger.error(MessageResource.WRONG_PASSWORD);
+//                return new ResponseEntity<String>(MessageResource.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
+//            }
+//        } else {
+//            logger.error(MessageResource.WRONG_USERNAME);
+//            return new ResponseEntity<String>(MessageResource.WRONG_USERNAME, HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
     public ResponseEntity<?> login(Account account) {
-        Optional<Account> optionalAccount = accountRepository.findById(account.getUsername());
-        if (optionalAccount.isPresent()) {
-            if (optionalAccount.get().getPassword().equals(account.getPassword())) {
-                logger.info(MessageResource.LOGIN_SUCCESS);
-                return new ResponseEntity<AccountDTO>(new AccountDTO(
-                        optionalAccount.get().getUsername(),
-                        optionalAccount.get().getRole()
-                ), HttpStatus.OK);
-            } else {
-                logger.error(MessageResource.WRONG_PASSWORD);
-                return new ResponseEntity<String>(MessageResource.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
-            }
-        } else {
-            logger.error(MessageResource.WRONG_USERNAME);
-            return new ResponseEntity<String>(MessageResource.WRONG_USERNAME, HttpStatus.BAD_REQUEST);
-        }
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt =
     }
 
     public ResponseEntity<?> addAccount(Account account) {
         if (!accountRepository.existsById(account.getUsername())) {
+            accountRepository.save(account);
             logger.info(MessageResource.ADD_ACCOUNT_SUCCESSFUL);
-            return new ResponseEntity<Account>(accountRepository.save(account), HttpStatus.CREATED);
+            return new ResponseEntity<AccountDTO>(AccountMapper.entityToDTO(account), HttpStatus.CREATED);
         } else {
             logger.error(MessageResource.ACCOUNT + " " + MessageResource.ALREADY_EXISTS);
             return new ResponseEntity<String>(MessageResource.ACCOUNT + " " + MessageResource.ALREADY_EXISTS, HttpStatus.ALREADY_REPORTED);
@@ -80,10 +103,7 @@ public class AccountService {
                 account.setRole(accountDTO.getRole());
                 accountRepository.save(account);
                 logger.info(MessageResource.EDIT_ACCOUNT_SUCCESSFUL);
-                return new ResponseEntity<AccountDTO>(new AccountDTO(
-                        account.getUsername(),
-                        account.getRole()
-                ), HttpStatus.OK);
+                return new ResponseEntity<AccountDTO>(AccountMapper.entityToDTO(account), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
             logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET);
@@ -97,7 +117,7 @@ public class AccountService {
             return optionalAccount.map(account -> {
                 accountRepository.delete(account);
                 logger.info(MessageResource.DELETE_ACCOUNT_SUCCESSFUL);
-                return new ResponseEntity<Account>(account, HttpStatus.OK);
+                return new ResponseEntity<AccountDTO>(AccountMapper.entityToDTO(account), HttpStatus.OK);
             }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         } else {
             logger.error(MessageResource.ACCOUNT + " " + MessageResource.NOT_CREATED_YET);

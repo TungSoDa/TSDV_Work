@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Account } from 'src/app/models/account';
+import { Account, AccountImpl } from 'src/app/models/account';
 import { AccountService } from 'src/app/services/account/account.service';
-import { ROLE } from '../../models/constant';
+import { MESSAGE_RESOURCE, ROLE } from '../../models/constant';
 
 @Component({
   selector: 'app-login',
@@ -10,56 +10,53 @@ import { ROLE } from '../../models/constant';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  username!: string;
-
-  password!: string;
   
-  role!: string;
+  account: AccountImpl = new AccountImpl();
 
-  forgotInput?: string;
-
-  account?: Account;
+  errorMessage?: string;
 
   constructor(private accountService: AccountService,private router : Router) {}
 
   ngOnInit(): void {
+    sessionStorage.setItem('username', 'guest');
   }
 
   async loginSubmit() {
-    if(this.username==null||this.username.length<=0){
-      this.forgotInput="Vui lòng nhập tên người dùng";
+    if(this.account.username==null || this.account.username.length<=0){
+      this.errorMessage="Vui lòng nhập tên người dùng";
       return;
     }
 
-    if(this.password==null||this.password.length<=0){
-      this.forgotInput="Vui lòng nhập mật khẩu";
+    if(this.account.password==null || this.account.password.length<=0){
+      this.errorMessage="Vui lòng nhập mật khẩu";
       return;
     }
 
-    if( (this.username==null||this.username.length<=0) && (this.password==null||this.password.length<=0) ){
-      this.forgotInput="Vui lòng thông tin tài khoản";
+    if( ( this.account.username==null || this.account.username.length<=0) && (this.account.password==null || this.account.password.length<=0) ){
+      this.errorMessage="Vui lòng thông tin tài khoản";
       return;
     }
 
-    this.account = {
-      username: this.username,
-      password: this.password,
-      role: ""
-    };
-
-    await this.accountService.login(this.account).toPromise().then(async (account)=>{
+    await this.accountService.login(this.account)
+    .then(async (account) => {
       if (account.role === ROLE.CONTESTANT) {
-        this.router.navigate(['/contestant/home'])
-      } else if (account.role === ROLE.CONTRIBUTOR) {
-        this.router.navigate(['/contributor/home'])
-      } else if (JSON.stringify(account) === "WRONG USERNAME") {
-        this.forgotInput="Tên người dùng không chính xác";
-      } else if (JSON.stringify(account) === "WRONG PASSWORD") {
-        this.forgotInput="Mật khẩu không chính xác";
+        this.router.navigate(['/contestant/home']);
       }
-      this.forgotInput = undefined;
-    });
+      if (account.role === ROLE.CONTRIBUTOR) {
+        this.router.navigate(['/contributor/home'])
+      }
+      sessionStorage.setItem('username', account.username);
+      this.errorMessage = undefined;
+    })
+    .catch( (err) => (
+      err.error === MESSAGE_RESOURCE.WRONG_USERNAME ? 
+        this.errorMessage = err.error : 
+        (
+          err.error === MESSAGE_RESOURCE.WRONG_PASSWORD ? 
+            this.errorMessage = err.error : 
+            this.errorMessage =  undefined
+        )
+    ));
   }
 
 }

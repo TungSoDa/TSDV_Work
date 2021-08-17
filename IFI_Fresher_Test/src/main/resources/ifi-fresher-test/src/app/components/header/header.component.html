@@ -2,7 +2,7 @@
   <div class="container position-relative">
     <nav class="navbar navbar-expand-md">
       <div class="float-left">
-        <a *ngIf="router.url === '/' || router.url === '/login' || router.url === '/registration'" href="/" class="logo">
+        <a *ngIf="router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url === '/logout'" class="logo">
           <img src="../../assets/images/logo/ifiLogo.png" alt="IFI Solution">
         </a>
         <a *ngIf="router.url.includes('/contributor')" href="/contributor/home" class="logo">
@@ -16,8 +16,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <app-navigation-contestant *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url.includes('/contributor'))"></app-navigation-contestant>
-      <app-navigation-contributor *ngIf="!(router.url === '/' || router.url === '/login' || router.url === '/registration' || router.url.includes('/contestant'))"></app-navigation-contributor>
+      <app-navigation-contestant 
+        *ngIf="!(router.url === '/' || 
+          router.url === '/login' || 
+          router.url === '/logout' ||
+          router.url === '/registration' || 
+          router.url.includes('/contributor'))">
+      </app-navigation-contestant>
+
+      <app-navigation-contributor 
+        *ngIf="!(router.url === '/' || 
+          router.url === '/login' || 
+          router.url === '/logout' ||
+          router.url === '/registration' || 
+          router.url.includes('/contestant'))">
+      </app-navigation-contributor>
     </nav>
   </div>
 </div>

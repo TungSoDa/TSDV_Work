@@ -26,6 +26,7 @@ CREATE TABLE `account` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` varchar(15) NOT NULL,
+  `active` bit(1) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -36,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('haind','HaiND@1234','CONTESTANT'),('hoandv','HoanDV@1234','CONTRIBUTOR'),('hungnt','HungNT@1234','CONTESTANT'),('nghiavt','NghiaVT@1234','CONTESTANT'),('tungds','TungDS@1234','CONTESTANT'),('tungpv','TungPV@1234','CONTRIBUTOR');
+INSERT INTO `account` VALUES ('haind','HaiND@1234','CONTESTANT',_binary ''),('hoandv','HoanDV@1234','CONTRIBUTOR',_binary ''),('hungnt','HungNT@1234','CONTESTANT',_binary ''),('nghiavt','NghiaVT@1234','CONTESTANT',_binary ''),('tungds','TungDS@1234','CONTESTANT',_binary ''),('tungpv','TungPV@1234','CONTRIBUTOR',_binary '');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-28 14:26:54
+-- Dump completed on 2021-08-16 15:43:58
