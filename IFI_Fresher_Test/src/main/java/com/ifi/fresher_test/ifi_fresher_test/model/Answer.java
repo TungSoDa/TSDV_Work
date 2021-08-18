@@ -1,6 +1,5 @@
 package com.ifi.fresher_test.ifi_fresher_test.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,10 +29,6 @@ public class Answer {
 
     @Column(name = "question_id")
     private Integer questionID;
-
-//    @ManyToOne
-//    @JoinColumn
-//    private Question question;
 
     public Answer(String content, Boolean isCorrect, Boolean isDeleted, Integer questionID) {
         this.content = content;

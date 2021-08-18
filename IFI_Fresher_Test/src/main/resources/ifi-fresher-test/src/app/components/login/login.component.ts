@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
 
     await this.accountService.login(this.account)
     .then(async (account) => {
-      if (account.role === ROLE.CONTESTANT) {
+      if (account.roles[0] === ROLE.CONTESTANT) {
         this.router.navigate(['/contestant/home']);
       }
-      if (account.role === ROLE.CONTRIBUTOR) {
+      if (account.roles[0] === ROLE.CONTRIBUTOR) {
         this.router.navigate(['/contributor/home'])
       }
       sessionStorage.setItem('username', account.username);

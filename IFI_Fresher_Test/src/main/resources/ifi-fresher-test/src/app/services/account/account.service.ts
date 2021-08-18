@@ -16,6 +16,9 @@ export class AccountService {
 
   async login(account: Account) {
     const apiURL = `${HOSTNAME.backend}/account/login`;
-    return this.httpClient.post<any>(apiURL,account, httpOptions).toPromise().then(async (result) => (result));
+    return this.httpClient.post<any>(apiURL, {
+        username: account.username,
+        password: account.password
+    }, httpOptions).toPromise().then(async (result) => (result));
   }
 }

@@ -28,8 +28,4 @@ public class Exam {
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
-
-//    @ManyToOne
-//    @JoinColumn
-//    private Contestant contestant;
 }

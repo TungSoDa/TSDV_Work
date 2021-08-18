@@ -37,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('haind','HaiND@1234','CONTESTANT',_binary ''),('hoandv','HoanDV@1234','CONTRIBUTOR',_binary ''),('hungnt','HungNT@1234','CONTESTANT',_binary ''),('nghiavt','NghiaVT@1234','CONTESTANT',_binary ''),('tungds','TungDS@1234','CONTESTANT',_binary ''),('tungpv','TungPV@1234','CONTRIBUTOR',_binary '');
+INSERT INTO `account` VALUES ('haind','$2a$12$hZQOMP8Glpj3nlYA3.vbieWSD2kIqeh8Ae/byPg.muozCwfO3wC8W','CONTESTANT',_binary ''),('hoandv','$2a$12$kjDNGvW8o1C4REcctCRJ1uNlgVOy8xtDwdHLz0gfheF5DPacGrs9O','CONTRIBUTOR',_binary ''),('hungnt','$2a$12$UZP86ETU416YmolIARt/QOp/CZwNVKmHYZJ1UgmFV54UYNOOyI.m6','CONTESTANT',_binary ''),('nghiavt','$2a$12$SGZHKBDd65agGv/M7cDDWuSmHCjE.K.sn88.TjYTazx/.tv/qZ0Bu','CONTESTANT',_binary ''),('tungds','$2a$12$xxtDTYWAaU3u9s9EODXaMOOjXkhQuuhZH2awF.Nq17PaKLOeMAnwC','CONTESTANT',_binary ''),('tungpv','$2a$12$Ym4bqP8lWoEZx.Igtiwf6Op8nSI2/QLj2Ife5NeRCyZFX9cImMbAy','CONTRIBUTOR',_binary '');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-16 15:43:58
+-- Dump completed on 2021-08-18 15:26:02

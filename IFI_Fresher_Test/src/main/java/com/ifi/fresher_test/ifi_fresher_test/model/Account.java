@@ -23,15 +23,6 @@ public class Account {
 
     private String role;
 
-//    @OneToOne
-//    @JoinColumn
-//    private Contestant contestant;
-//
-//    @OneToOne
-//    @JoinColumn
-//    private Contributor contributor;
-
-
     public Account(String username) {
         this.username = username;
     }

@@ -1,25 +1,29 @@
 package com.ifi.fresher_test.ifi_fresher_test.config;
 
+import com.ifi.fresher_test.ifi_fresher_test.jwt.AuthEntryPointJwt;
+import com.ifi.fresher_test.ifi_fresher_test.jwt.AuthTokenFilter;
 import com.ifi.fresher_test.ifi_fresher_test.service.AccountDetailsService;
 import com.ifi.fresher_test.ifi_fresher_test.util.MessageResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@CrossOrigin
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    public final String HOST_NAME = "http://localhost:4242";
-
     AccountDetailsService accountDetailsService;
 
     @Autowired
@@ -27,9 +31,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.accountDetailsService = accountDetailsService;
     }
 
+    private AuthEntryPointJwt unauthorizedHandler;
+
+    @Autowired
+    public void setUnauthorizedHandler(AuthEntryPointJwt unauthorizedHandler) {
+        this.unauthorizedHandler = unauthorizedHandler;
+    }
+
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(accountDetailsService);
+        auth.userDetailsService(accountDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Bean
@@ -39,10 +61,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HOST_NAME+"/", HOST_NAME+"/login", HOST_NAME+"/registration").permitAll()
-                .antMatchers(HOST_NAME+"/contestant/").hasAnyAuthority(MessageResource.CONTESTANT)
-                .antMatchers(HOST_NAME+"/contributor/").hasAnyAuthority(MessageResource.CONTRIBUTOR)
-                .and().formLogin();
+        http.cors().and().csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/account/**").permitAll()
+                .anyRequest().authenticated();
+
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

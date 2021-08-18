@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "contestant")
@@ -21,14 +19,6 @@ public class Contestant {
 
     @Column(name = "fullname")
     private String fullName;
-
-//    @OneToOne
-//    @JoinColumn
-//    private Account account;
-//
-//    @OneToMany
-//    @JoinColumn
-//    private List<Exam> examList = new ArrayList<>();
 
     public Contestant(String username) {
         this.username = username;

@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AccountDetails implements UserDetails {
@@ -19,15 +20,26 @@ public class AccountDetails implements UserDetails {
 
     private boolean active;
 
-    private List<GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities;
 
-    public AccountDetails(Account account) {
-        this.username = account.getUsername();
-        this.password = account.getPassword();
-        this.active = account.isActive();
-        this.authorities = Arrays.stream(account.getRole().split(","))
+    public AccountDetails(String username, String password, boolean active, Collection<? extends GrantedAuthority> authorities) {
+        this.username = username;
+        this.password = password;
+        this.active = active;
+        this.authorities = authorities;
+    }
+
+    public static AccountDetails build(Account account) {
+        List<GrantedAuthority> authorities = Arrays
+                .stream(account.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+
+        return new AccountDetails(
+                account.getUsername(),
+                account.getPassword(),
+                account.isActive(),
+                authorities);
     }
 
     @Override
@@ -63,5 +75,15 @@ public class AccountDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        AccountDetails account = (AccountDetails) o;
+        return Objects.equals(username, account.username);
     }
 }

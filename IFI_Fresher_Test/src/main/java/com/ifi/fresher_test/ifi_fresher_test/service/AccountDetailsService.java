@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AccountDetailsService implements UserDetailsService {
     private AccountRepository accountRepository;
@@ -22,8 +20,8 @@ public class AccountDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Account> optionalAccount = accountRepository.findById(username);
-        optionalAccount.orElseThrow(() -> new UsernameNotFoundException("Không tìm thấy" + username));
-        return optionalAccount.map(AccountDetails::new).get();
+        Account account = accountRepository.findById(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Không tìm thấy người dùng với tên người dùng là " + username));
+        return AccountDetails.build(account);
     }
 }
