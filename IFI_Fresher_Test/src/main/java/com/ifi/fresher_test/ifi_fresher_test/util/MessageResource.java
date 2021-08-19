@@ -16,8 +16,8 @@ public class MessageResource {
      * For Entity
      */
     public static final String ACCOUNT = "Tài khoản";
-    public static final String CONTESTANT = "Người dùng";
-    public static final String CONTRIBUTOR = "Quản trị viên";
+    public static final String CONTESTANT = "Người làm bài";
+    public static final String CONTRIBUTOR = "Cán bộ hướng dẫn";
     public static final String EXAM = "Đề thi";
     public static final String QUESTION = "Câu hỏi";
     public static final String ANSWER = "Câu trả lời";

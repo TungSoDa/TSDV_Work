@@ -5,9 +5,7 @@ import com.ifi.fresher_test.ifi_fresher_test.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -31,7 +29,7 @@ public class QuestionController {
         return questionService.getDeletedQuestionList();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<?> findQuestionByID(@PathVariable Integer id) {
         return questionService.findQuestionByID(id);
     }

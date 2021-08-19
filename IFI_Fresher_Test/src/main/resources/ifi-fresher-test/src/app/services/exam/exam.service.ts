@@ -26,12 +26,12 @@ export class ExamService {
     return this.http.get<Exam[]>(this.getByTopic + topic);
   }
 
-  private getByID = `${HOSTNAME.backend}/exam/`
+  private getByID = `${HOSTNAME.backend}/exam/find/`
   getExamByID(examID: any): Observable<Exam> {
     return this.http.get<Exam>(this.getByID + examID);
   }
 
-  private getResultByID= `${HOSTNAME.backend}/examResult/`
+  private getResultByID= `${HOSTNAME.backend}/examResult/find/`
   getExamResultByID(examResultID: any): Observable<ExamResult> {
     return this.http.get<ExamResult>(this.getResultByID + examResultID);
   }

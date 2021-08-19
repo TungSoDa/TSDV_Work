@@ -17,7 +17,7 @@ export class QuestionService {
     return this.http.get<Question[]>(this.getAll);
   }
 
-  private getByID = `${HOSTNAME.backend}/question/`;
+  private getByID = `${HOSTNAME.backend}/question/find/`;
   getQuestionByID(questionID: any): Observable<Question> {
     return this.http.get<Question>(this.getByID + questionID);
   }

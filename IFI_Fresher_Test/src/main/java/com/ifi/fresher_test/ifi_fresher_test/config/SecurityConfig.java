@@ -3,7 +3,6 @@ package com.ifi.fresher_test.ifi_fresher_test.config;
 import com.ifi.fresher_test.ifi_fresher_test.jwt.AuthEntryPointJwt;
 import com.ifi.fresher_test.ifi_fresher_test.jwt.AuthTokenFilter;
 import com.ifi.fresher_test.ifi_fresher_test.service.AccountDetailsService;
-import com.ifi.fresher_test.ifi_fresher_test.util.MessageResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +10,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -67,7 +64,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/account/**").permitAll()
+                .antMatchers("/account/login").permitAll()
+                .antMatchers(
+                        "/account/**",
+                        "/contributor/**",
+                        "/exam/**",
+                        "/examResult/**",
+                        "/question/**",
+                        "/answer/**"
+                ).hasRole("CONTRIBUTOR")
+                .antMatchers(
+                        "/account/find/**", "/account/update/**", "/account/delete/**",
+                        "/contestant/**",
+                        "/exam/all", "/exam/find/**", "/exam/topic/**",
+                        "/examResult/**",
+                        "/question/find/**",
+                        "/answer/question/**"
+                ).hasRole("CONTESTANT")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

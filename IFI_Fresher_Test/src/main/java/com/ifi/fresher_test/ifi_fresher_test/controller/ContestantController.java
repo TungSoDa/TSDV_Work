@@ -24,7 +24,7 @@ public class ContestantController {
         return contestantService.findAll();
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/find/{username}")
     public ResponseEntity<?> findContestantByUsername(@PathVariable String username) {
         return contestantService.findContestantByUsername(username);
     }

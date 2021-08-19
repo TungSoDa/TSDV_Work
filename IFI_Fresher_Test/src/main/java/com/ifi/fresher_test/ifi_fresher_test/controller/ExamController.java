@@ -29,7 +29,7 @@ public class ExamController {
         return examService.getDeletedExamList();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<?> findExamByID(@PathVariable Integer id) {
         return examService.findExamByID(id);
     }

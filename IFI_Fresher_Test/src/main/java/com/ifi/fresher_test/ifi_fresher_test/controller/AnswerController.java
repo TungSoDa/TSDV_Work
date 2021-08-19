@@ -30,7 +30,7 @@ public class AnswerController {
         return answerService.getDeletedAnswerList();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<?> findAnswerByID(@PathVariable Integer id) {
         return answerService.findAnswerByID(id);
     }
@@ -46,16 +46,19 @@ public class AnswerController {
     }
 
     @PostMapping("/add")
+//    @PreAuthorize("hasRole('CONTRIBUTOR')")
     public ResponseEntity<?> addAnswer(@RequestBody AnswerDTO answerDTO) {
         return answerService.addAnswer(answerDTO);
     }
 
     @PutMapping("/update/{id}")
+//    @PreAuthorize("hasRole('CONTRIBUTOR')")
     public ResponseEntity<?> updateAnswer(@PathVariable Integer id, @RequestBody AnswerDTO answerDTO) {
         return answerService.updateAnswer(id, answerDTO);
     }
 
     @DeleteMapping("/delete/{id}")
+//    @PreAuthorize("hasRole('CONTRIBUTOR')")
     public ResponseEntity<?> deleteAnswer(@PathVariable Integer id) {
         return answerService.deleteAnswer(id);
     }

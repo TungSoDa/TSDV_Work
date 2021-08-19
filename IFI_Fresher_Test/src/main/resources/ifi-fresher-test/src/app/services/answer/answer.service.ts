@@ -14,7 +14,7 @@ export class AnswerService {
 
   constructor(private http:HttpClient) { }
 
-  private getByID = `${HOSTNAME.backend}/answer/`
+  private getByID = `${HOSTNAME.backend}/answer/find/`
   getAnswerByID(answerID: any): Observable<Answer> {
     return this.http.get<Answer>(this.getByID + answerID);
   }

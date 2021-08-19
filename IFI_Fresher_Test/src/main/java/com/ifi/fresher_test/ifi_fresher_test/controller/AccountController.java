@@ -25,7 +25,7 @@ public class AccountController {
         return accountService.findAll();
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/find/{username}")
     public ResponseEntity<?> findAccountByUsername(@PathVariable String username) {
         return accountService.findAccountByUsername(username);
     }
